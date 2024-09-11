@@ -468,7 +468,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 664413419}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a02a99520719be248bc3b6076e3df9e1, type: 3}
   m_Name: 
@@ -486,6 +486,7 @@ MonoBehaviour:
   floorLayerMask:
     serializedVersion: 2
     m_Bits: 0
+  lastLegBone: {fileID: 0}
 --- !u!114 &700441507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -960,6 +961,7 @@ MonoBehaviour:
   floorLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  lastLegBone: {fileID: 0}
 --- !u!1001 &1356221668
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1599,7 +1601,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1878823141}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a02a99520719be248bc3b6076e3df9e1, type: 3}
   m_Name: 
@@ -1617,6 +1619,7 @@ MonoBehaviour:
   floorLayerMask:
     serializedVersion: 2
     m_Bits: 0
+  lastLegBone: {fileID: 0}
 --- !u!1001 &1886760286
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1638,7 +1641,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6e2ce5c1e9be4a94d8a1b965b6f00ae6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6e2ce5c1e9be4a94d8a1b965b6f00ae6,
         type: 3}
@@ -2324,7 +2327,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2119828731}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a02a99520719be248bc3b6076e3df9e1, type: 3}
   m_Name: 
@@ -2342,6 +2345,7 @@ MonoBehaviour:
   floorLayerMask:
     serializedVersion: 2
     m_Bits: 0
+  lastLegBone: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
