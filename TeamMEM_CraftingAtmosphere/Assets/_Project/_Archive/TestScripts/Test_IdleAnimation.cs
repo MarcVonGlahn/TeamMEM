@@ -5,10 +5,17 @@ using UnityEngine;
 
 public class Test_IdleAnimation : MonoBehaviour
 {
-    public Transform rootBone;
-    public AnimationCurve animCurve;
+    public bool doIdle = true;
+    public bool doWalk = false;
 
-    public float duration = 3.0f;
+    public Transform rootBone;
+
+    [Header("Idle")]
+    public AnimationCurve animCurveIdle;
+    public float durationIdle = 3.0f;
+
+    [Header("Walk")]
+    public float walkSpeed = 1.0f;
 
 
     private float _timer = 0;
@@ -20,20 +27,40 @@ public class Test_IdleAnimation : MonoBehaviour
         _initPosition = rootBone.position;
     }
 
-    // Update is called once per frame
+
     void Update()
+    {
+        if (doIdle)
+        {
+            DoIdle();
+            return;
+        }
+
+        if (doWalk)
+        {
+            DoWalk();
+        }
+    }
+
+
+    private void DoIdle()
     {
         _timer += Time.deltaTime;
 
-        if(_timer > duration)
+        if (_timer > durationIdle)
         {
             _timer = 0;
             return;
         }
-        
-        float lerp = _timer / duration;
-        float eval = animCurve.Evaluate(lerp);
+
+        float lerp = _timer / durationIdle;
+        float eval = animCurveIdle.Evaluate(lerp);
 
         rootBone.position = new Vector3(_initPosition.x, _initPosition.y + eval, _initPosition.z);
+    }
+
+    private void DoWalk()
+    {
+        transform.Translate(0, 0, walkSpeed *  Time.deltaTime);
     }
 }
