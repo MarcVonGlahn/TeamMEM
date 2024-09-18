@@ -28,7 +28,8 @@ public class MultiBoneIK : MonoBehaviour
     [Tooltip("The lower the step speed, the faster the step")]
     [SerializeField] private float stepSpeed = 0.05f;
     [SerializeField] private float stepHeight = 0.5f;
-    [SerializeField] private AnimationCurve stepAnimCurve;
+    [SerializeField] private CustomAnimationCurve_Collection curves;
+    [SerializeField] private CustomAnimationCurveType stepAnimCurveType;
 
 
     private bool _isDoingWalkingAnim;
@@ -132,7 +133,7 @@ public class MultiBoneIK : MonoBehaviour
             Vector3 newPlantPos = Vector3.MoveTowards(_plantLegPos, _plantLegTargetPos, stepSpeed);
 
             // ... while an Animation Curve controls how the step works height wise over distance.
-            newPlantPos.y = _plantLegTargetPos.y + stepAnimCurve.Evaluate(1 - currentDistanceToTarget / distanceOnStepBegin) * stepHeight;
+            newPlantPos.y = _plantLegTargetPos.y + curves.GetAnimationCurve(stepAnimCurveType).Evaluate(1 - currentDistanceToTarget / distanceOnStepBegin) * stepHeight;
 
             _plantLegPos = newPlantPos;
 
