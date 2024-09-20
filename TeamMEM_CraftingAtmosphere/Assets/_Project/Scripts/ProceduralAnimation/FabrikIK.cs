@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.XR;
 
 public class MultiBoneIK : MonoBehaviour
@@ -13,10 +14,13 @@ public class MultiBoneIK : MonoBehaviour
     [SerializeField] private Transform target; // The target the IK should try to reach
     [SerializeField] private float targetHeight = 2f;
     [Header("IK Properties")]
-    [SerializeField] private Transform[] bones; // Array of bones in the kinematic chain
+    [SerializeField] private List<IKBone> ikBones;
+    [Space]
     [SerializeField] private Transform footBone;
+    [Space]
     [SerializeField] private int iterations = 10; // Number of iterations for refining the solution
     [SerializeField] private float tolerance = 0.01f; // How close to the target is considered "good enough"
+    [SerializeField] private float smoothFactor = 0.1f;
     [Space]
     [Header("Raycasting")]
     [SerializeField] private LayerMask floorLayerMask;
@@ -27,6 +31,7 @@ public class MultiBoneIK : MonoBehaviour
     [Header("Animation Properties")]
     [Tooltip("The lower the step speed, the faster the step")]
     [SerializeField] private float stepSpeed = 0.05f;
+    [SerializeField] private float maxStepDuration = 1.0f;
     [SerializeField] private float stepHeight = 0.5f;
     [SerializeField] private CustomAnimationCurve_Collection curves;
     [SerializeField] private CustomAnimationCurveType stepAnimCurveType;
@@ -52,8 +57,8 @@ public class MultiBoneIK : MonoBehaviour
 
         _plantLegPos = _plantLegTargetPos;
 
-        _maxLegExtension = Vector3.Distance(bones[0].position, bones[1].position)
-            + Vector3.Distance(bones[1].position, bones[2].position);
+        _maxLegExtension = Vector3.Distance(ikBones[0].boneTransform.position, ikBones[1].boneTransform.position)
+            + Vector3.Distance(ikBones[1].boneTransform.position, ikBones[2].boneTransform.position);
     }
 
 
@@ -109,7 +114,7 @@ public class MultiBoneIK : MonoBehaviour
 
     bool ShouldDoStep()
     {
-        bool isLegFullyExtended =Vector3.Distance(bones[0].position, bones[bones.Length - 1].position) >= _maxLegExtension - 0.1f;
+        bool isLegFullyExtended =Vector3.Distance(ikBones[0].boneTransform.position, ikBones[ikBones.Count - 1].boneTransform.position) >= _maxLegExtension - 0.1f;
 
         bool isStepThresholdMet = _distanceFromPlantedLeg >= stepLengthThreshold;
 
@@ -127,7 +132,9 @@ public class MultiBoneIK : MonoBehaviour
         float currentDistanceToTarget = Vector3.Distance(groundedCurrentLegPos, groundedTargetPos);
         float distanceOnStepBegin = currentDistanceToTarget;
 
-        while (currentDistanceToTarget >= 0.01f)
+        float timer = 0f;
+
+        while (currentDistanceToTarget >= 0.01f || timer <= maxStepDuration)
         {
             // We use the MoveTowards method to dynamically move the leg towards the target positon ...
             Vector3 newPlantPos = Vector3.MoveTowards(_plantLegPos, _plantLegTargetPos, stepSpeed);
@@ -140,6 +147,8 @@ public class MultiBoneIK : MonoBehaviour
             // Then adjust current 2D Leg Position and distance to target
             groundedCurrentLegPos = new Vector2(_plantLegPos.x, _plantLegPos.z);
             currentDistanceToTarget = Vector3.Distance(groundedCurrentLegPos, groundedTargetPos);
+
+            timer += Time.deltaTime;
 
             yield return new WaitForEndOfFrame();
         }
@@ -154,7 +163,7 @@ public class MultiBoneIK : MonoBehaviour
     #region IK Solver
     void SolveIK()
     {
-        if (bones.Length == 0 || target == null)
+        if (ikBones.Count == 0 || target == null)
             return;
 
         Vector3 tposition = target.position;
@@ -163,22 +172,24 @@ public class MultiBoneIK : MonoBehaviour
 
         for (int i = 0; i < iterations; i++)
         {
-            for (int j = bones.Length - 1; j >= 0; j--)
+            for (int j = ikBones.Count - 1; j >= 0; j--)
             {
-                Transform bone = bones[j];
+                IKBone ikBone = ikBones[j];
 
                 // Calculate the vector from the bone to the end effector
-                Vector3 toEndEffector = bones[bones.Length - 1].position - bone.position;
+                Vector3 toEndEffector = ikBones[ikBones.Count - 1].boneTransform.position - ikBone.boneTransform.position;
                 // Calculate the vector from the bone to the target
-                Vector3 toTarget = _plantLegPos - bone.position;
+                Vector3 toTarget = _plantLegPos - ikBone.boneTransform.position;
 
                 // Calculate the rotation to get from the end effector to the target
                 Quaternion targetRotation = Quaternion.FromToRotation(toEndEffector, toTarget);
 
-                bone.rotation = targetRotation * bone.rotation; // Multiplying 2 Quaternions results in a composition (Apply Quaternion A, and then B, without Gimbal lock danger).
+                ikBone.boneTransform.rotation = targetRotation * ikBone.boneTransform.rotation; // Multiplying 2 Quaternions results in a composition (Apply Quaternion A, and then B, without Gimbal lock danger).
+
+                ApplyJointConstraints(ikBone);
 
                 // Check if the end effector is close enough to the target
-                if ((bones[bones.Length - 1].position - _plantLegPos).sqrMagnitude < tolerance * tolerance)
+                if ((ikBones[ikBones.Count - 1].boneTransform.position - _plantLegPos).sqrMagnitude < tolerance * tolerance)
                 {
                     breakSolving = true;
                     break;
@@ -190,14 +201,53 @@ public class MultiBoneIK : MonoBehaviour
         // Rotate the lowest bone one last time
 
         // Calculate the vector from the bone to the end effector
-        Vector3 toendEffector = footBone.position - bones[bones.Length - 1].position;
+        Vector3 toendEffector = footBone.position - ikBones[ikBones.Count - 1].boneTransform.position;
         // Calculate the vector from the bone to the target
-        Vector3 totarget = raycastHitInfo_IK.point - bones[bones.Length - 1].position;
+        Vector3 totarget = raycastHitInfo_IK.point - ikBones[ikBones.Count - 1].boneTransform.position;
 
         // Calculate the rotation to get from the end effector to the target
         Quaternion targetrotation = Quaternion.FromToRotation(toendEffector, totarget);
-        bones[bones.Length - 1].rotation = targetrotation * bones[bones.Length - 1].rotation; // Multiplying 2 Quaternions results in a composition (Apply Quaternion A, and then B, without Gimbal lock danger).
+        ikBones[ikBones.Count - 1].boneTransform.rotation = targetrotation * ikBones[ikBones.Count - 1].boneTransform.rotation; // Multiplying 2 Quaternions results in a composition (Apply Quaternion A, and then B, without Gimbal lock danger).
 
+        ApplyJointConstraints(ikBones[ikBones.Count - 1]);
+    }
+
+
+    // Method to clamp joint rotation within the constraints
+    void ApplyJointConstraints(IKBone ikBone)
+    {
+        // Get the current bone rotation in local space
+        Vector3 currentEulerAngles = ikBone.boneTransform.localRotation.eulerAngles;
+
+        // Ensure the angles are in the range of -180 to 180
+        currentEulerAngles = NormalizeEulerAngles(currentEulerAngles);
+
+        // Clamp the rotation to the allowed range
+        currentEulerAngles.x = Mathf.Clamp(currentEulerAngles.x, ikBone.minRotation.x, ikBone.maxRotation.x);
+        currentEulerAngles.y = Mathf.Clamp(currentEulerAngles.y, ikBone.minRotation.y, ikBone.maxRotation.y);
+        currentEulerAngles.z = Mathf.Clamp(currentEulerAngles.z, ikBone.minRotation.z, ikBone.maxRotation.z);
+
+        Quaternion constrainedRotation = Quaternion.Euler(currentEulerAngles);
+
+        // Convert back to quaternion and apply to the bone
+        ikBone.boneTransform.localRotation = Quaternion.Slerp(ikBone.boneTransform.localRotation, constrainedRotation, smoothFactor);
+    }
+
+    // Method to normalize Euler angles to the range of -180 to 180 degrees
+    Vector3 NormalizeEulerAngles(Vector3 angles)
+    {
+        angles.x = NormalizeAngle(angles.x);
+        angles.y = NormalizeAngle(angles.y);
+        angles.z = NormalizeAngle(angles.z);
+        return angles;
+    }
+
+    // Normalize an individual angle to the range of -180 to 180 degrees
+    float NormalizeAngle(float angle)
+    {
+        while (angle > 180f) angle -= 360f;
+        while (angle < -180f) angle += 360f;
+        return angle;
     }
     #endregion
 
@@ -208,8 +258,11 @@ public class MultiBoneIK : MonoBehaviour
         if (!showGizmo)
             return;
 
-        Gizmos.color = Color.black;
-        Gizmos.DrawSphere(transform.position, 0.2f);
+        //Gizmos.color = Color.black;
+        //Gizmos.DrawSphere(transform.position, 0.2f);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(footTarget.position, 0.2f);
 
 
         Gizmos.color = Color.red;
