@@ -30,16 +30,17 @@ public class MultiBoneIK : MonoBehaviour
     [SerializeField] private float stepLengthThreshold = 1f;
     [Header("Animation Properties")]
     [Tooltip("The lower the step speed, the faster the step")]
-    [SerializeField] private float stepSpeed = 0.05f;
-    [SerializeField] private float maxStepDuration = 1.0f;
-    [SerializeField] private float stepHeight = 0.5f;
     [SerializeField] private CustomAnimationCurve_Collection curves;
     [SerializeField] private CustomAnimationCurveType stepAnimCurveType;
 
+    private AnimationCurve _stepAnimCurve;
 
     private bool _isDoingWalkingAnim;
 
     private float _maxLegExtension;
+    private float _stepSpeed = 0.05f;
+    private float _maxStepDuration = 1.0f;
+    private float _stepHeight = 0.5f;
 
     private RaycastHit raycastHitInfo_IK;
     private RaycastHit raycastHitInfo_Target;
@@ -81,6 +82,18 @@ public class MultiBoneIK : MonoBehaviour
 
         SolveIK();
     }
+
+
+
+    #region public Getters and Setters
+    public void SetupIKController(float stepSpeed, float maxStepDuration, float stepHeight, AnimationCurve stepAnimationCurve)
+    {
+        _stepSpeed = stepSpeed;
+        _maxStepDuration = maxStepDuration;
+        _stepHeight = stepHeight;
+        _stepAnimCurve = stepAnimationCurve;
+    }
+    #endregion
 
 
     private void RaycastPlantLegTarget(bool isOnStart = false)
@@ -134,13 +147,13 @@ public class MultiBoneIK : MonoBehaviour
 
         float timer = 0f;
 
-        while (currentDistanceToTarget >= 0.01f || timer <= maxStepDuration)
+        while (currentDistanceToTarget >= 0.01f || timer <= _maxStepDuration)
         {
             // We use the MoveTowards method to dynamically move the leg towards the target positon ...
-            Vector3 newPlantPos = Vector3.MoveTowards(_plantLegPos, _plantLegTargetPos, stepSpeed);
+            Vector3 newPlantPos = Vector3.MoveTowards(_plantLegPos, _plantLegTargetPos, _stepSpeed);
 
             // ... while an Animation Curve controls how the step works height wise over distance.
-            newPlantPos.y = _plantLegTargetPos.y + curves.GetAnimationCurve(stepAnimCurveType).Evaluate(1 - currentDistanceToTarget / distanceOnStepBegin) * stepHeight;
+            newPlantPos.y = _plantLegTargetPos.y + curves.GetAnimationCurve(stepAnimCurveType).Evaluate(1 - currentDistanceToTarget / distanceOnStepBegin) * _stepHeight;
 
             _plantLegPos = newPlantPos;
 
