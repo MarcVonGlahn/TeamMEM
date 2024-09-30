@@ -19,7 +19,7 @@ public class MultiBoneIK : MonoBehaviour
     [SerializeField] private Transform footBone;
     [Space]
     [SerializeField] private int iterations = 10; // Number of iterations for refining the solution
-    [SerializeField] private float tolerance = 0.01f; // How close to the target is considered "good enough"
+    [SerializeField] private float tolerance = 0.1f; // How close to the target is considered "good enough"
     [SerializeField] private float smoothFactor = 0.1f;
     [Space]
     [Header("Raycasting")]

@@ -12,7 +12,8 @@ public class FollowPath : MonoBehaviour
     {
         if (!_shouldMove) return;
 
-        print(DistanceXZ(transform.position, waypoints[0].transform.position));
+        
+        Debug.Log(Vector3.Dot(transform.forward, waypoints[0].transform.position - transform.position));
     }
 
 
@@ -27,5 +28,14 @@ public class FollowPath : MonoBehaviour
         Vector2 pointA_XZ = new Vector2(pointA.x, pointA.z);
         Vector2 pointB_XZ = new Vector2(pointB.x, pointB.z);
         return Vector2.Distance(pointA_XZ, pointB_XZ);
+    }
+
+
+    private bool IsInFront(Vector3 pointA, Vector3 pointB, Vector3 forwardDirection)
+    {
+        Vector3 directionToPointB = pointB - pointA; // Vector from pointA to pointB
+        float dotProduct = Vector3.Dot(forwardDirection.normalized, directionToPointB.normalized);
+
+        return dotProduct > 0; // Returns true if pointB is in front of pointA
     }
 }
