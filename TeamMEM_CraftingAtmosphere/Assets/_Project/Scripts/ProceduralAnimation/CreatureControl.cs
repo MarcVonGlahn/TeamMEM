@@ -16,6 +16,7 @@ public class CreatureControl : MonoBehaviour
         if (startMovingOnStart)
         {
             followPathControl.SetShouldMove(true);
+            followPathControl.SetWalkingSpeed(walkingSpeed);
         }
     }
 }

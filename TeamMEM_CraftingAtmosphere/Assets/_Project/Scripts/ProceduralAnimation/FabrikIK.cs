@@ -52,6 +52,14 @@ public class MultiBoneIK : MonoBehaviour
     private float _distanceFromPlantedLeg = 0;
 
 
+    public Vector3 GetPlantLegTargetPosition()
+    {
+        return _plantLegTargetPos;
+    }
+
+
+
+
     private void Start()
     {
         RaycastPlantLegTarget(true);
@@ -76,6 +84,7 @@ public class MultiBoneIK : MonoBehaviour
 
         if (ShouldDoStep())
         {
+
             RaycastPlantLegTarget();
             StartCoroutine(MoveLeg_Routine());
         }
@@ -127,7 +136,7 @@ public class MultiBoneIK : MonoBehaviour
 
     bool ShouldDoStep()
     {
-        bool isLegFullyExtended =Vector3.Distance(ikBones[0].boneTransform.position, ikBones[ikBones.Count - 1].boneTransform.position) >= _maxLegExtension - 0.1f;
+        bool isLegFullyExtended = Vector3.Distance(ikBones[0].boneTransform.position, ikBones[ikBones.Count - 1].boneTransform.position) >= _maxLegExtension - 0.1f;
 
         bool isStepThresholdMet = _distanceFromPlantedLeg >= stepLengthThreshold;
 
@@ -147,7 +156,7 @@ public class MultiBoneIK : MonoBehaviour
 
         float timer = 0f;
 
-        while (currentDistanceToTarget >= 0.01f || timer <= _maxStepDuration)
+        while (currentDistanceToTarget >= 0.05f || timer <= _maxStepDuration)
         {
             // We use the MoveTowards method to dynamically move the leg towards the target positon ...
             Vector3 newPlantPos = Vector3.MoveTowards(_plantLegPos, _plantLegTargetPos, _stepSpeed);
@@ -164,9 +173,17 @@ public class MultiBoneIK : MonoBehaviour
             timer += Time.deltaTime;
 
             yield return new WaitForEndOfFrame();
+
+
+            if (showLog)
+            {
+                Debug.Log($"Plant Leg Height{_plantLegPos.y}");
+            }
         }
         //Finally set _plantLegPos to target position once the threshold is met. Also set DoingWalkingAnim to false.
         _plantLegPos = _plantLegTargetPos;
+        
+        yield return new WaitForSecondsRealtime(0.2f);
         _isDoingWalkingAnim = false;
 
         yield return null;
@@ -194,7 +211,6 @@ public class MultiBoneIK : MonoBehaviour
                 // Calculate the vector from the bone to the target
                 Vector3 toTarget = _plantLegPos - ikBone.boneTransform.position;
 
-                // Calculate the rotation to get from the end effector to the target
                 Quaternion targetRotation = Quaternion.FromToRotation(toEndEffector, toTarget);
 
                 ikBone.boneTransform.rotation = targetRotation * ikBone.boneTransform.rotation; // Multiplying 2 Quaternions results in a composition (Apply Quaternion A, and then B, without Gimbal lock danger).
