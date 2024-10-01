@@ -17,6 +17,8 @@ public class ProceduralAnimationController : MonoBehaviour
     [SerializeField] List<FabrikIK> ikControllers;
     [Header("Additional Bones")]
     [SerializeField] Transform rootbone;
+    [Header("Animation Settings")]
+    [SerializeField] float bodyRotationSpeed = 1.0f;
     [Header("Step Settings")]
     [Tooltip("The faster the step speed, the faster the step")]
     [SerializeField] private float stepSpeed = 0.05f;
@@ -97,6 +99,6 @@ public class ProceduralAnimationController : MonoBehaviour
             targetRotation = Quaternion.LookRotation(rootbone.forward);
         }
 
-        rootbone.rotation = Quaternion.Lerp(rootbone.rotation, Quaternion.LookRotation(averageVector), 0.5f * Time.deltaTime);
+        rootbone.rotation = Quaternion.Lerp(rootbone.rotation, Quaternion.LookRotation(averageVector), bodyRotationSpeed * Time.deltaTime);
     }
 }
