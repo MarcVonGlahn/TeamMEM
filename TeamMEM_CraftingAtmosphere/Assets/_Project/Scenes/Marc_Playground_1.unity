@@ -191,7 +191,7 @@ Transform:
   m_GameObject: {fileID: 242787626}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.00000032584143, z: -4.2632564e-14, w: 1}
-  m_LocalPosition: {x: 2.2, y: 1.5, z: 1.8}
+  m_LocalPosition: {x: 1.75, y: 1.5, z: 1.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -592,7 +592,7 @@ MonoBehaviour:
   - {fileID: 1878823143}
   rootbone: {fileID: 1886760327}
   stepSpeed: 0.05
-  maxStepDuration: 1
+  maxStepDuration: 0.3
   stepHeight: 0.5
   curves: {fileID: 11400000, guid: b6b3175acf61d6a4d8be03acaaffbe9c, type: 2}
   stepAnimCurveType: 3
@@ -806,7 +806,7 @@ Transform:
   m_GameObject: {fileID: 664413419}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.3, y: 0.712, z: -0.5}
+  m_LocalPosition: {x: 2.3, y: 0.712, z: -0.09000003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -847,7 +847,7 @@ MonoBehaviour:
     m_Bits: 64
   targetLegHeight: 0.4
   footTarget: {fileID: 1743573827}
-  stepLengthThreshold: 2
+  stepLengthThreshold: 3
   curves: {fileID: 11400000, guid: b6b3175acf61d6a4d8be03acaaffbe9c, type: 2}
   stepAnimCurveType: 3
 --- !u!114 &700441507
@@ -983,7 +983,7 @@ Transform:
   m_GameObject: {fileID: 862121706}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.00000032584143, z: -4.2632564e-14, w: 1}
-  m_LocalPosition: {x: -2.2, y: 1.5, z: -0.3299979}
+  m_LocalPosition: {x: -1.8, y: 1.5, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1629,7 +1629,7 @@ Transform:
   m_GameObject: {fileID: 1313381943}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.1729999, y: 0.769, z: 1.735}
+  m_LocalPosition: {x: 2.1729999, y: 0.769, z: 3.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1647,7 +1647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a02a99520719be248bc3b6076e3df9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showLog: 0
+  showLog: 1
   showGizmo: 1
   target: {fileID: 1313381944}
   targetHeight: 2
@@ -1670,7 +1670,7 @@ MonoBehaviour:
     m_Bits: 64
   targetLegHeight: 0.4
   footTarget: {fileID: 242787627}
-  stepLengthThreshold: 2
+  stepLengthThreshold: 3
   curves: {fileID: 11400000, guid: b6b3175acf61d6a4d8be03acaaffbe9c, type: 2}
   stepAnimCurveType: 3
 --- !u!1 &1339364871
@@ -2003,7 +2003,7 @@ Transform:
   m_GameObject: {fileID: 1375559047}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.4, y: 0, z: 12.78}
+  m_LocalPosition: {x: -2.46, y: 0, z: 16.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2303,7 +2303,7 @@ Transform:
   m_GameObject: {fileID: 1642771264}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.00000032584143, z: -4.2632564e-14, w: 1}
-  m_LocalPosition: {x: -2.2, y: 1.5, z: 1.8}
+  m_LocalPosition: {x: -1.75, y: 1.5, z: 1.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2408,7 +2408,7 @@ Transform:
   m_GameObject: {fileID: 1743573826}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.00000032584143, z: -4.2632564e-14, w: 1}
-  m_LocalPosition: {x: 2.2, y: 1.5, z: -0.3299979}
+  m_LocalPosition: {x: 1.8, y: 1.5, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2514,7 +2514,7 @@ Transform:
   m_GameObject: {fileID: 1878823141}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.2, y: 1.209, z: 0.53999996}
+  m_LocalPosition: {x: -2.2, y: 1.209, z: 0.74000007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2555,7 +2555,7 @@ MonoBehaviour:
     m_Bits: 64
   targetLegHeight: 0.4
   footTarget: {fileID: 862121707}
-  stepLengthThreshold: 2
+  stepLengthThreshold: 3
   curves: {fileID: 11400000, guid: b6b3175acf61d6a4d8be03acaaffbe9c, type: 2}
   stepAnimCurveType: 3
 --- !u!1001 &1886760286
@@ -2574,7 +2574,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6e2ce5c1e9be4a94d8a1b965b6f00ae6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.218
+      value: -0.64
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6e2ce5c1e9be4a94d8a1b965b6f00ae6,
         type: 3}
@@ -3228,7 +3228,7 @@ Transform:
   m_GameObject: {fileID: 2119828731}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.2, y: 1.6, z: 1.4200001}
+  m_LocalPosition: {x: -2.2, y: 1.6, z: 1.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3269,7 +3269,7 @@ MonoBehaviour:
     m_Bits: 64
   targetLegHeight: 0.4
   footTarget: {fileID: 1642771265}
-  stepLengthThreshold: 2
+  stepLengthThreshold: 3
   curves: {fileID: 11400000, guid: b6b3175acf61d6a4d8be03acaaffbe9c, type: 2}
   stepAnimCurveType: 3
 --- !u!1001 &949844556805679454

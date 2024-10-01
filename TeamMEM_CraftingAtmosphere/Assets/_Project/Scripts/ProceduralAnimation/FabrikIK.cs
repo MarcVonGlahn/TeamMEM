@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.XR;
 
-public class MultiBoneIK : MonoBehaviour
+public class FabrikIK : MonoBehaviour
 {
     public bool showLog = false;
     public bool showGizmo = true;
@@ -36,6 +37,7 @@ public class MultiBoneIK : MonoBehaviour
     private AnimationCurve _stepAnimCurve;
 
     private bool _isDoingWalkingAnim;
+    private bool _isLegGrounded;
 
     private float _maxLegExtension;
     private float _stepSpeed = 0.05f;
@@ -51,6 +53,8 @@ public class MultiBoneIK : MonoBehaviour
 
     private float _distanceFromPlantedLeg = 0;
 
+    private FabrikIK _opposingBone;
+
 
     public Vector3 GetPlantLegTargetPosition()
     {
@@ -58,6 +62,10 @@ public class MultiBoneIK : MonoBehaviour
     }
 
 
+    public void SetOpposingBone(FabrikIK opposingBone)
+    {
+        _opposingBone = opposingBone;
+    }
 
 
     private void Start()
@@ -65,6 +73,8 @@ public class MultiBoneIK : MonoBehaviour
         RaycastPlantLegTarget(true);
 
         _plantLegPos = _plantLegTargetPos;
+
+        _isLegGrounded = true;
 
         _maxLegExtension = Vector3.Distance(ikBones[0].boneTransform.position, ikBones[1].boneTransform.position)
             + Vector3.Distance(ikBones[1].boneTransform.position, ikBones[2].boneTransform.position);
@@ -84,8 +94,9 @@ public class MultiBoneIK : MonoBehaviour
 
         if (ShouldDoStep())
         {
-
             RaycastPlantLegTarget();
+            _isDoingWalkingAnim = true;
+
             StartCoroutine(MoveLeg_Routine());
         }
 
@@ -117,7 +128,7 @@ public class MultiBoneIK : MonoBehaviour
             _plantLegTargetPos = _plantLegTargetPos + raycastHitInfo_IK.normal.normalized * targetLegHeight;
         }
 
-        if(!isOnStart) _isDoingWalkingAnim = true;
+        // if(!isOnStart) ;
     }
 
 
@@ -140,12 +151,16 @@ public class MultiBoneIK : MonoBehaviour
 
         bool isStepThresholdMet = _distanceFromPlantedLeg >= stepLengthThreshold;
 
-        return (isLegFullyExtended || isStepThresholdMet) && !_isDoingWalkingAnim;
+        bool isOpposingLegGrounded = _opposingBone._isLegGrounded;
+
+        return (isLegFullyExtended || isStepThresholdMet) && !_isDoingWalkingAnim && isOpposingLegGrounded;
     }
 
 
     private IEnumerator MoveLeg_Routine()
     {
+        _isLegGrounded = false;
+
         // We ground the current and the target leg position, to get an accurate representation of "Step Progress" in essentially 2D, as in how much longer until we have reached the desired leg position, not taking height into account.
         Vector2 groundedCurrentLegPos = new Vector2(_plantLegPos.x, _plantLegPos.z);
         Vector2 groundedTargetPos = new Vector2(_plantLegTargetPos.x, _plantLegTargetPos.z);
@@ -172,19 +187,14 @@ public class MultiBoneIK : MonoBehaviour
 
             timer += Time.deltaTime;
 
+            if (showLog) Debug.Log($"Distance To Target {currentDistanceToTarget} - timer: {timer} - Duration {_maxStepDuration}");
+
             yield return new WaitForEndOfFrame();
-
-
-            if (showLog)
-            {
-                Debug.Log($"Plant Leg Height{_plantLegPos.y}");
-            }
         }
         //Finally set _plantLegPos to target position once the threshold is met. Also set DoingWalkingAnim to false.
         _plantLegPos = _plantLegTargetPos;
-        
-        yield return new WaitForSecondsRealtime(0.2f);
         _isDoingWalkingAnim = false;
+        _isLegGrounded = true;
 
         yield return null;
     }
@@ -287,8 +297,8 @@ public class MultiBoneIK : MonoBehaviour
         if (!showGizmo)
             return;
 
-        //Gizmos.color = Color.black;
-        //Gizmos.DrawSphere(transform.position, 0.2f);
+        Gizmos.color = Color.black;
+        Gizmos.DrawSphere(transform.position, 0.2f);
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawSphere(footTarget.position, 0.2f);

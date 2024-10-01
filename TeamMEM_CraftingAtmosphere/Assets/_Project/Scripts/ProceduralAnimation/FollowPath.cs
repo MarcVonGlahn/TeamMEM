@@ -27,7 +27,7 @@ public class FollowPath : MonoBehaviour
     {
         if (!_shouldMove) return;
 
-        Debug.Log($"{DistanceXZ(transform.position, waypoints[_curWPIndex].transform.position)}, {IsInFront(transform.position, waypoints[_curWPIndex].transform.position, transform.forward)}");
+        // Debug.Log($"{DistanceXZ(transform.position, waypoints[_curWPIndex].transform.position)}, {IsInFront(transform.position, waypoints[_curWPIndex].transform.position, transform.forward)}");
 
         if (DistanceXZ(transform.position, waypoints[_curWPIndex].transform.position) < waypointThreshold)
         {

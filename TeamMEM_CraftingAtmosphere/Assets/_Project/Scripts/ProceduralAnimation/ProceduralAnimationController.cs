@@ -14,7 +14,7 @@ public enum WalkingStyle
 public class ProceduralAnimationController : MonoBehaviour
 {
     [Header("Leg Controllers")]
-    [SerializeField] List<MultiBoneIK> ikControllers;
+    [SerializeField] List<FabrikIK> ikControllers;
     [Header("Additional Bones")]
     [SerializeField] Transform rootbone;
     [Header("Step Settings")]
@@ -32,9 +32,21 @@ public class ProceduralAnimationController : MonoBehaviour
     {
         AnimationCurve generalCurve = curves.GetAnimationCurve(stepAnimCurveType);
 
-        foreach (MultiBoneIK ik in ikControllers)
+        foreach (FabrikIK ik in ikControllers)
         {
             ik.SetupIKController(stepSpeed, maxStepDuration, stepHeight, generalCurve);
+        }
+
+        switch (walkingStyle)
+        {
+            case WalkingStyle.Biped:
+                break;
+            case WalkingStyle.Triped:
+                break;
+            case WalkingStyle.Quadriped:
+                SetupLegPairs(ikControllers[0], ikControllers[1]);
+                SetupLegPairs(ikControllers[2], ikControllers[3]);
+                break;
         }
     }
 
@@ -60,6 +72,13 @@ public class ProceduralAnimationController : MonoBehaviour
     }
 
 
+    private void SetupLegPairs(FabrikIK boneA, FabrikIK boneB)
+    {
+        boneA.SetOpposingBone(boneB);
+        boneB.SetOpposingBone(boneA);
+    }
+
+
     private void QuadripedAngleRootbone()
     {
         Vector3 rightVector = ikControllers[0].GetPlantLegTargetPosition() - ikControllers[2].GetPlantLegTargetPosition();
@@ -68,6 +87,7 @@ public class ProceduralAnimationController : MonoBehaviour
         Vector3 averageVector = ((rightVector + leftVector) / 2.0f).normalized;
 
         Quaternion targetRotation;
+
         try
         {
             targetRotation = Quaternion.LookRotation(averageVector);
