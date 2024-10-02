@@ -16,7 +16,7 @@ public class FollowPath : MonoBehaviour
 
     private Vector3 _toNextWaypoint;
 
-    public Vector3 ToNextWaypoint { get => _toNextWaypoint; }
+    public Vector3 ToNextWaypoint { get => waypoints[_curWPIndex].transform.position - transform.position; }
 
     private void Start()
     {
@@ -26,8 +26,6 @@ public class FollowPath : MonoBehaviour
     private void Update()
     {
         if (!_shouldMove) return;
-
-        // Debug.Log($"{DistanceXZ(transform.position, waypoints[_curWPIndex].transform.position)}, {IsInFront(transform.position, waypoints[_curWPIndex].transform.position, transform.forward)}");
 
         if (DistanceXZ(transform.position, waypoints[_curWPIndex].transform.position) < waypointThreshold)
         {

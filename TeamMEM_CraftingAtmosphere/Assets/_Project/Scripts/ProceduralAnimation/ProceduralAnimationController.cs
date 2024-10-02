@@ -16,9 +16,10 @@ public class ProceduralAnimationController : MonoBehaviour
     [Header("Leg Controllers")]
     [SerializeField] List<FabrikIK> ikControllers;
     [Header("Additional Bones")]
-    [SerializeField] Transform rootbone;
+    [SerializeField] Transform rootBone;
     [Header("Animation Settings")]
     [SerializeField] float bodyRotationSpeed = 1.0f;
+    [SerializeField] FollowPath followPath;
     [Header("Step Settings")]
     [Tooltip("The faster the step speed, the faster the step")]
     [SerializeField] private float stepSpeed = 0.05f;
@@ -28,6 +29,8 @@ public class ProceduralAnimationController : MonoBehaviour
     [SerializeField] private CustomAnimationCurveType stepAnimCurveType;
     [Space]
     [SerializeField] private WalkingStyle walkingStyle;
+    [Header("Head")]
+    [SerializeField] Transform headBone;
 
     // Start is called before the first frame update
     void Awake()
@@ -56,6 +59,7 @@ public class ProceduralAnimationController : MonoBehaviour
     private void Update()
     {
         AngleRootbone();
+        AngleHead();
     }
 
 
@@ -96,9 +100,22 @@ public class ProceduralAnimationController : MonoBehaviour
         }
         catch
         {
-            targetRotation = Quaternion.LookRotation(rootbone.forward);
+            targetRotation = Quaternion.LookRotation(rootBone.forward);
         }
 
-        rootbone.rotation = Quaternion.Lerp(rootbone.rotation, Quaternion.LookRotation(averageVector), bodyRotationSpeed * Time.deltaTime);
+        rootBone.rotation = Quaternion.Lerp(rootBone.rotation, Quaternion.LookRotation(averageVector), bodyRotationSpeed * Time.deltaTime);
+    }
+
+
+    private void AngleHead()
+    {
+        if (followPath == null)
+            return;
+
+        Vector3 adjustedLookDirection = new Vector3(followPath.ToNextWaypoint.x, 0, followPath.ToNextWaypoint.z);
+
+        Quaternion targetRotation = Quaternion.LookRotation(Vector3.down, adjustedLookDirection);
+
+        headBone.transform.rotation = Quaternion.Slerp(headBone.transform.rotation, targetRotation, bodyRotationSpeed * Time.deltaTime);
     }
 }

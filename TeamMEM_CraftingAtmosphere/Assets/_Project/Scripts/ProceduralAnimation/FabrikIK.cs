@@ -23,6 +23,8 @@ public class FabrikIK : MonoBehaviour
     [SerializeField] private float tolerance = 0.1f; // How close to the target is considered "good enough"
     [SerializeField] private float smoothFactor = 0.1f;
     [Space]
+    [SerializeField] private float pullWeight = 0.5f;
+    [Space]
     [Header("Raycasting")]
     [SerializeField] private LayerMask floorLayerMask;
     [SerializeField] private float targetLegHeight = 0.4f;
@@ -225,6 +227,9 @@ public class FabrikIK : MonoBehaviour
 
                 ikBone.boneTransform.rotation = targetRotation * ikBone.boneTransform.rotation; // Multiplying 2 Quaternions results in a composition (Apply Quaternion A, and then B, without Gimbal lock danger).
 
+                if(ikBone.affectedByPull)
+                    ApplyPullForce(ikBone);
+
                 ApplyJointConstraints(ikBone);
 
                 // Check if the end effector is close enough to the target
@@ -249,6 +254,20 @@ public class FabrikIK : MonoBehaviour
         ikBones[ikBones.Count - 1].boneTransform.rotation = targetrotation * ikBones[ikBones.Count - 1].boneTransform.rotation; // Multiplying 2 Quaternions results in a composition (Apply Quaternion A, and then B, without Gimbal lock danger).
 
         ApplyJointConstraints(ikBones[ikBones.Count - 1]);
+    }
+
+
+    private void ApplyPullForce(IKBone bone)
+    {
+        if (bone.pullTransform == null || pullWeight == 0)
+            return;
+
+        // Get the target rotation from the pullTransform
+        Vector3 toPullTarget = bone.pullTransform.position - bone.boneTransform.position;
+        Quaternion pullRotation = Quaternion.FromToRotation(bone.boneTransform.up, toPullTarget);
+
+        // Blend the current rotation with the pull rotation based on the weight
+        bone.boneTransform.rotation = Quaternion.Slerp(bone.boneTransform.rotation, pullRotation * bone.boneTransform.rotation, pullWeight);
     }
 
 
