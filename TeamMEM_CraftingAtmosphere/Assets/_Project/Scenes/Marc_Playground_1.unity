@@ -133,7 +133,7 @@ PrefabInstance:
     - target: {fileID: 540427954761391458, guid: 7e6cb26569c9aba48876aac3e05f9b51,
         type: 3}
       propertyPath: stepLengthThreshold
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1197779402619332620, guid: 7e6cb26569c9aba48876aac3e05f9b51,
         type: 3}
@@ -188,17 +188,17 @@ PrefabInstance:
     - target: {fileID: 1603166017385666936, guid: 7e6cb26569c9aba48876aac3e05f9b51,
         type: 3}
       propertyPath: stepLengthThreshold
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1969300831411317614, guid: 7e6cb26569c9aba48876aac3e05f9b51,
         type: 3}
       propertyPath: stepLengthThreshold
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2080198825187364420, guid: 7e6cb26569c9aba48876aac3e05f9b51,
         type: 3}
       propertyPath: stepLengthThreshold
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2557020640704844205, guid: 7e6cb26569c9aba48876aac3e05f9b51,
         type: 3}
