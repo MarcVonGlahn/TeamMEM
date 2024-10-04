@@ -185,11 +185,6 @@ PrefabInstance:
       propertyPath: showLog
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2080198825187364420, guid: 7e6cb26569c9aba48876aac3e05f9b51,
-        type: 3}
-      propertyPath: pullWeight
-      value: 0.05
-      objectReference: {fileID: 0}
     - target: {fileID: 2557020640704844205, guid: 7e6cb26569c9aba48876aac3e05f9b51,
         type: 3}
       propertyPath: stepAnimCurveType
