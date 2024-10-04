@@ -291,7 +291,7 @@ MonoBehaviour:
   rootBone: {fileID: 0}
   bodyRotationSpeed: 1
   followPath: {fileID: 2434232557765351057}
-  stepSpeed: 0.05
+  stepSpeed: 5
   maxStepDuration: 0.3
   stepHeight: 0.5
   curves: {fileID: 11400000, guid: b6b3175acf61d6a4d8be03acaaffbe9c, type: 2}

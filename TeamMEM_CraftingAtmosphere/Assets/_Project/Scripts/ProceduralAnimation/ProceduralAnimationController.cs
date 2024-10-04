@@ -1,14 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum WalkingStyle
-{
-    Biped,
-    Triped,
-    Quadriped
-}
 
 
 public class ProceduralAnimationController : MonoBehaviour
@@ -18,31 +13,20 @@ public class ProceduralAnimationController : MonoBehaviour
     [Header("Additional Bones")]
     [SerializeField] Transform rootBone;
     [Header("Animation Settings")]
-    [SerializeField] float bodyRotationSpeed = 1.0f;
+    [SerializeField] SO_Moveset moveset;
     [SerializeField] FollowPath followPath;
-    [Header("Step Settings")]
-    [Tooltip("The faster the step speed, the faster the step")]
-    [SerializeField] private float stepSpeed = 0.05f;
-    [SerializeField] private float maxStepDuration = 1.0f;
-    [SerializeField] private float stepHeight = 0.5f;
-    [SerializeField] private CustomAnimationCurve_Collection curves;
-    [SerializeField] private CustomAnimationCurveType stepAnimCurveType;
-    [Space]
-    [SerializeField] private WalkingStyle walkingStyle;
     [Header("Head")]
     [SerializeField] Transform headBone;
 
     // Start is called before the first frame update
     void Awake()
     {
-        AnimationCurve generalCurve = curves.GetAnimationCurve(stepAnimCurveType);
-
         foreach (FabrikIK ik in ikControllers)
         {
-            ik.SetupIKController(stepSpeed, maxStepDuration, stepHeight, generalCurve);
+            ik.SetupIKController(moveset.StepDuration, moveset.StepHeight, moveset.StepLengthTreshhold, moveset.StepMakeCurve, moveset.StepHeightCurve);
         }
 
-        switch (walkingStyle)
+        switch (moveset.WalkingStyle)
         {
             case WalkingStyle.Biped:
                 break;
@@ -51,6 +35,8 @@ public class ProceduralAnimationController : MonoBehaviour
             case WalkingStyle.Quadriped:
                 SetupLegPairs(ikControllers[0], ikControllers[1]);
                 SetupLegPairs(ikControllers[2], ikControllers[3]);
+                SetupSameSideLegs(ikControllers[0], ikControllers[2]);
+                SetupSameSideLegs(ikControllers[1], ikControllers[3]);
                 break;
         }
     }
@@ -60,28 +46,58 @@ public class ProceduralAnimationController : MonoBehaviour
     {
         AngleRootbone();
         AngleHead();
+
+
+        Debug.Log($"Transform Position:\t {transform.position}\n Rootbone Position:\t {rootBone.position}");
     }
 
 
     private void AngleRootbone()
     {
-        switch (walkingStyle)
+        switch (moveset.WalkingStyle)
         {
             case WalkingStyle.Biped:
                 break;
             case WalkingStyle.Triped:
                 break;
             case WalkingStyle.Quadriped:
+                QuadripedPositionRootbone();
                 QuadripedAngleRootbone();
                 break;
         }
     }
 
-
     private void SetupLegPairs(FabrikIK boneA, FabrikIK boneB)
     {
         boneA.SetOpposingBone(boneB);
         boneB.SetOpposingBone(boneA);
+    }
+
+
+    private void SetupSameSideLegs(FabrikIK boneA, FabrikIK boneB)
+    {
+        boneA.SetSameSideBone(boneB);
+        boneB.SetSameSideBone(boneA);
+    }
+
+
+
+    private void QuadripedPositionRootbone()
+    {
+        float averageLegBoneHeight = 0;
+
+        foreach (var ik in ikControllers)
+        {
+            averageLegBoneHeight += ik.GetPlantLegTargetPosition().y;
+        }
+
+        averageLegBoneHeight /= 4;
+
+        Vector3 newRootBonePos = new Vector3(transform.position.x, rootBone.transform.position.y, transform.position.z);
+
+        newRootBonePos.y = averageLegBoneHeight + moveset.RootBoneHeight;
+
+        rootBone.transform.position = Vector3.MoveTowards(rootBone.transform.position, newRootBonePos, Time.deltaTime * 5f);
     }
 
 
@@ -103,7 +119,7 @@ public class ProceduralAnimationController : MonoBehaviour
             targetRotation = Quaternion.LookRotation(rootBone.forward);
         }
 
-        rootBone.rotation = Quaternion.Lerp(rootBone.rotation, Quaternion.LookRotation(averageVector), bodyRotationSpeed * Time.deltaTime);
+        rootBone.rotation = Quaternion.Lerp(rootBone.rotation, Quaternion.LookRotation(averageVector), moveset.BodyRotationSpeed * Time.deltaTime);
     }
 
 
@@ -116,6 +132,6 @@ public class ProceduralAnimationController : MonoBehaviour
 
         Quaternion targetRotation = Quaternion.LookRotation(Vector3.down, adjustedLookDirection);
 
-        headBone.transform.rotation = Quaternion.Slerp(headBone.transform.rotation, targetRotation, bodyRotationSpeed * Time.deltaTime);
+        headBone.transform.rotation = Quaternion.Slerp(headBone.transform.rotation, targetRotation, moveset.HeadRotationSpeed * Time.deltaTime);
     }
 }

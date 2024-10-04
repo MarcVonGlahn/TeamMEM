@@ -35,9 +35,14 @@ public class FollowPath : MonoBehaviour
                 _curWPIndex = 0;
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, waypoints[_curWPIndex].transform.position, _walkingSpeed * Time.deltaTime);
+        Vector3 adjustedTransformPosition = new Vector3(transform.position.x, 0, transform.position.z);
+        Vector3 adjustedWaypointPosition = new Vector3(waypoints[_curWPIndex].transform.position.x, 0, waypoints[_curWPIndex].transform.position.z);
 
-        Quaternion targetRotation = Quaternion.LookRotation((waypoints[_curWPIndex].transform.position - transform.position).normalized);
+        transform.position = Vector3.MoveTowards(adjustedTransformPosition, adjustedWaypointPosition, _walkingSpeed * Time.deltaTime);
+
+        // transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+
+        Quaternion targetRotation = Quaternion.LookRotation((adjustedWaypointPosition - adjustedTransformPosition).normalized);
 
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 30f * Time.deltaTime);
     }
@@ -68,5 +73,13 @@ public class FollowPath : MonoBehaviour
         float dotProduct = Vector3.Dot(forwardDirection.normalized, directionToPointB.normalized);
 
         return dotProduct > 0; // Returns true if pointB is in front of pointA
+    }
+
+
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.white;
+        Gizmos.DrawSphere(transform.position, 0.5f);
     }
 }

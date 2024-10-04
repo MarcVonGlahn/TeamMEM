@@ -30,21 +30,18 @@ public class FabrikIK : MonoBehaviour
     [SerializeField] private float targetLegHeight = 0.4f;
     [Header("Step Orientation")]
     [SerializeField] private Transform footTarget;
-    [SerializeField] private float stepLengthThreshold = 1f;
-    [Header("Animation Properties")]
-    [Tooltip("The lower the step speed, the faster the step")]
-    [SerializeField] private CustomAnimationCurve_Collection curves;
-    [SerializeField] private CustomAnimationCurveType stepAnimCurveType;
+    
 
-    private AnimationCurve _stepAnimCurve;
+    private AnimationCurve _stepMakeCurve;
+    private AnimationCurve _stepHeightAnimCurve;
 
     private bool _isDoingWalkingAnim;
     private bool _isLegGrounded;
 
     private float _maxLegExtension;
-    private float _stepSpeed = 0.05f;
-    private float _maxStepDuration = 1.0f;
+    private float _stepDuration = 1.0f;
     private float _stepHeight = 0.5f;
+    private float _stepLengthThreshold = 1f;
 
     private RaycastHit raycastHitInfo_IK;
     private RaycastHit raycastHitInfo_Target;
@@ -56,6 +53,7 @@ public class FabrikIK : MonoBehaviour
     private float _distanceFromPlantedLeg = 0;
 
     private FabrikIK _opposingBone;
+    private FabrikIK _sameSideBone;
 
 
     public Vector3 GetPlantLegTargetPosition()
@@ -67,6 +65,11 @@ public class FabrikIK : MonoBehaviour
     public void SetOpposingBone(FabrikIK opposingBone)
     {
         _opposingBone = opposingBone;
+    }
+
+    public void SetSameSideBone(FabrikIK sameSideBone)
+    {
+        _sameSideBone = sameSideBone;
     }
 
 
@@ -86,7 +89,7 @@ public class FabrikIK : MonoBehaviour
     private void Update()
     {
         // Lock Target Position to Height above ground.
-        target.position = new Vector3(target.position.x, targetHeight, target.position.z);
+        // target.position = new Vector3(target.position.x, targetHeight, target.position.z);
     }
 
 
@@ -101,6 +104,14 @@ public class FabrikIK : MonoBehaviour
 
             StartCoroutine(MoveLeg_Routine());
         }
+       
+        if (IsFootFloating())
+        {
+            RaycastPlantLegTarget();
+            _isDoingWalkingAnim = true;
+
+            StartCoroutine(MoveLeg_Routine());
+        }
 
         SolveIK();
     }
@@ -108,12 +119,13 @@ public class FabrikIK : MonoBehaviour
 
 
     #region public Getters and Setters
-    public void SetupIKController(float stepSpeed, float maxStepDuration, float stepHeight, AnimationCurve stepAnimationCurve)
+    public void SetupIKController(float stepDuration, float stepHeight, float stepLengthThreshold, AnimationCurve stepMakeAnimationCurve,AnimationCurve stepHeightAnimationCurve)
     {
-        _stepSpeed = stepSpeed;
-        _maxStepDuration = maxStepDuration;
+        _stepDuration = stepDuration;
         _stepHeight = stepHeight;
-        _stepAnimCurve = stepAnimationCurve;
+        _stepLengthThreshold = stepLengthThreshold;
+        _stepMakeCurve = stepMakeAnimationCurve;
+        _stepHeightAnimCurve = stepHeightAnimationCurve;
     }
     #endregion
 
@@ -123,14 +135,12 @@ public class FabrikIK : MonoBehaviour
         target.position = new Vector3(_targetLegPos.x, targetHeight, _targetLegPos.z);
 
         Ray ray = new Ray(target.position, Vector3.down);
-        if(Physics.Raycast(ray, out raycastHitInfo_IK, 5f, floorLayerMask))
+        if(Physics.Raycast(ray, out raycastHitInfo_IK, 10f, floorLayerMask))
         {
             _plantLegTargetPos = raycastHitInfo_IK.point;
 
             _plantLegTargetPos = _plantLegTargetPos + raycastHitInfo_IK.normal.normalized * targetLegHeight;
         }
-
-        // if(!isOnStart) ;
     }
 
 
@@ -151,11 +161,38 @@ public class FabrikIK : MonoBehaviour
     {
         bool isLegFullyExtended = Vector3.Distance(ikBones[0].boneTransform.position, ikBones[ikBones.Count - 1].boneTransform.position) >= _maxLegExtension - 0.1f;
 
-        bool isStepThresholdMet = _distanceFromPlantedLeg >= stepLengthThreshold;
+        bool isStepThresholdMet = _distanceFromPlantedLeg >= _stepLengthThreshold;
 
         bool isOpposingLegGrounded = _opposingBone._isLegGrounded;
 
+        if (_sameSideBone != null)
+            if (isOpposingLegGrounded)
+                isOpposingLegGrounded = _sameSideBone._isLegGrounded;
+
+
+
         return (isLegFullyExtended || isStepThresholdMet) && !_isDoingWalkingAnim && isOpposingLegGrounded;
+    }
+
+
+
+    private bool IsFootFloating()
+    {
+        if (_isDoingWalkingAnim)
+            return false;
+
+        if (showLog)
+            Debug.Log($"Bone Y \t: {ikBones[ikBones.Count - 1].boneTransform.position.y}\n" +
+                $"Plant Leg Target Y \t: {_plantLegTargetPos.y}");
+
+
+        if (Mathf.Abs(ikBones[ikBones.Count - 1].boneTransform.position.y - _plantLegTargetPos.y) > 0.4f)
+        {
+            if (showLog)
+                Debug.Log($"Should do step because we are floating by {Mathf.Abs(ikBones[ikBones.Count - 1].boneTransform.position.y - _plantLegPos.y)}");
+            return true;
+        }
+        return false;
     }
 
 
@@ -164,32 +201,20 @@ public class FabrikIK : MonoBehaviour
         _isLegGrounded = false;
 
         // We ground the current and the target leg position, to get an accurate representation of "Step Progress" in essentially 2D, as in how much longer until we have reached the desired leg position, not taking height into account.
-        Vector2 groundedCurrentLegPos = new Vector2(_plantLegPos.x, _plantLegPos.z);
+        Vector3 groundedCurrentLegPos = _plantLegPos;
         Vector2 groundedTargetPos = new Vector2(_plantLegTargetPos.x, _plantLegTargetPos.z);
-
-        // Distance Measurements
-        float currentDistanceToTarget = Vector3.Distance(groundedCurrentLegPos, groundedTargetPos);
-        float distanceOnStepBegin = currentDistanceToTarget;
 
         float timer = 0f;
 
-        while (currentDistanceToTarget >= 0.05f || timer <= _maxStepDuration)
+        while (timer < _stepDuration)
         {
-            // We use the MoveTowards method to dynamically move the leg towards the target positon ...
-            Vector3 newPlantPos = Vector3.MoveTowards(_plantLegPos, _plantLegTargetPos, _stepSpeed);
+            Vector3 newPlantPos = Vector3.Lerp(groundedCurrentLegPos, _plantLegTargetPos, _stepMakeCurve.Evaluate(timer / _stepDuration));
 
-            // ... while an Animation Curve controls how the step works height wise over distance.
-            newPlantPos.y = _plantLegTargetPos.y + curves.GetAnimationCurve(stepAnimCurveType).Evaluate(1 - currentDistanceToTarget / distanceOnStepBegin) * _stepHeight;
+            newPlantPos.y = _plantLegTargetPos.y + _stepHeightAnimCurve.Evaluate(timer / _stepDuration) * _stepHeight;
 
             _plantLegPos = newPlantPos;
 
-            // Then adjust current 2D Leg Position and distance to target
-            groundedCurrentLegPos = new Vector2(_plantLegPos.x, _plantLegPos.z);
-            currentDistanceToTarget = Vector3.Distance(groundedCurrentLegPos, groundedTargetPos);
-
             timer += Time.deltaTime;
-
-            if (showLog) Debug.Log($"Distance To Target {currentDistanceToTarget} - timer: {timer} - Duration {_maxStepDuration}");
 
             yield return new WaitForEndOfFrame();
         }
@@ -207,8 +232,6 @@ public class FabrikIK : MonoBehaviour
     {
         if (ikBones.Count == 0 || target == null)
             return;
-
-        Vector3 tposition = target.position;
 
         bool breakSolving = false;
 
@@ -319,15 +342,15 @@ public class FabrikIK : MonoBehaviour
         Gizmos.color = Color.black;
         Gizmos.DrawSphere(transform.position, 0.2f);
 
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(footTarget.position, 0.2f);
+        //Gizmos.color = Color.yellow;
+        //Gizmos.DrawSphere(footTarget.position, 0.2f);
 
 
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(raycastHitInfo_Target.point, 0.2f);
 
-        //Gizmos.color = Color.green;
-        //Gizmos.DrawSphere(raycastHitInfo.point, 0.15f);
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(_plantLegTargetPos, 0.15f);
 
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(raycastHitInfo_IK.point, raycastHitInfo_IK.point + raycastHitInfo_IK.normal);

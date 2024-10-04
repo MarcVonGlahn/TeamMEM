@@ -78,10 +78,10 @@ MonoBehaviour:
   showLog: 0
   showGizmo: 1
   target: {fileID: 7331769196981909764}
-  targetHeight: 2
+  targetHeight: 4
   ikBones:
   - boneTransform: {fileID: 1546919950997802089}
-    minRotation: {x: -55, y: -15, z: -10}
+    minRotation: {x: -75, y: -15, z: -10}
     maxRotation: {x: 25, y: 15, z: 10}
     affectedByPull: 1
     pullTransform: {fileID: 6214505299392320509}
@@ -99,15 +99,12 @@ MonoBehaviour:
   iterations: 10
   tolerance: 0.05
   smoothFactor: 0.1
-  pullWeight: 0.2
+  pullWeight: 0.05
   floorLayerMask:
     serializedVersion: 2
     m_Bits: 64
   targetLegHeight: 0.4
   footTarget: {fileID: 5780933250847803145}
-  stepLengthThreshold: 3
-  curves: {fileID: 11400000, guid: b6b3175acf61d6a4d8be03acaaffbe9c, type: 2}
-  stepAnimCurveType: 3
 --- !u!1 &1854797752845052344
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,10 +152,10 @@ MonoBehaviour:
   showLog: 0
   showGizmo: 1
   target: {fileID: 6105816324853897968}
-  targetHeight: 2
+  targetHeight: 4
   ikBones:
   - boneTransform: {fileID: 1370567043877425516}
-    minRotation: {x: -55, y: -15, z: -10}
+    minRotation: {x: -75, y: -15, z: -10}
     maxRotation: {x: 25, y: 15, z: 10}
     affectedByPull: 1
     pullTransform: {fileID: 101519103237230845}
@@ -176,15 +173,12 @@ MonoBehaviour:
   iterations: 10
   tolerance: 0.05
   smoothFactor: 0.1
-  pullWeight: 0.2
+  pullWeight: 0.05
   floorLayerMask:
     serializedVersion: 2
     m_Bits: 64
   targetLegHeight: 0.4
   footTarget: {fileID: 6854683010890113405}
-  stepLengthThreshold: 3
-  curves: {fileID: 11400000, guid: b6b3175acf61d6a4d8be03acaaffbe9c, type: 2}
-  stepAnimCurveType: 3
 --- !u!1 &1956082712732186537
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,10 +288,10 @@ MonoBehaviour:
   showLog: 0
   showGizmo: 1
   target: {fileID: 8474746530889002224}
-  targetHeight: 2
+  targetHeight: 4
   ikBones:
   - boneTransform: {fileID: 5513080881984728990}
-    minRotation: {x: -55, y: -15, z: -10}
+    minRotation: {x: -75, y: -15, z: -10}
     maxRotation: {x: 25, y: 15, z: 10}
     affectedByPull: 1
     pullTransform: {fileID: 2731278480701448265}
@@ -315,15 +309,12 @@ MonoBehaviour:
   iterations: 10
   tolerance: 0.05
   smoothFactor: 0.1
-  pullWeight: 0.2
+  pullWeight: 0.05
   floorLayerMask:
     serializedVersion: 2
     m_Bits: 64
   targetLegHeight: 0.4
   footTarget: {fileID: 1372146463287783179}
-  stepLengthThreshold: 3
-  curves: {fileID: 11400000, guid: b6b3175acf61d6a4d8be03acaaffbe9c, type: 2}
-  stepAnimCurveType: 3
 --- !u!1 &4288606693684671821
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,6 +608,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5229431182499919359, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
+      propertyPath: moveset
+      value: 
+      objectReference: {fileID: 11400000, guid: 27181c0f92cc6194b8a82a00eeab0006,
+        type: 2}
+    - target: {fileID: 5229431182499919359, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
       propertyPath: headBone
       value: 
       objectReference: {fileID: 5586792228927661995}
@@ -630,6 +627,11 @@ PrefabInstance:
       propertyPath: rootbone
       value: 
       objectReference: {fileID: 5085488470981953341}
+    - target: {fileID: 5229431182499919359, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: stepHeight
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5229431182499919359, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
       propertyPath: ikControllers.Array.size
@@ -672,13 +674,33 @@ PrefabInstance:
       objectReference: {fileID: 7508159383474058833}
     - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
+      propertyPath: iterations
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
       propertyPath: pullWeight
-      value: 0.2
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: targetHeight
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: targetLegHeight
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
       propertyPath: ikBones.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: stepLengthThreshold
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
@@ -703,7 +725,7 @@ PrefabInstance:
     - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
       propertyPath: ikBones.Array.data[0].minRotation.x
-      value: -55
+      value: -75
       objectReference: {fileID: 0}
     - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
