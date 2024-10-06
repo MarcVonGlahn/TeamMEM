@@ -26,7 +26,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.58, y: 1.58, z: 1.58}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3310772514812610899}
@@ -187,9 +187,6 @@ MonoBehaviour:
     m_Bits: 64
   targetLegHeight: 0.4
   footTarget: {fileID: 4371232975987579873}
-  stepLengthThreshold: 3
-  curves: {fileID: 11400000, guid: b6b3175acf61d6a4d8be03acaaffbe9c, type: 2}
-  stepAnimCurveType: 3
 --- !u!1 &7826861952791524514
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,14 +286,8 @@ MonoBehaviour:
   ikControllers:
   - {fileID: 8588556366316415510}
   rootBone: {fileID: 0}
-  bodyRotationSpeed: 1
+  moveset: {fileID: 0}
   followPath: {fileID: 2434232557765351057}
-  stepSpeed: 5
-  maxStepDuration: 0.3
-  stepHeight: 0.5
-  curves: {fileID: 11400000, guid: b6b3175acf61d6a4d8be03acaaffbe9c, type: 2}
-  stepAnimCurveType: 3
-  walkingStyle: 2
   headBone: {fileID: 0}
 --- !u!114 &2434232557765351057
 MonoBehaviour:

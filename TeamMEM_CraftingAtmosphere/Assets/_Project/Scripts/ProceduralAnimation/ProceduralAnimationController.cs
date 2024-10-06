@@ -125,6 +125,9 @@ public class ProceduralAnimationController : MonoBehaviour
 
     private void AngleHead()
     {
+        if (headBone == null)
+            return;
+
         if (followPath == null)
             return;
 
