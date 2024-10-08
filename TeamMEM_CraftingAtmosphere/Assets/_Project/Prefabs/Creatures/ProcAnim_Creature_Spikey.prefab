@@ -50,24 +50,30 @@ MonoBehaviour:
   targetHeight: 2
   ikBones:
   - boneTransform: {fileID: 3770466947380982182}
-    minRotation: {x: -25, y: -20, z: 35}
-    maxRotation: {x: 10, y: 20, z: 75}
+    minRotation: {x: -25, y: 0, z: 35}
+    maxRotation: {x: 10, y: 1, z: 75}
     affectedByPull: 1
     pullTransform: {fileID: 3397718621013145453}
   - boneTransform: {fileID: 7242802161538117275}
-    minRotation: {x: -110, y: -35, z: 0}
+    minRotation: {x: -110, y: 5, z: 0}
     maxRotation: {x: -25, y: 10, z: 5}
     affectedByPull: 0
     pullTransform: {fileID: 0}
-  footBone: {fileID: 4014785757374586671}
+  - boneTransform: {fileID: 4014785757374586671}
+    minRotation: {x: -45, y: -40, z: 90}
+    maxRotation: {x: -44, y: -39, z: 91}
+    affectedByPull: 0
+    pullTransform: {fileID: 0}
+  footBone: {fileID: 5388138207685254935}
   iterations: 10
   tolerance: 0.05
   smoothFactor: 0.1
-  pullWeight: 0.025
+  pullWeight: 0.3
   floorLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  targetLegHeight: 1
+  targetLegHeight: 0
+  footFloatingThreshold: 0.1
   footTarget: {fileID: 3885545572049049919}
 --- !u!1 &2649147560265032152
 GameObject:
@@ -150,24 +156,30 @@ MonoBehaviour:
   targetHeight: 2
   ikBones:
   - boneTransform: {fileID: 1432002263752395160}
-    minRotation: {x: -25, y: -20, z: 35}
-    maxRotation: {x: 10, y: 20, z: 75}
+    minRotation: {x: -25, y: 0, z: 35}
+    maxRotation: {x: 10, y: 1, z: 75}
     affectedByPull: 1
     pullTransform: {fileID: 57632189445297088}
   - boneTransform: {fileID: 2987763813135056975}
-    minRotation: {x: -110, y: -35, z: 0}
+    minRotation: {x: -110, y: 5, z: 0}
     maxRotation: {x: -25, y: 10, z: 5}
     affectedByPull: 0
     pullTransform: {fileID: 0}
-  footBone: {fileID: 951555446138788643}
+  - boneTransform: {fileID: 951555446138788643}
+    minRotation: {x: -45, y: -40, z: 90}
+    maxRotation: {x: -44, y: -39, z: 91}
+    affectedByPull: 0
+    pullTransform: {fileID: 0}
+  footBone: {fileID: 2236231777823514718}
   iterations: 10
   tolerance: 0.05
   smoothFactor: 0.1
-  pullWeight: 0.025
+  pullWeight: 0.3
   floorLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  targetLegHeight: 1
+  targetLegHeight: 0
+  footFloatingThreshold: 0.1
   footTarget: {fileID: 4850479023830908685}
 --- !u!1 &3927965956207540504
 GameObject:
@@ -194,7 +206,7 @@ Transform:
   m_GameObject: {fileID: 3927965956207540504}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: -2.5699997}
+  m_LocalPosition: {x: 5, y: 1, z: -2.5699997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -290,7 +302,12 @@ MonoBehaviour:
     maxRotation: {x: -40, y: 10, z: 5}
     affectedByPull: 0
     pullTransform: {fileID: 0}
-  footBone: {fileID: 1957787307340788877}
+  - boneTransform: {fileID: 1957787307340788877}
+    minRotation: {x: 40, y: 0, z: 95}
+    maxRotation: {x: 41, y: 1, z: 96}
+    affectedByPull: 0
+    pullTransform: {fileID: 0}
+  footBone: {fileID: 3499333550087164836}
   iterations: 10
   tolerance: 0.05
   smoothFactor: 0.1
@@ -298,7 +315,8 @@ MonoBehaviour:
   floorLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  targetLegHeight: 1
+  targetLegHeight: 0
+  footFloatingThreshold: 0.2
   footTarget: {fileID: 2475155747895037822}
 --- !u!1 &5680441685792706563
 GameObject:
@@ -325,7 +343,7 @@ Transform:
   m_GameObject: {fileID: 5680441685792706563}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.00000032584143, z: -4.2632564e-14, w: 1}
-  m_LocalPosition: {x: -2.27, y: 1.5, z: 1.123}
+  m_LocalPosition: {x: -2.27, y: 1.5, z: 1.719}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -387,7 +405,7 @@ Transform:
   m_GameObject: {fileID: 6743511429389007481}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: 0, z: -2.57}
+  m_LocalPosition: {x: -5, y: 1, z: -2.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -401,6 +419,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 936960080170060622, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: walkingSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1059151139084709573, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
       propertyPath: m_Name
@@ -534,7 +557,7 @@ PrefabInstance:
     - target: {fileID: 4371232975987579873, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.123
+      value: 1.719
       objectReference: {fileID: 0}
     - target: {fileID: 5229431182499919359, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
@@ -586,7 +609,7 @@ PrefabInstance:
         type: 3}
       propertyPath: footBone
       value: 
-      objectReference: {fileID: 4140610875135354218}
+      objectReference: {fileID: 8022638775977285542}
     - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
       propertyPath: pullWeight
@@ -595,12 +618,17 @@ PrefabInstance:
     - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
       propertyPath: targetLegHeight
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
       propertyPath: ikBones.Array.size
-      value: 2
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: footFloatingThreshold
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
@@ -661,6 +689,41 @@ PrefabInstance:
         type: 3}
       propertyPath: ikBones.Array.data[1].minRotation.y
       value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: ikBones.Array.data[2].boneTransform
+      value: 
+      objectReference: {fileID: 4140610875135354218}
+    - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: ikBones.Array.data[2].maxRotation.x
+      value: 41
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: ikBones.Array.data[2].maxRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: ikBones.Array.data[2].maxRotation.z
+      value: 96
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: ikBones.Array.data[2].minRotation.x
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: ikBones.Array.data[2].minRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: ikBones.Array.data[2].minRotation.z
+      value: 95
       objectReference: {fileID: 0}
     - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
@@ -853,27 +916,27 @@ PrefabInstance:
     - target: {fileID: -8037779871665015219, guid: 027a786ebf7859842be06bca5f54ddcc,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.947597
+      value: 0.9640452
       objectReference: {fileID: 0}
     - target: {fileID: -8037779871665015219, guid: 027a786ebf7859842be06bca5f54ddcc,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.04891772
+      value: -0.0027113296
       objectReference: {fileID: 0}
     - target: {fileID: -8037779871665015219, guid: 027a786ebf7859842be06bca5f54ddcc,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.17759469
+      value: -0.009843422
       objectReference: {fileID: 0}
     - target: {fileID: -8037779871665015219, guid: 027a786ebf7859842be06bca5f54ddcc,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.2610117
+      value: 0.26554227
       objectReference: {fileID: 0}
     - target: {fileID: -8037779871665015219, guid: 027a786ebf7859842be06bca5f54ddcc,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 21.23
+      value: -1.17
       objectReference: {fileID: 0}
     - target: {fileID: -8037779871665015219, guid: 027a786ebf7859842be06bca5f54ddcc,
         type: 3}
@@ -883,12 +946,12 @@ PrefabInstance:
     - target: {fileID: -4565268700717340304, guid: 027a786ebf7859842be06bca5f54ddcc,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.6108363
+      value: 0.70153147
       objectReference: {fileID: 0}
     - target: {fileID: -4565268700717340304, guid: 027a786ebf7859842be06bca5f54ddcc,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7917569
+      value: -0.71263844
       objectReference: {fileID: 0}
     - target: {fileID: -4565268700717340304, guid: 027a786ebf7859842be06bca5f54ddcc,
         type: 3}
@@ -903,7 +966,7 @@ PrefabInstance:
     - target: {fileID: -4565268700717340304, guid: 027a786ebf7859842be06bca5f54ddcc,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -104.7
+      value: -90.9
       objectReference: {fileID: 0}
     - target: {fileID: -4565268700717340304, guid: 027a786ebf7859842be06bca5f54ddcc,
         type: 3}

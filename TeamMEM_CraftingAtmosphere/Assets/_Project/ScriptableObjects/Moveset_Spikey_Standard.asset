@@ -69,10 +69,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  RootBoneHeight: 1.6
+  RootBoneHeight: 2.25
   StepDuration: 0.6
   StepHeight: 1.5
-  StepLengthTreshhold: 1.19
+  StepLengthTreshhold: 0.9
   HeadRotationSpeed: 1.5
   BodyRotationSpeed: 1
   WalkingStyle: 2

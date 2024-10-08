@@ -28,6 +28,7 @@ public class FabrikIK : MonoBehaviour
     [Header("Raycasting")]
     [SerializeField] private LayerMask floorLayerMask;
     [SerializeField] private float targetLegHeight = 0.4f;
+    [SerializeField] private float footFloatingThreshold = 0.1f;
     [Header("Step Orientation")]
     [SerializeField] private Transform footTarget;
     
@@ -163,6 +164,8 @@ public class FabrikIK : MonoBehaviour
 
         bool isStepThresholdMet = _distanceFromPlantedLeg >= _stepLengthThreshold;
 
+        if(showLog) Debug.Log($"Should do step: {isStepThresholdMet}, because distance is: {_distanceFromPlantedLeg}");
+
         bool isOpposingLegGrounded = _opposingBone._isLegGrounded;
 
         if (_sameSideBone != null)
@@ -186,7 +189,7 @@ public class FabrikIK : MonoBehaviour
                 $"Plant Leg Target Y \t: {_plantLegTargetPos.y}");
 
 
-        if (Mathf.Abs(ikBones[ikBones.Count - 1].boneTransform.position.y - _plantLegTargetPos.y) > 0.4f)
+        if (Mathf.Abs(ikBones[ikBones.Count - 1].boneTransform.position.y - _plantLegTargetPos.y) > footFloatingThreshold)
         {
             if (showLog)
                 Debug.Log($"Should do step because we are floating by {Mathf.Abs(ikBones[ikBones.Count - 1].boneTransform.position.y - _plantLegPos.y)}");

@@ -278,11 +278,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProcAnim_Creature_Spikey
       objectReference: {fileID: 0}
-    - target: {fileID: 856315790373720537, guid: d9c064bbd798db346a506e0f138476fc,
-        type: 3}
-      propertyPath: walkingSpeed
-      value: 1.5
-      objectReference: {fileID: 0}
     - target: {fileID: 2822313355203693574, guid: d9c064bbd798db346a506e0f138476fc,
         type: 3}
       propertyPath: waypoints.Array.size
@@ -333,6 +328,11 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[8]
       value: 
       objectReference: {fileID: 1944460870}
+    - target: {fileID: 8201705922456662145, guid: d9c064bbd798db346a506e0f138476fc,
+        type: 3}
+      propertyPath: showLog
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8747212651292899831, guid: d9c064bbd798db346a506e0f138476fc,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -1194,6 +1194,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   targetLegHeight: 0.4
+  footFloatingThreshold: 0.1
   footTarget: {fileID: 1743573827}
 --- !u!114 &700441507
 MonoBehaviour:
@@ -2281,6 +2282,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   targetLegHeight: 0.4
+  footFloatingThreshold: 0.1
   footTarget: {fileID: 242787627}
 --- !u!1 &1339364871
 GameObject:
@@ -3319,6 +3321,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   targetLegHeight: 0.4
+  footFloatingThreshold: 0.1
   footTarget: {fileID: 862121707}
 --- !u!1001 &1886760286
 PrefabInstance:
@@ -4081,6 +4084,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   targetLegHeight: 0.4
+  footFloatingThreshold: 0.1
   footTarget: {fileID: 1642771265}
 --- !u!1 &2126617354
 GameObject:

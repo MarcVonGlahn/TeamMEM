@@ -46,9 +46,6 @@ public class ProceduralAnimationController : MonoBehaviour
     {
         AngleRootbone();
         AngleHead();
-
-
-        Debug.Log($"Transform Position:\t {transform.position}\n Rootbone Position:\t {rootBone.position}");
     }
 
 
