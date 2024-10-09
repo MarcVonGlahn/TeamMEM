@@ -43,6 +43,7 @@ public class FabrikIK : MonoBehaviour
     private float _stepDuration = 1.0f;
     private float _stepHeight = 0.5f;
     private float _stepLengthThreshold = 1f;
+    private float _onMoveLegFinishedHeight = 0f;
 
     private RaycastHit raycastHitInfo_IK;
     private RaycastHit raycastHitInfo_Target;
@@ -82,8 +83,10 @@ public class FabrikIK : MonoBehaviour
 
         _isLegGrounded = true;
 
-        _maxLegExtension = Vector3.Distance(ikBones[0].boneTransform.position, ikBones[1].boneTransform.position)
-            + Vector3.Distance(ikBones[1].boneTransform.position, ikBones[2].boneTransform.position);
+        for (int i = 0; i < ikBones.Count - 1; i++)
+        {
+            _maxLegExtension += Vector3.Distance(ikBones[i].boneTransform.position, ikBones[i + 1].boneTransform.position);
+        }
     }
 
 
@@ -175,13 +178,15 @@ public class FabrikIK : MonoBehaviour
 
         bool isOpposingLegGrounded = _opposingBone._isLegGrounded;
 
+        bool isSameSideLegGrounded = true;
+
         if (_sameSideBone != null)
-            if (isOpposingLegGrounded)
+            isSameSideLegGrounded = _sameSideBone._isLegGrounded;
                 isOpposingLegGrounded = _sameSideBone._isLegGrounded;
 
 
 
-        return (isLegFullyExtended || isStepThresholdMet) && !_isDoingWalkingAnim && isOpposingLegGrounded;
+        return (isLegFullyExtended || isStepThresholdMet) && !_isDoingWalkingAnim && isOpposingLegGrounded && isSameSideLegGrounded;
     }
 
 
@@ -192,8 +197,10 @@ public class FabrikIK : MonoBehaviour
             return false;
 
 
-        if (Mathf.Abs(ikBones[ikBones.Count - 1].boneTransform.position.y - _plantLegTargetPos.y) > footFloatingThreshold)
+        if (Mathf.Abs(ikBones[ikBones.Count - 1].boneTransform.position.y - _onMoveLegFinishedHeight) > footFloatingThreshold)
         {
+            LogMessage($"Is Foot Floating\n" +
+                $"Foot Height difference to plant leg height is bigger than threshold: {Mathf.Abs(ikBones[ikBones.Count - 1].boneTransform.position.y - _onMoveLegFinishedHeight) > footFloatingThreshold}");
             return true;
         }
         return false;
@@ -258,10 +265,10 @@ public class FabrikIK : MonoBehaviour
 
                 ikBone.boneTransform.rotation = targetRotation * ikBone.boneTransform.rotation; // Multiplying 2 Quaternions results in a composition (Apply Quaternion A, and then B, without Gimbal lock danger).
 
-                //if(ikBone.affectedByPull)
-                //    ApplyPullForce(ikBone);
+                if (ikBone.affectedByPull)
+                    ApplyPullForce(ikBone);
 
-                //ApplyJointConstraints(ikBone);
+                ApplyJointConstraints(ikBone);
 
                 // Check if the end effector is close enough to the target
                 if ((ikBones[ikBones.Count - 1].boneTransform.position - _plantLegPos).sqrMagnitude < tolerance * tolerance)
@@ -285,10 +292,10 @@ public class FabrikIK : MonoBehaviour
         Vector3 totarget = raycastHitInfo_IK.point - ikBones[ikBones.Count - 1].boneTransform.position;
 
         // Calculate the rotation to get from the end effector to the target
-        //Quaternion targetrotation = Quaternion.FromToRotation(toendEffector, totarget);
-        //ikBones[ikBones.Count - 1].boneTransform.rotation = targetrotation * ikBones[ikBones.Count - 1].boneTransform.rotation; // Multiplying 2 Quaternions results in a composition (Apply Quaternion A, and then B, without Gimbal lock danger).
+        Quaternion targetrotation = Quaternion.FromToRotation(toendEffector, totarget);
+        ikBones[ikBones.Count - 1].boneTransform.rotation = targetrotation * ikBones[ikBones.Count - 1].boneTransform.rotation; // Multiplying 2 Quaternions results in a composition (Apply Quaternion A, and then B, without Gimbal lock danger).
 
-        //ApplyJointConstraints(ikBones[ikBones.Count - 1]);
+        ApplyJointConstraints(ikBones[ikBones.Count - 1]);
 
         LogMessage($"Steps finished\n" +
                 $"Last Bone Position: {ikBones[ikBones.Count - 1].boneTransform.position}\n" +
@@ -358,8 +365,8 @@ public class FabrikIK : MonoBehaviour
         Gizmos.color = Color.black;
         Gizmos.DrawSphere(transform.position, 0.2f);
 
-        //Gizmos.color = Color.yellow;
-        //Gizmos.DrawSphere(footTarget.position, 0.2f);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(footTarget.position, 0.2f);
 
 
         Gizmos.color = Color.red;
