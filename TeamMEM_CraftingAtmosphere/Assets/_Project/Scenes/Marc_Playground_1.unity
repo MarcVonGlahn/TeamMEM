@@ -3056,12 +3056,7 @@ PrefabInstance:
     - target: {fileID: 3221974194039607535, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
       propertyPath: pullWeight
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3221974194039607535, guid: a02fda131e7f48346a7df0b953fa885e,
-        type: 3}
-      propertyPath: footFloatingThreshold
-      value: 0.1
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4308074630781448024, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
@@ -3121,17 +3116,12 @@ PrefabInstance:
     - target: {fileID: 5144944177854043954, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
       propertyPath: pullWeight
-      value: 0.1
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 5144944177854043954, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
       propertyPath: smoothFactor
       value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5144944177854043954, guid: a02fda131e7f48346a7df0b953fa885e,
-        type: 3}
-      propertyPath: footFloatingThreshold
-      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7021344747922568599, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
@@ -3190,23 +3180,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7868303201398117343, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
-      propertyPath: iterations
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7868303201398117343, guid: a02fda131e7f48346a7df0b953fa885e,
-        type: 3}
       propertyPath: pullWeight
-      value: 0.1
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 7868303201398117343, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
-      propertyPath: smoothFactor
-      value: 0.19
+      propertyPath: ikBones.Array.data[0].maxRotation.y
+      value: 145
       objectReference: {fileID: 0}
     - target: {fileID: 7868303201398117343, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
-      propertyPath: footFloatingThreshold
-      value: 0.1
+      propertyPath: ikBones.Array.data[0].minRotation.y
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8297788556526626895, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
@@ -3221,17 +3206,12 @@ PrefabInstance:
     - target: {fileID: 8549232688412142120, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
       propertyPath: pullWeight
-      value: 0.1
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 8549232688412142120, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
       propertyPath: smoothFactor
       value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8549232688412142120, guid: a02fda131e7f48346a7df0b953fa885e,
-        type: 3}
-      propertyPath: footFloatingThreshold
-      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
