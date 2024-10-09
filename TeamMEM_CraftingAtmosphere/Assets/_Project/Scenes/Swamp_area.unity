@@ -375,7 +375,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b3fc20ed78497484b8753e6fd461b2c1, type: 2}
+      objectReference: {fileID: 2100000, guid: 82226dee96c1ffb40ac87fc1fd474223, type: 2}
     - target: {fileID: 919132149155446097, guid: a9cc092fcd2f11144818dcc2a6b3559b,
         type: 3}
       propertyPath: m_Name
@@ -1181,7 +1181,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.10092147, g: 0.4188679, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.5773585, b: 0.10087899, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
