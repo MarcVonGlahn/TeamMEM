@@ -104,14 +104,23 @@ public class FabrikIK : MonoBehaviour
             _isDoingWalkingAnim = true;
 
             StartCoroutine(MoveLeg_Routine());
+
+            //if (showLog)
+            //    Debug.Log($"{transform.name}: Step triggered from \"ShouldDoStep\"-Method");
         }
-       
+
         if (IsFootFloating())
         {
             RaycastPlantLegTarget();
             _isDoingWalkingAnim = true;
 
             StartCoroutine(MoveLeg_Routine());
+
+            //LogMessage($"{transform.name}: Step triggered from \"IsFootFloating\"-Method\n" +
+            //        $"Foot Height:\t\t{footBone.position.y}\n" +
+            //        $"Leg Height:\t\t{ikBones[ikBones.Count - 1].boneTransform.position.y}\n" +
+            //        $"Plant Target Height:\t{_plantLegTargetPos.y}\n" +
+            //        $"Floating Threshold:\t{footFloatingThreshold}");
         }
 
         SolveIK();
@@ -164,8 +173,6 @@ public class FabrikIK : MonoBehaviour
 
         bool isStepThresholdMet = _distanceFromPlantedLeg >= _stepLengthThreshold;
 
-        if(showLog) Debug.Log($"Should do step: {isStepThresholdMet}, because distance is: {_distanceFromPlantedLeg}");
-
         bool isOpposingLegGrounded = _opposingBone._isLegGrounded;
 
         if (_sameSideBone != null)
@@ -184,15 +191,9 @@ public class FabrikIK : MonoBehaviour
         if (_isDoingWalkingAnim)
             return false;
 
-        if (showLog)
-            Debug.Log($"Bone Y \t: {ikBones[ikBones.Count - 1].boneTransform.position.y}\n" +
-                $"Plant Leg Target Y \t: {_plantLegTargetPos.y}");
-
 
         if (Mathf.Abs(ikBones[ikBones.Count - 1].boneTransform.position.y - _plantLegTargetPos.y) > footFloatingThreshold)
         {
-            if (showLog)
-                Debug.Log($"Should do step because we are floating by {Mathf.Abs(ikBones[ikBones.Count - 1].boneTransform.position.y - _plantLegPos.y)}");
             return true;
         }
         return false;
@@ -226,6 +227,10 @@ public class FabrikIK : MonoBehaviour
         _isDoingWalkingAnim = false;
         _isLegGrounded = true;
 
+        //LogMessage($"Move Ended\n" +
+        //    $"Plant Leg Position:\t{_plantLegPos}\n" +
+        //    $"Foot Position:\t{footBone.transform.position}");
+
         yield return null;
     }
 
@@ -253,10 +258,10 @@ public class FabrikIK : MonoBehaviour
 
                 ikBone.boneTransform.rotation = targetRotation * ikBone.boneTransform.rotation; // Multiplying 2 Quaternions results in a composition (Apply Quaternion A, and then B, without Gimbal lock danger).
 
-                if(ikBone.affectedByPull)
-                    ApplyPullForce(ikBone);
+                //if(ikBone.affectedByPull)
+                //    ApplyPullForce(ikBone);
 
-                ApplyJointConstraints(ikBone);
+                //ApplyJointConstraints(ikBone);
 
                 // Check if the end effector is close enough to the target
                 if ((ikBones[ikBones.Count - 1].boneTransform.position - _plantLegPos).sqrMagnitude < tolerance * tolerance)
@@ -265,6 +270,10 @@ public class FabrikIK : MonoBehaviour
                     break;
                 }
             }
+
+            LogMessage($"Step {i}\n" +
+                $"Last Bone Position: {ikBones[ikBones.Count - 1].boneTransform.position}\n" +
+                $"Plant Leg Position: {_plantLegPos}");
             if (breakSolving) break;
         }
 
@@ -276,10 +285,14 @@ public class FabrikIK : MonoBehaviour
         Vector3 totarget = raycastHitInfo_IK.point - ikBones[ikBones.Count - 1].boneTransform.position;
 
         // Calculate the rotation to get from the end effector to the target
-        Quaternion targetrotation = Quaternion.FromToRotation(toendEffector, totarget);
-        ikBones[ikBones.Count - 1].boneTransform.rotation = targetrotation * ikBones[ikBones.Count - 1].boneTransform.rotation; // Multiplying 2 Quaternions results in a composition (Apply Quaternion A, and then B, without Gimbal lock danger).
+        //Quaternion targetrotation = Quaternion.FromToRotation(toendEffector, totarget);
+        //ikBones[ikBones.Count - 1].boneTransform.rotation = targetrotation * ikBones[ikBones.Count - 1].boneTransform.rotation; // Multiplying 2 Quaternions results in a composition (Apply Quaternion A, and then B, without Gimbal lock danger).
 
-        ApplyJointConstraints(ikBones[ikBones.Count - 1]);
+        //ApplyJointConstraints(ikBones[ikBones.Count - 1]);
+
+        LogMessage($"Steps finished\n" +
+                $"Last Bone Position: {ikBones[ikBones.Count - 1].boneTransform.position}\n" +
+                $"Plant Leg Position: {_plantLegPos}");
     }
 
 
@@ -362,4 +375,14 @@ public class FabrikIK : MonoBehaviour
         Gizmos.DrawSphere(_plantLegPos, 0.2f);
     }
     #endregion
+
+
+
+    private void LogMessage(string message)
+    {
+        if (!showLog)
+            return;
+
+        Debug.Log($"{transform.name}\n" + message);
+    }
 }
