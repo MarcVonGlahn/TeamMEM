@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.XR;
@@ -57,6 +58,8 @@ public class FabrikIK : MonoBehaviour
     private FabrikIK _opposingBone;
     private FabrikIK _sameSideBone;
 
+    private List<Transform> pullTransforms;
+
 
     public Vector3 GetPlantLegTargetPosition()
     {
@@ -86,6 +89,15 @@ public class FabrikIK : MonoBehaviour
         for (int i = 0; i < ikBones.Count - 1; i++)
         {
             _maxLegExtension += Vector3.Distance(ikBones[i].boneTransform.position, ikBones[i + 1].boneTransform.position);
+        }
+
+        pullTransforms = new List<Transform>();
+        foreach(IKBone iKBone in ikBones)
+        {
+            if (!iKBone.affectedByPull || iKBone.pullTransform == null)
+                continue;
+
+            pullTransforms.Add(iKBone.pullTransform);
         }
     }
 
@@ -217,13 +229,30 @@ public class FabrikIK : MonoBehaviour
 
         float timer = 0f;
 
+        List<float> initPullTransformHeight = new List<float>();
+        for(int i = 0; i < pullTransforms.Count; i++)
+        {
+            initPullTransformHeight.Add(pullTransforms[i].position.y);
+        }
+
         while (timer < _stepDuration)
         {
             Vector3 newPlantPos = Vector3.Lerp(groundedCurrentLegPos, _plantLegTargetPos, _stepMakeCurve.Evaluate(timer / _stepDuration));
 
-            newPlantPos.y = _plantLegTargetPos.y + _stepHeightAnimCurve.Evaluate(timer / _stepDuration) * _stepHeight;
+            float evaluatedStepHeight = _stepHeightAnimCurve.Evaluate(timer / _stepDuration) * _stepHeight;
+
+            newPlantPos.y = _plantLegTargetPos.y + evaluatedStepHeight;
 
             _plantLegPos = newPlantPos;
+
+            for (int i = 0; i < pullTransforms.Count; i++)
+            {
+                Vector3 temp = pullTransforms[i].position;
+
+                temp.y = initPullTransformHeight[i] + evaluatedStepHeight * ikBones[i].pullTransformHeightAffect;
+
+                pullTransforms[i].position = temp;
+            }
 
             timer += Time.deltaTime;
 

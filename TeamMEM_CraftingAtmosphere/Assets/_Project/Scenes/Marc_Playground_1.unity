@@ -3183,16 +3183,6 @@ PrefabInstance:
       propertyPath: pullWeight
       value: 0.4
       objectReference: {fileID: 0}
-    - target: {fileID: 7868303201398117343, guid: a02fda131e7f48346a7df0b953fa885e,
-        type: 3}
-      propertyPath: ikBones.Array.data[0].maxRotation.y
-      value: 145
-      objectReference: {fileID: 0}
-    - target: {fileID: 7868303201398117343, guid: a02fda131e7f48346a7df0b953fa885e,
-        type: 3}
-      propertyPath: ikBones.Array.data[0].minRotation.y
-      value: 60
-      objectReference: {fileID: 0}
     - target: {fileID: 8297788556526626895, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y

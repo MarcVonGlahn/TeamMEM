@@ -12,4 +12,6 @@ public class IKBone
     [Space]
     public bool affectedByPull = false;
     public Transform pullTransform;
+    [Range(0, 1)]
+    public float pullTransformHeightAffect = 0.5f; 
 }

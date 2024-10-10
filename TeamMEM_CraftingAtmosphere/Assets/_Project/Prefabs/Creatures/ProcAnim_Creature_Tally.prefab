@@ -85,26 +85,31 @@ MonoBehaviour:
     maxRotation: {x: 0, y: 100, z: -75}
     affectedByPull: 1
     pullTransform: {fileID: 8854556956758898553}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 5920012040434309105}
     minRotation: {x: 25, y: -10, z: -5}
     maxRotation: {x: 55, y: 10, z: 10}
     affectedByPull: 1
     pullTransform: {fileID: 904678777491719769}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 6681888820050155833}
     minRotation: {x: -90, y: -10, z: 0}
     maxRotation: {x: -45, y: 10, z: 10}
     affectedByPull: 1
     pullTransform: {fileID: 6828916547022058148}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 3939484112988092745}
     minRotation: {x: 25, y: -10, z: -10}
     maxRotation: {x: 100, y: 0, z: 10}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 5920054448804837936}
     minRotation: {x: 75, y: 0, z: -1}
     maxRotation: {x: 78, y: 3, z: 1}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   footBone: {fileID: 5393679277537792396}
   iterations: 10
   tolerance: 0.05
@@ -265,7 +270,7 @@ Transform:
   m_GameObject: {fileID: 4881181353531092407}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.75, y: 1.143, z: 1.562}
+  m_LocalPosition: {x: 0.75, y: 1.94, z: 1.842}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -387,26 +392,31 @@ MonoBehaviour:
     maxRotation: {x: 0, y: 100, z: -75}
     affectedByPull: 1
     pullTransform: {fileID: 6401977311300862889}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 2960574165973736650}
     minRotation: {x: 25, y: -10, z: -5}
     maxRotation: {x: 55, y: 10, z: 10}
     affectedByPull: 1
     pullTransform: {fileID: 5575518799720191296}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 6930794353424089131}
     minRotation: {x: -90, y: -10, z: 0}
     maxRotation: {x: -45, y: 10, z: 10}
     affectedByPull: 1
     pullTransform: {fileID: 5212088628696706337}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 994642820613668151}
     minRotation: {x: 25, y: -10, z: -10}
     maxRotation: {x: 100, y: 0, z: 10}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 2812029386462237059}
     minRotation: {x: 75, y: 0, z: -1}
     maxRotation: {x: 78, y: 3, z: 1}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   footBone: {fileID: 2813427902991543046}
   iterations: 10
   tolerance: 0.05
@@ -565,26 +575,31 @@ MonoBehaviour:
     maxRotation: {x: 1, y: 110, z: -75}
     affectedByPull: 1
     pullTransform: {fileID: 6050560798599825882}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 691501931398951730}
     minRotation: {x: 42, y: -10, z: -10}
     maxRotation: {x: 75, y: 5, z: 10}
     affectedByPull: 1
     pullTransform: {fileID: 5959586406575512407}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 3730348468604945869}
     minRotation: {x: -100, y: 0, z: -10}
     maxRotation: {x: -10, y: 15, z: 0}
     affectedByPull: 1
     pullTransform: {fileID: 7847212311643597933}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 929507979992499522}
     minRotation: {x: 15, y: -5, z: -20}
     maxRotation: {x: 100, y: 0, z: 5}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 1015159280696338624}
     minRotation: {x: 75, y: -10, z: -6}
     maxRotation: {x: 78, y: -7, z: -5}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   footBone: {fileID: 2065551494237976720}
   iterations: 10
   tolerance: 0.05
@@ -652,7 +667,7 @@ Transform:
   m_GameObject: {fileID: 9057407254215898821}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.7, y: 0.509, z: 0.731}
+  m_LocalPosition: {x: 0.69999886, y: 1.271, z: 0.43799996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -885,12 +900,12 @@ PrefabInstance:
     - target: {fileID: 3575693612559303487, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.74
+      value: 2.57
       objectReference: {fileID: 0}
     - target: {fileID: 3575693612559303487, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.731
+      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 4371232975987579873, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
@@ -947,6 +962,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LPT_Front_R_Upper
+      objectReference: {fileID: 0}
+    - target: {fileID: 7826861952791524514, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
@@ -1152,6 +1172,21 @@ PrefabInstance:
         type: 3}
       propertyPath: ikBones.Array.data[2].affectedByPull
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: ikBones.Array.data[0].pullTransformHeightAffect
+      value: 0.339
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: ikBones.Array.data[1].pullTransformHeightAffect
+      value: 0.651
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: ikBones.Array.data[2].pullTransformHeightAffect
+      value: 0.908
       objectReference: {fileID: 0}
     - target: {fileID: 8895076869807295582, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
