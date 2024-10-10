@@ -115,6 +115,7 @@ public class FabrikIK : MonoBehaviour
 
         if (ShouldDoStep())
         {
+            LogMessage($"Should Do Step\n");
             RaycastPlantLegTarget();
             _isDoingWalkingAnim = true;
 
@@ -195,8 +196,6 @@ public class FabrikIK : MonoBehaviour
         if (_sameSideBone != null)
             isSameSideLegGrounded = _sameSideBone._isLegGrounded;
                 isOpposingLegGrounded = _sameSideBone._isLegGrounded;
-
-
 
         return (isLegFullyExtended || isStepThresholdMet) && !_isDoingWalkingAnim && isOpposingLegGrounded && isSameSideLegGrounded;
     }
@@ -306,10 +305,6 @@ public class FabrikIK : MonoBehaviour
                     break;
                 }
             }
-
-            LogMessage($"Step {i}\n" +
-                $"Last Bone Position: {ikBones[ikBones.Count - 1].boneTransform.position}\n" +
-                $"Plant Leg Position: {_plantLegPos}");
             if (breakSolving) break;
         }
 
@@ -326,9 +321,9 @@ public class FabrikIK : MonoBehaviour
 
         ApplyJointConstraints(ikBones[ikBones.Count - 1]);
 
-        LogMessage($"Steps finished\n" +
-                $"Last Bone Position: {ikBones[ikBones.Count - 1].boneTransform.position}\n" +
-                $"Plant Leg Position: {_plantLegPos}");
+        //LogMessage($"Steps finished\n" +
+        //        $"Last Bone Position: {ikBones[ikBones.Count - 1].boneTransform.position}\n" +
+        //        $"Plant Leg Position: {_plantLegPos}");
     }
 
 
@@ -409,6 +404,16 @@ public class FabrikIK : MonoBehaviour
 
         Gizmos.color = Color.cyan;
         Gizmos.DrawSphere(_plantLegPos, 0.2f);
+
+        if (pullTransforms == null)
+            return;
+
+        Gizmos.color = Color.magenta;
+
+        foreach(var t in pullTransforms)
+        {
+            Gizmos.DrawSphere(t.position, 0.2f);
+        }
     }
     #endregion
 
