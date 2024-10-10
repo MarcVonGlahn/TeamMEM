@@ -25,6 +25,15 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
+      time: 0.27992842
+      value: 0.6429566
+      inSlope: 1.4946966
+      outSlope: 1.4946966
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
       time: 1
       value: 1
       inSlope: 0
@@ -49,11 +58,11 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.5
-      value: 1
+      time: 0.125
+      value: 1.0059524
       inSlope: 0
       outSlope: 0
-      tangentMode: 34
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
@@ -69,10 +78,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  RootBoneHeight: 2.7
+  RootBoneHeight: 2.5
   StepDuration: 1.5
-  StepHeight: 1
-  StepLengthTreshhold: 2
+  StepHeight: 0.5
+  StepLengthTreshhold: 2.4
   HeadRotationSpeed: 1.5
   BodyRotationSpeed: 1
   WalkingStyle: 2

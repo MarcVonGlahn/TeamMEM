@@ -1180,16 +1180,19 @@ MonoBehaviour:
     maxRotation: {x: 25, y: 15, z: 10}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 1886760300}
     minRotation: {x: -130, y: -20, z: -10}
     maxRotation: {x: 12.5, y: 25, z: 10}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 1886760299}
     minRotation: {x: -40, y: 75, z: -30}
     maxRotation: {x: 40, y: 105, z: 25}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   footBone: {fileID: 1886760298}
   iterations: 10
   tolerance: 0.05
@@ -2268,16 +2271,19 @@ MonoBehaviour:
     maxRotation: {x: 25, y: 15, z: 10}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 1886760314}
     minRotation: {x: -130, y: -20, z: -10}
     maxRotation: {x: 12.5, y: 25, z: 10}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 1886760313}
     minRotation: {x: -40, y: 75, z: -30}
     maxRotation: {x: 40, y: 105, z: 25}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   footBone: {fileID: 1886760312}
   iterations: 10
   tolerance: 0.05
@@ -3058,6 +3064,11 @@ PrefabInstance:
       propertyPath: pullWeight
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 3221974194039607535, guid: a02fda131e7f48346a7df0b953fa885e,
+        type: 3}
+      propertyPath: footFloatingThreshold
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4308074630781448024, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
       propertyPath: waypoints.Array.size
@@ -3116,12 +3127,17 @@ PrefabInstance:
     - target: {fileID: 5144944177854043954, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
       propertyPath: pullWeight
-      value: 0.4
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5144944177854043954, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
       propertyPath: smoothFactor
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5144944177854043954, guid: a02fda131e7f48346a7df0b953fa885e,
+        type: 3}
+      propertyPath: footFloatingThreshold
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7021344747922568599, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
@@ -3183,6 +3199,11 @@ PrefabInstance:
       propertyPath: pullWeight
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 7868303201398117343, guid: a02fda131e7f48346a7df0b953fa885e,
+        type: 3}
+      propertyPath: footFloatingThreshold
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8297788556526626895, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -3196,12 +3217,17 @@ PrefabInstance:
     - target: {fileID: 8549232688412142120, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
       propertyPath: pullWeight
-      value: 0.4
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 8549232688412142120, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
       propertyPath: smoothFactor
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8549232688412142120, guid: a02fda131e7f48346a7df0b953fa885e,
+        type: 3}
+      propertyPath: footFloatingThreshold
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3485,16 +3511,19 @@ MonoBehaviour:
     maxRotation: {x: 25, y: 15, z: 10}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 1886760306}
     minRotation: {x: -130, y: -20, z: -10}
     maxRotation: {x: 12.5, y: 25, z: 10}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 1886760305}
     minRotation: {x: -40, y: 75, z: -30}
     maxRotation: {x: 40, y: 105, z: 25}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   footBone: {fileID: 1886760304}
   iterations: 10
   tolerance: 0.05
@@ -4248,16 +4277,19 @@ MonoBehaviour:
     maxRotation: {x: 25, y: 15, z: 10}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 1886760320}
     minRotation: {x: -130, y: -20, z: -10}
     maxRotation: {x: 12.5, y: 25, z: 10}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 1886760319}
     minRotation: {x: -40, y: 75, z: -30}
     maxRotation: {x: 40, y: 105, z: 25}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   footBone: {fileID: 1886760318}
   iterations: 10
   tolerance: 0.05
