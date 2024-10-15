@@ -3054,20 +3054,60 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3221974194039607535, guid: a02fda131e7f48346a7df0b953fa885e,
+    - target: {fileID: 1657811379313242759, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
-      propertyPath: iterations
-      value: 10
+      propertyPath: walkingSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1994100278809095524, guid: a02fda131e7f48346a7df0b953fa885e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6177913
+      objectReference: {fileID: 0}
+    - target: {fileID: 1994100278809095524, guid: a02fda131e7f48346a7df0b953fa885e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.33782503
+      objectReference: {fileID: 0}
+    - target: {fileID: 1994100278809095524, guid: a02fda131e7f48346a7df0b953fa885e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.35201994
+      objectReference: {fileID: 0}
+    - target: {fileID: 1994100278809095524, guid: a02fda131e7f48346a7df0b953fa885e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.6166767
+      objectReference: {fileID: 0}
+    - target: {fileID: 1994100278809095524, guid: a02fda131e7f48346a7df0b953fa885e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 1994100278809095524, guid: a02fda131e7f48346a7df0b953fa885e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -58.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1994100278809095524, guid: a02fda131e7f48346a7df0b953fa885e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 89.36
       objectReference: {fileID: 0}
     - target: {fileID: 3221974194039607535, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
-      propertyPath: pullWeight
-      value: 0.4
+      propertyPath: showLog
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3221974194039607535, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
-      propertyPath: footFloatingThreshold
-      value: 0.2
+      propertyPath: ikBones.Array.data[0].maxRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3221974194039607535, guid: a02fda131e7f48346a7df0b953fa885e,
+        type: 3}
+      propertyPath: ikBones.Array.data[0].minRotation.x
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4308074630781448024, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
@@ -3121,23 +3161,8 @@ PrefabInstance:
       objectReference: {fileID: 1944460870}
     - target: {fileID: 5144944177854043954, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
-      propertyPath: iterations
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5144944177854043954, guid: a02fda131e7f48346a7df0b953fa885e,
-        type: 3}
-      propertyPath: pullWeight
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5144944177854043954, guid: a02fda131e7f48346a7df0b953fa885e,
-        type: 3}
-      propertyPath: smoothFactor
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5144944177854043954, guid: a02fda131e7f48346a7df0b953fa885e,
-        type: 3}
-      propertyPath: footFloatingThreshold
-      value: 0.2
+      propertyPath: showLog
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7021344747922568599, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
@@ -3192,17 +3217,12 @@ PrefabInstance:
     - target: {fileID: 7868303201398117343, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
       propertyPath: showLog
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7868303201398117343, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
       propertyPath: pullWeight
       value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7868303201398117343, guid: a02fda131e7f48346a7df0b953fa885e,
-        type: 3}
-      propertyPath: footFloatingThreshold
-      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8297788556526626895, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
@@ -3211,23 +3231,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8549232688412142120, guid: a02fda131e7f48346a7df0b953fa885e,
         type: 3}
-      propertyPath: iterations
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8549232688412142120, guid: a02fda131e7f48346a7df0b953fa885e,
-        type: 3}
-      propertyPath: pullWeight
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8549232688412142120, guid: a02fda131e7f48346a7df0b953fa885e,
-        type: 3}
-      propertyPath: smoothFactor
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8549232688412142120, guid: a02fda131e7f48346a7df0b953fa885e,
-        type: 3}
-      propertyPath: footFloatingThreshold
-      value: 0.2
+      propertyPath: showLog
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -195,7 +195,14 @@ public class FabrikIK : MonoBehaviour
 
         if (_sameSideBone != null)
             isSameSideLegGrounded = _sameSideBone._isLegGrounded;
-                isOpposingLegGrounded = _sameSideBone._isLegGrounded;
+
+        if ((isLegFullyExtended || isStepThresholdMet) && !_isDoingWalkingAnim && isOpposingLegGrounded && isSameSideLegGrounded)
+        {
+            LogMessage($"Should Do Step based on Conditions:\n" +
+                $"Is Leg fully extended: {isLegFullyExtended} OR is Step Threshold Met: {isStepThresholdMet}\n" +
+                $"AND Is Opposing Leg Grounded: {isOpposingLegGrounded}\n" +
+                $"AND Is Same Side Leg Grounded: {isSameSideLegGrounded}");
+        }
 
         return (isLegFullyExtended || isStepThresholdMet) && !_isDoingWalkingAnim && isOpposingLegGrounded && isSameSideLegGrounded;
     }
@@ -211,7 +218,9 @@ public class FabrikIK : MonoBehaviour
         if (Mathf.Abs(ikBones[ikBones.Count - 1].boneTransform.position.y - _onMoveLegFinishedHeight) > footFloatingThreshold)
         {
             LogMessage($"Is Foot Floating\n" +
-                $"Foot Height difference to plant leg height is bigger than threshold: {Mathf.Abs(ikBones[ikBones.Count - 1].boneTransform.position.y - _onMoveLegFinishedHeight) > footFloatingThreshold}");
+                $"Foot Height difference to plant leg height is bigger than threshold: {Mathf.Abs(ikBones[ikBones.Count - 1].boneTransform.position.y - _onMoveLegFinishedHeight) > footFloatingThreshold}\n" +
+                $"Bone Height: {ikBones[ikBones.Count - 1].boneTransform.position.y}\n" +
+                $"On Move Leg Start Height: {_onMoveLegFinishedHeight}");
             return true;
         }
         return false;
@@ -261,6 +270,8 @@ public class FabrikIK : MonoBehaviour
         _plantLegPos = _plantLegTargetPos;
         _isDoingWalkingAnim = false;
         _isLegGrounded = true;
+
+        _onMoveLegFinishedHeight = ikBones[ikBones.Count - 1].boneTransform.position.y;
 
         //LogMessage($"Move Ended\n" +
         //    $"Plant Leg Position:\t{_plantLegPos}\n" +
@@ -355,10 +366,16 @@ public class FabrikIK : MonoBehaviour
         currentEulerAngles.y = Mathf.Clamp(currentEulerAngles.y, ikBone.minRotation.y, ikBone.maxRotation.y);
         currentEulerAngles.z = Mathf.Clamp(currentEulerAngles.z, ikBone.minRotation.z, ikBone.maxRotation.z);
 
-        Quaternion constrainedRotation = Quaternion.Euler(currentEulerAngles);
+        // Lerp the Euler Angles to avoid Rotation Bullshit
+        Vector3 newRotation = ikBone.boneTransform.localRotation.eulerAngles;
+        newRotation = Vector3.MoveTowards(newRotation, currentEulerAngles, smoothFactor * Time.deltaTime);
+
+        Quaternion constrainedRotation = Quaternion.Euler(newRotation);
+
+        // constrainedRotation = Quaternion.LookRotation(newRotation, Vector3.up);
 
         // Convert back to quaternion and apply to the bone
-        ikBone.boneTransform.localRotation = Quaternion.Slerp(ikBone.boneTransform.localRotation, constrainedRotation, smoothFactor);
+        ikBone.boneTransform.localRotation = constrainedRotation;// Quaternion.Lerp(ikBone.boneTransform.localRotation, constrainedRotation, smoothFactor * Time.deltaTime);
     }
 
     // Method to normalize Euler angles to the range of -180 to 180 degrees
