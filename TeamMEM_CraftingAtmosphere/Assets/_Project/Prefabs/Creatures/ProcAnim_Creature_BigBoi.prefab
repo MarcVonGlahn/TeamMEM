@@ -593,6 +593,26 @@ PrefabInstance:
       propertyPath: m_Transforms.Array.data[30]
       value: 
       objectReference: {fileID: 4231072665464105172}
+    - target: {fileID: 3039662410595818248, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2.2401252
+      objectReference: {fileID: 0}
+    - target: {fileID: 3039662410595818248, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 4.680399
+      objectReference: {fileID: 0}
+    - target: {fileID: 3039662410595818248, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 1.8408046
+      objectReference: {fileID: 0}
+    - target: {fileID: 3039662410595818248, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -0.18046868
+      objectReference: {fileID: 0}
     - target: {fileID: 3310772514812610899, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
       propertyPath: m_LocalPosition.z

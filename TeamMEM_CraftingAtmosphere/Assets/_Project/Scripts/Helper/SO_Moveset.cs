@@ -28,4 +28,14 @@ public class SO_Moveset : ScriptableObject
     public float BodyRotationSpeed = 1.0f;
     [Space]
     public WalkingStyle WalkingStyle = WalkingStyle.Biped;
+    [Space]
+    public AnimationCurve RootBoneAnimationCurve;
+    public float RootLevelChangeAmount = 0.1f;
+    public float RootLevelChangeDuration = 1.0f;
+
+
+    public float GetRootHeightAdjust(float timerVal)
+    {
+        return RootBoneAnimationCurve.Evaluate(timerVal / RootLevelChangeDuration) * RootLevelChangeAmount;
+    }
 }

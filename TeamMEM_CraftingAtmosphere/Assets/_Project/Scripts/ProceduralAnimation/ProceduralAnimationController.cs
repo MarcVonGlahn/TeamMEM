@@ -18,7 +18,10 @@ public class ProceduralAnimationController : MonoBehaviour
     [Header("Head")]
     [SerializeField] Transform headBone;
 
-    // Start is called before the first frame update
+
+    private float _rootBoneHeightAdjust = 0f;
+    private float _rootBoneTimer = 0f;
+
     void Awake()
     {
         foreach (FabrikIK ik in ikControllers)
@@ -44,8 +47,21 @@ public class ProceduralAnimationController : MonoBehaviour
 
     private void Update()
     {
+        RootBoneHeightAdjustment();
         AngleRootbone();
         AngleHead();
+    }
+
+
+    private void RootBoneHeightAdjustment()
+    {
+        _rootBoneHeightAdjust = moveset.GetRootHeightAdjust(_rootBoneTimer);
+
+        _rootBoneTimer += Time.deltaTime;
+
+        if (_rootBoneTimer > moveset.RootLevelChangeDuration)
+            _rootBoneTimer = 0;
+
     }
 
 
@@ -92,7 +108,7 @@ public class ProceduralAnimationController : MonoBehaviour
 
         Vector3 newRootBonePos = new Vector3(transform.position.x, rootBone.transform.position.y, transform.position.z);
 
-        newRootBonePos.y = averageLegBoneHeight + moveset.RootBoneHeight;
+        newRootBonePos.y = averageLegBoneHeight + moveset.RootBoneHeight + _rootBoneHeightAdjust;
 
         rootBone.transform.position = Vector3.MoveTowards(rootBone.transform.position, newRootBonePos, Time.deltaTime * 5f);
     }
