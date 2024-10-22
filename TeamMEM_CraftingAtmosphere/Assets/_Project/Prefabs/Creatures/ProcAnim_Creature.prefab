@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8895076869807295582}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ProcAnim_Creature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4351783684359688376}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LegPullTransforms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7300298306815245275}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FootTargets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4371232975987579873}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FootTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3310772514812610899}
   - component: {fileID: 8588556366316415510}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FootIK_Ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,6 +186,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   targetLegHeight: 0.4
+  footFloatingThreshold: 0.1
   footTarget: {fileID: 4371232975987579873}
 --- !u!1 &7826861952791524514
 GameObject:
@@ -196,7 +197,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3575693612559303487}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LegPullTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,8 +231,10 @@ GameObject:
   - component: {fileID: 936960080170060622}
   - component: {fileID: 5229431182499919359}
   - component: {fileID: 2434232557765351057}
+  - component: {fileID: 6695205370353207057}
   - component: {fileID: 2101983854301547386}
-  m_Layer: 0
+  - component: {fileID: 3039662410595818248}
+  m_Layer: 7
   m_Name: CreatureControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,6 +306,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints: []
   waypointThreshold: 0.2
+--- !u!114 &6695205370353207057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8010725256857046602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a33095533af7d341bcd2d692a0163e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  creatureProperties: {fileID: 0}
 --- !u!114 &2101983854301547386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,3 +338,24 @@ MonoBehaviour:
   tripodSize: 5
   boneColor: {r: 0, g: 0, b: 1, a: 0.5}
   m_Transforms: []
+--- !u!65 &3039662410595818248
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8010725256857046602}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

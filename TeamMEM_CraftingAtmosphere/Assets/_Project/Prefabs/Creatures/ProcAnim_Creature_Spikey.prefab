@@ -54,16 +54,19 @@ MonoBehaviour:
     maxRotation: {x: 10, y: 1, z: 75}
     affectedByPull: 1
     pullTransform: {fileID: 3397718621013145453}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 7242802161538117275}
     minRotation: {x: -110, y: 5, z: 0}
     maxRotation: {x: -25, y: 10, z: 5}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 4014785757374586671}
     minRotation: {x: -45, y: -40, z: 90}
     maxRotation: {x: -44, y: -39, z: 91}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   footBone: {fileID: 5388138207685254935}
   iterations: 10
   tolerance: 0.05
@@ -160,16 +163,19 @@ MonoBehaviour:
     maxRotation: {x: 10, y: 1, z: 75}
     affectedByPull: 1
     pullTransform: {fileID: 57632189445297088}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 2987763813135056975}
     minRotation: {x: -110, y: 5, z: 0}
     maxRotation: {x: -25, y: 10, z: 5}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 951555446138788643}
     minRotation: {x: -45, y: -40, z: 90}
     maxRotation: {x: -44, y: -39, z: 91}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   footBone: {fileID: 2236231777823514718}
   iterations: 10
   tolerance: 0.05
@@ -297,16 +303,19 @@ MonoBehaviour:
     maxRotation: {x: 40, y: 10, z: 0}
     affectedByPull: 1
     pullTransform: {fileID: 5439048377674105833}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 5304387041750877710}
     minRotation: {x: -110, y: -20, z: 0}
     maxRotation: {x: -40, y: 10, z: 5}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 1957787307340788877}
     minRotation: {x: 40, y: 0, z: 95}
     maxRotation: {x: 41, y: 1, z: 96}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   footBone: {fileID: 3499333550087164836}
   iterations: 10
   tolerance: 0.05
@@ -590,6 +599,12 @@ PrefabInstance:
       propertyPath: ikControllers.Array.data[3]
       value: 
       objectReference: {fileID: 6354292261158542027}
+    - target: {fileID: 6695205370353207057, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: creatureProperties
+      value: 
+      objectReference: {fileID: 11400000, guid: ff6a9ee7e1a536c44825ad35b3c0dea5,
+        type: 2}
     - target: {fileID: 7447712606247037950, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
       propertyPath: m_Name

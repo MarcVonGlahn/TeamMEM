@@ -85,16 +85,19 @@ MonoBehaviour:
     maxRotation: {x: 25, y: 15, z: 10}
     affectedByPull: 1
     pullTransform: {fileID: 6214505299392320509}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 455128861147674961}
     minRotation: {x: -130, y: -20, z: -10}
     maxRotation: {x: 12.5, y: 25, z: 10}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 8315733575681268675}
     minRotation: {x: -40, y: 75, z: -30}
     maxRotation: {x: 40, y: 105, z: 25}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   footBone: {fileID: 6379745627532691440}
   iterations: 10
   tolerance: 0.05
@@ -104,6 +107,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   targetLegHeight: 0.4
+  footFloatingThreshold: 0.1
   footTarget: {fileID: 5780933250847803145}
 --- !u!1 &1854797752845052344
 GameObject:
@@ -159,16 +163,19 @@ MonoBehaviour:
     maxRotation: {x: 25, y: 15, z: 10}
     affectedByPull: 1
     pullTransform: {fileID: 101519103237230845}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 8660546630588705095}
     minRotation: {x: -130, y: -20, z: -10}
     maxRotation: {x: 12.5, y: 25, z: 10}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 2310992885508257470}
     minRotation: {x: -40, y: 75, z: -30}
     maxRotation: {x: 40, y: 105, z: 25}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   footBone: {fileID: 7060557040941693038}
   iterations: 10
   tolerance: 0.05
@@ -178,6 +185,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   targetLegHeight: 0.4
+  footFloatingThreshold: 0.1
   footTarget: {fileID: 6854683010890113405}
 --- !u!1 &1956082712732186537
 GameObject:
@@ -295,16 +303,19 @@ MonoBehaviour:
     maxRotation: {x: 25, y: 15, z: 10}
     affectedByPull: 1
     pullTransform: {fileID: 2731278480701448265}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 1813843705066799839}
     minRotation: {x: -130, y: -20, z: -10}
     maxRotation: {x: 12.5, y: 25, z: 10}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 6119643799340296123}
     minRotation: {x: -40, y: 75, z: -30}
     maxRotation: {x: 40, y: 105, z: 25}
     affectedByPull: 0
     pullTransform: {fileID: 0}
+    pullTransformHeightAffect: 0.5
   footBone: {fileID: 4019763345689423125}
   iterations: 10
   tolerance: 0.05
@@ -314,6 +325,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   targetLegHeight: 0.4
+  footFloatingThreshold: 0.1
   footTarget: {fileID: 1372146463287783179}
 --- !u!1 &4288606693684671821
 GameObject:
@@ -652,6 +664,12 @@ PrefabInstance:
       propertyPath: ikControllers.Array.data[3]
       value: 
       objectReference: {fileID: 540427954761391458}
+    - target: {fileID: 6695205370353207057, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: creatureProperties
+      value: 
+      objectReference: {fileID: 11400000, guid: 3fab9ed1f269b0444b4fb9e84f385a50,
+        type: 2}
     - target: {fileID: 7447712606247037950, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
       propertyPath: m_Name

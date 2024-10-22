@@ -882,6 +882,26 @@ PrefabInstance:
       propertyPath: m_Transforms.Array.data[30]
       value: 
       objectReference: {fileID: 3994457134110568174}
+    - target: {fileID: 3039662410595818248, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.9941988
+      objectReference: {fileID: 0}
+    - target: {fileID: 3039662410595818248, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 4.8324337
+      objectReference: {fileID: 0}
+    - target: {fileID: 3039662410595818248, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 3.2885857
+      objectReference: {fileID: 0}
+    - target: {fileID: 3039662410595818248, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.4037243
+      objectReference: {fileID: 0}
     - target: {fileID: 3310772514812610899, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -948,6 +968,12 @@ PrefabInstance:
       propertyPath: ikControllers.Array.data[3]
       value: 
       objectReference: {fileID: 5144944177854043954}
+    - target: {fileID: 6695205370353207057, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: creatureProperties
+      value: 
+      objectReference: {fileID: 11400000, guid: 28524a07207032e439bcb0a51cf81794,
+        type: 2}
     - target: {fileID: 7447712606247037950, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
       propertyPath: m_Name
