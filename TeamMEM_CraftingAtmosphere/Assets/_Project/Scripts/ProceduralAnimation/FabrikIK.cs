@@ -1,5 +1,4 @@
 using DG.Tweening;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -189,22 +188,24 @@ public class FabrikIK : MonoBehaviour
 
         bool isStepThresholdMet = _distanceFromPlantedLeg >= _stepLengthThreshold;
 
-        bool isOpposingLegGrounded = _opposingBone._isLegGrounded;
+        bool isOpposingLegDoingAnim = _opposingBone._isDoingWalkingAnim;
 
-        bool isSameSideLegGrounded = true;
+        bool isSameSideLegDoingAnim = true;
 
         if (_sameSideBone != null)
-            isSameSideLegGrounded = _sameSideBone._isLegGrounded;
+        {
+            isSameSideLegDoingAnim = _sameSideBone._isDoingWalkingAnim;
+        }
 
-        if ((isLegFullyExtended || isStepThresholdMet) && !_isDoingWalkingAnim && isOpposingLegGrounded && isSameSideLegGrounded)
+        if ((isLegFullyExtended || isStepThresholdMet) && !_isDoingWalkingAnim && !isOpposingLegDoingAnim && !isSameSideLegDoingAnim)
         {
             LogMessage($"Should Do Step based on Conditions:\n" +
                 $"Is Leg fully extended: {isLegFullyExtended} OR is Step Threshold Met: {isStepThresholdMet}\n" +
-                $"AND Is Opposing Leg Grounded: {isOpposingLegGrounded}\n" +
-                $"AND Is Same Side Leg Grounded: {isSameSideLegGrounded}");
+                $"AND Is Opposing Leg Doing Anim: {isOpposingLegDoingAnim}\n" +
+                $"AND Is Same Side Leg Doing Anim: {isSameSideLegDoingAnim}");
         }
 
-        return (isLegFullyExtended || isStepThresholdMet) && !_isDoingWalkingAnim && isOpposingLegGrounded && isSameSideLegGrounded;
+        return (isLegFullyExtended || isStepThresholdMet) && !_isDoingWalkingAnim && !isOpposingLegDoingAnim && !isSameSideLegDoingAnim;
     }
 
 
@@ -212,6 +213,12 @@ public class FabrikIK : MonoBehaviour
     private bool IsFootFloating()
     {
         if (_isDoingWalkingAnim)
+            return false;
+
+        if (_opposingBone._isDoingWalkingAnim)
+            return false;
+
+        if (_sameSideBone._isDoingWalkingAnim)
             return false;
 
 
@@ -229,6 +236,12 @@ public class FabrikIK : MonoBehaviour
 
     private IEnumerator MoveLeg_Routine()
     {
+        // Add a small random waiting period, to avoid perfectly synchronous steps, which looks very unnatural
+        float randWait = Random.Range(0, 13);
+        randWait = randWait * 0.01f;
+        yield return new WaitForSecondsRealtime(randWait);
+
+
         _isLegGrounded = false;
 
         // We ground the current and the target leg position, to get an accurate representation of "Step Progress" in essentially 2D, as in how much longer until we have reached the desired leg position, not taking height into account.
@@ -331,10 +344,6 @@ public class FabrikIK : MonoBehaviour
         ikBones[ikBones.Count - 1].boneTransform.rotation = targetrotation * ikBones[ikBones.Count - 1].boneTransform.rotation; // Multiplying 2 Quaternions results in a composition (Apply Quaternion A, and then B, without Gimbal lock danger).
 
         ApplyJointConstraints(ikBones[ikBones.Count - 1]);
-
-        //LogMessage($"Steps finished\n" +
-        //        $"Last Bone Position: {ikBones[ikBones.Count - 1].boneTransform.position}\n" +
-        //        $"Plant Leg Position: {_plantLegPos}");
     }
 
 
@@ -402,6 +411,16 @@ public class FabrikIK : MonoBehaviour
     {
         if (!showGizmo)
             return;
+
+
+        if (_isDoingWalkingAnim)
+            Gizmos.color = Color.green;
+        else
+            Gizmos.color = Color.grey;
+
+        Gizmos.DrawSphere(raycastHitInfo_Target.point, 0.3f);
+
+        return;
 
         Gizmos.color = Color.black;
         Gizmos.DrawSphere(transform.position, 0.2f);
