@@ -114,7 +114,7 @@ public class FabrikIK : MonoBehaviour
 
         if (ShouldDoStep())
         {
-            LogMessage($"Should Do Step\n");
+            // LogMessage($"Should Do Step\n");
             RaycastPlantLegTarget();
             _isDoingWalkingAnim = true;
 
@@ -160,7 +160,7 @@ public class FabrikIK : MonoBehaviour
         target.position = new Vector3(_targetLegPos.x, targetHeight, _targetLegPos.z);
 
         Ray ray = new Ray(target.position, Vector3.down);
-        if(Physics.Raycast(ray, out raycastHitInfo_IK, 10f, floorLayerMask))
+        if(Physics.Raycast(ray, out raycastHitInfo_IK, 30f, floorLayerMask))
         {
             _plantLegTargetPos = raycastHitInfo_IK.point;
 
@@ -199,10 +199,10 @@ public class FabrikIK : MonoBehaviour
 
         if ((isLegFullyExtended || isStepThresholdMet) && !_isDoingWalkingAnim && !isOpposingLegDoingAnim && !isSameSideLegDoingAnim)
         {
-            LogMessage($"Should Do Step based on Conditions:\n" +
-                $"Is Leg fully extended: {isLegFullyExtended} OR is Step Threshold Met: {isStepThresholdMet}\n" +
-                $"AND Is Opposing Leg Doing Anim: {isOpposingLegDoingAnim}\n" +
-                $"AND Is Same Side Leg Doing Anim: {isSameSideLegDoingAnim}");
+            //LogMessage($"Should Do Step based on Conditions:\n" +
+            //    $"Is Leg fully extended: {isLegFullyExtended} OR is Step Threshold Met: {isStepThresholdMet}\n" +
+            //    $"AND Is Opposing Leg Doing Anim: {isOpposingLegDoingAnim}\n" +
+            //    $"AND Is Same Side Leg Doing Anim: {isSameSideLegDoingAnim}");
         }
 
         return (isLegFullyExtended || isStepThresholdMet) && !_isDoingWalkingAnim && !isOpposingLegDoingAnim && !isSameSideLegDoingAnim;
@@ -224,10 +224,10 @@ public class FabrikIK : MonoBehaviour
 
         if (Mathf.Abs(ikBones[ikBones.Count - 1].boneTransform.position.y - _onMoveLegFinishedHeight) > footFloatingThreshold)
         {
-            LogMessage($"Is Foot Floating\n" +
-                $"Foot Height difference to plant leg height is bigger than threshold: {Mathf.Abs(ikBones[ikBones.Count - 1].boneTransform.position.y - _onMoveLegFinishedHeight) > footFloatingThreshold}\n" +
-                $"Bone Height: {ikBones[ikBones.Count - 1].boneTransform.position.y}\n" +
-                $"On Move Leg Start Height: {_onMoveLegFinishedHeight}");
+            //LogMessage($"Is Foot Floating\n" +
+            //    $"Foot Height difference to plant leg height is bigger than threshold: {Mathf.Abs(ikBones[ikBones.Count - 1].boneTransform.position.y - _onMoveLegFinishedHeight) > footFloatingThreshold}\n" +
+            //    $"Bone Height: {ikBones[ikBones.Count - 1].boneTransform.position.y}\n" +
+            //    $"On Move Leg Start Height: {_onMoveLegFinishedHeight}");
             return true;
         }
         return false;
@@ -411,14 +411,14 @@ public class FabrikIK : MonoBehaviour
             return;
 
 
-        if (_isDoingWalkingAnim)
-            Gizmos.color = Color.green;
-        else
-            Gizmos.color = Color.grey;
+        //if (_isDoingWalkingAnim)
+        //    Gizmos.color = Color.green;
+        //else
+        //    Gizmos.color = Color.grey;
 
-        Gizmos.DrawSphere(raycastHitInfo_Target.point, 0.3f);
+        //Gizmos.DrawSphere(raycastHitInfo_Target.point, 0.3f);
 
-        return;
+        // return;
 
         Gizmos.color = Color.black;
         Gizmos.DrawSphere(transform.position, 0.2f);
