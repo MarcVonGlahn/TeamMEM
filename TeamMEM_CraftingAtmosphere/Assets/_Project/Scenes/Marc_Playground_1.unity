@@ -621,10 +621,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Environment_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 784d72e244196ee449bd19f81df28e41,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 784d72e244196ee449bd19f81df28e41,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 283317991}
   m_SourcePrefab: {fileID: 100100000, guid: 784d72e244196ee449bd19f81df28e41, type: 3}
 --- !u!4 &283317989 stripped
 Transform:
@@ -632,6 +641,34 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 283317988}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &283317990 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 784d72e244196ee449bd19f81df28e41,
+    type: 3}
+  m_PrefabInstance: {fileID: 283317988}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &283317991
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283317990}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2389600395047200988, guid: 784d72e244196ee449bd19f81df28e41, type: 3}
 --- !u!1 &348535163
 GameObject:
   m_ObjectHideFlags: 0
@@ -1833,7 +1870,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &955362023
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2732,7 +2769,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1456832007
 Transform:
   m_ObjectHideFlags: 0
@@ -2742,8 +2779,8 @@ Transform:
   m_GameObject: {fileID: 1456832006}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.19, y: 2.19, z: 2.19}
+  m_LocalPosition: {x: -32, y: -2, z: 0}
+  m_LocalScale: {x: 6.06, y: 6.06, z: 6.06}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 283317989}

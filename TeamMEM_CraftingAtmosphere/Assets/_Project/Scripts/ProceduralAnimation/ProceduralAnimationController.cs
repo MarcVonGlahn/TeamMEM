@@ -116,6 +116,9 @@ public class ProceduralAnimationController : MonoBehaviour
 
     private void QuadripedAngleRootbone()
     {
+        rootBone.rotation = transform.rotation;
+        return;
+
         Vector3 rightVector = ikControllers[0].GetPlantLegTargetPosition() - ikControllers[2].GetPlantLegTargetPosition();
         Vector3 leftVector = ikControllers[1].GetPlantLegTargetPosition() - ikControllers[3].GetPlantLegTargetPosition();
 
@@ -130,6 +133,7 @@ public class ProceduralAnimationController : MonoBehaviour
         catch
         {
             targetRotation = Quaternion.LookRotation(rootBone.forward);
+            Debug.Log("catch");
         }
 
         rootBone.rotation = Quaternion.Lerp(rootBone.rotation, Quaternion.LookRotation(averageVector), moveset.BodyRotationSpeed * Time.deltaTime);
@@ -149,5 +153,14 @@ public class ProceduralAnimationController : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(Vector3.down, adjustedLookDirection);
 
         headBone.transform.rotation = Quaternion.Slerp(headBone.transform.rotation, targetRotation, moveset.HeadRotationSpeed * Time.deltaTime);
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        if(rootBone == null) return;
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(rootBone.transform.position, rootBone.transform.position + rootBone.transform.forward * 3f);
     }
 }
