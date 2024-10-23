@@ -381,8 +381,6 @@ public class FabrikIK : MonoBehaviour
 
         Quaternion constrainedRotation = Quaternion.Euler(newRotation);
 
-        // constrainedRotation = Quaternion.LookRotation(newRotation, Vector3.up);
-
         // Convert back to quaternion and apply to the bone
         ikBone.boneTransform.localRotation = constrainedRotation;// Quaternion.Lerp(ikBone.boneTransform.localRotation, constrainedRotation, smoothFactor * Time.deltaTime);
     }

@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
         _lookAction.canceled += context => _lookInput = Vector2.zero;
 
         Cursor.visible = hideCursor ? false : true;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 
