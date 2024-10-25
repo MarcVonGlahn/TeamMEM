@@ -10,8 +10,9 @@ public class ProceduralAnimationController : MonoBehaviour
 {
     [Header("Leg Controllers")]
     [SerializeField] List<FabrikIK> ikControllers;
-    [Header("Additional Bones")]
+    [Header("Rootbone Settings")]
     [SerializeField] Transform rootBone;
+    [SerializeField] LayerMask floorLayerMask;
     [Header("Animation Settings")]
     [SerializeField] SO_Moveset moveset;
     [SerializeField] FollowPath followPath;
@@ -21,6 +22,9 @@ public class ProceduralAnimationController : MonoBehaviour
 
     private float _rootBoneHeightAdjust = 0f;
     private float _rootBoneTimer = 0f;
+
+
+    private Vector3 _floorHitRootbone = Vector3.zero;
 
     void Awake()
     {
@@ -97,20 +101,39 @@ public class ProceduralAnimationController : MonoBehaviour
 
     private void QuadripedPositionRootbone()
     {
-        float averageLegBoneHeight = 0;
+        // Raycast down, and position rootbone straight up from there
+        Ray ray = new Ray(rootBone.transform.position, Vector3.down);
 
-        foreach (var ik in ikControllers)
+        if(Physics.Raycast(ray, out RaycastHit hitInfo, 5f, floorLayerMask))
         {
-            averageLegBoneHeight += ik.GetPlantLegTargetPosition().y;
+            _floorHitRootbone = hitInfo.point;
+
+            Vector3 newRootBonePos = new Vector3(transform.position.x, rootBone.transform.position.y, transform.position.z);
+
+            newRootBonePos.y = hitInfo.point.y;
+
+            transform.position = newRootBonePos;
+
+            newRootBonePos.y = hitInfo.point.y + moveset.RootBoneHeight + _rootBoneHeightAdjust;
+
+            rootBone.transform.position = Vector3.MoveTowards(rootBone.transform.position, newRootBonePos, Time.deltaTime * 5f);
         }
 
-        averageLegBoneHeight /= 4;
 
-        Vector3 newRootBonePos = new Vector3(transform.position.x, rootBone.transform.position.y, transform.position.z);
+        //float averageLegBoneHeight = 0;
 
-        newRootBonePos.y = averageLegBoneHeight + moveset.RootBoneHeight + _rootBoneHeightAdjust;
+        //foreach (var ik in ikControllers)
+        //{
+        //    averageLegBoneHeight += ik.GetPlantLegTargetPosition().y;
+        //}
 
-        rootBone.transform.position = Vector3.MoveTowards(rootBone.transform.position, newRootBonePos, Time.deltaTime * 5f);
+        //averageLegBoneHeight /= 4;
+
+        //Vector3 newRootBonePos = new Vector3(transform.position.x, rootBone.transform.position.y, transform.position.z);
+
+        //newRootBonePos.y = averageLegBoneHeight + moveset.RootBoneHeight + _rootBoneHeightAdjust;
+
+        //rootBone.transform.position = Vector3.MoveTowards(rootBone.transform.position, newRootBonePos, Time.deltaTime * 5f);
     }
 
 
@@ -162,5 +185,9 @@ public class ProceduralAnimationController : MonoBehaviour
 
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(rootBone.transform.position, rootBone.transform.position + rootBone.transform.forward * 3f);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(rootBone.transform.position, rootBone.transform.position + Vector3.down * 3);
+        Gizmos.DrawSphere(_floorHitRootbone, 0.2f);
     }
 }

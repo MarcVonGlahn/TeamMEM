@@ -35,12 +35,10 @@ public class FollowPath : MonoBehaviour
                 _curWPIndex = 0;
         }
 
-        Vector3 adjustedTransformPosition = new Vector3(transform.position.x, 0, transform.position.z);
-        Vector3 adjustedWaypointPosition = new Vector3(waypoints[_curWPIndex].transform.position.x, 0, waypoints[_curWPIndex].transform.position.z);
+        Vector3 adjustedTransformPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        Vector3 adjustedWaypointPosition = new Vector3(waypoints[_curWPIndex].transform.position.x, transform.position.y, waypoints[_curWPIndex].transform.position.z);
 
         transform.position = Vector3.MoveTowards(adjustedTransformPosition, adjustedWaypointPosition, _walkingSpeed * Time.deltaTime);
-
-        // transform.position = new Vector3(transform.position.x, 0, transform.position.z);
 
         Quaternion targetRotation = Quaternion.LookRotation((adjustedWaypointPosition - adjustedTransformPosition).normalized);
 
