@@ -69,7 +69,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  RootBoneHeight: 2.25
+  RootBoneHeight: 2
   StepDuration: 0.6
   StepHeight: 1.5
   StepLengthTreshhold: 0.9

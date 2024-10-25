@@ -935,6 +935,11 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[7]
       value: 
       objectReference: {fileID: 758930801}
+    - target: {fileID: 6354292261158542027, guid: d9c064bbd798db346a506e0f138476fc,
+        type: 3}
+      propertyPath: showLog
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9048672691021862601, guid: d9c064bbd798db346a506e0f138476fc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -943,7 +948,7 @@ PrefabInstance:
     - target: {fileID: 9048672691021862601, guid: d9c064bbd798db346a506e0f138476fc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.45
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9048672691021862601, guid: d9c064bbd798db346a506e0f138476fc,
         type: 3}

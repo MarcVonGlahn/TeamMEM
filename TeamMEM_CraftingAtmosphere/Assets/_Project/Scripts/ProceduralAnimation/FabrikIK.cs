@@ -5,6 +5,7 @@ using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.Rendering;
 using UnityEngine.XR;
 
 public class FabrikIK : MonoBehaviour
@@ -38,12 +39,14 @@ public class FabrikIK : MonoBehaviour
 
     private bool _isDoingWalkingAnim;
     private bool _isLegGrounded;
+    private bool _isInCooldown;
 
     private float _maxLegExtension;
     private float _stepDuration = 1.0f;
     private float _stepHeight = 0.5f;
     private float _stepLengthThreshold = 1f;
     private float _onMoveLegFinishedHeight = 0f;
+    private float _cooldownTime = 0.2f;
 
     private RaycastHit raycastHitInfo_IK;
     private RaycastHit raycastHitInfo_Target;
@@ -57,7 +60,8 @@ public class FabrikIK : MonoBehaviour
     private FabrikIK _opposingBone;
     private FabrikIK _sameSideBone;
 
-    private List<Transform> pullTransforms;
+    private List<Transform> _pullTransforms;
+    private List<float> _initHeightDifferencePullTransform;
 
 
     public Vector3 GetPlantLegTargetPosition()
@@ -90,13 +94,16 @@ public class FabrikIK : MonoBehaviour
             _maxLegExtension += Vector3.Distance(ikBones[i].boneTransform.position, ikBones[i + 1].boneTransform.position);
         }
 
-        pullTransforms = new List<Transform>();
+        _pullTransforms = new List<Transform>();
+        _initHeightDifferencePullTransform = new List<float>();
         foreach(IKBone iKBone in ikBones)
         {
             if (!iKBone.affectedByPull || iKBone.pullTransform == null)
                 continue;
 
-            pullTransforms.Add(iKBone.pullTransform);
+            _pullTransforms.Add(iKBone.pullTransform);
+
+            _initHeightDifferencePullTransform.Add(iKBone.pullTransform.localPosition.y);
         }
     }
 
@@ -105,6 +112,9 @@ public class FabrikIK : MonoBehaviour
     {
         // Lock Target Position to Height above ground.
         // target.position = new Vector3(target.position.x, targetHeight, target.position.z);
+
+        // LogMessage($"Distance from target leg position (magenta) to PlantLegTarget (green): {Vector3.Distance(_plantLegTargetPos, _targetLegPos)}");
+        // LogMessage($"PlantLegTarget (green): {_plantLegTargetPos}");
     }
 
 
@@ -157,7 +167,7 @@ public class FabrikIK : MonoBehaviour
 
     private void RaycastPlantLegTarget(bool isOnStart = false)
     {
-        target.position = new Vector3(_targetLegPos.x, targetHeight, _targetLegPos.z);
+        target.position = new Vector3(_targetLegPos.x, targetHeight + _targetLegPos.y, _targetLegPos.z);
 
         Ray ray = new Ray(target.position, Vector3.down);
         if(Physics.Raycast(ray, out raycastHitInfo_IK, 30f, floorLayerMask))
@@ -174,10 +184,12 @@ public class FabrikIK : MonoBehaviour
     {
         // Raycast for the step target
         Ray ray = new Ray(footTarget.position, Vector3.down);
-        if (Physics.Raycast(ray, out raycastHitInfo_Target, 5f, floorLayerMask))
+
+        // Raycast distance 10 to ensure it's always hitting the floor
+        if (Physics.Raycast(ray, out raycastHitInfo_Target, 10f, floorLayerMask))
         {
             _targetLegPos = raycastHitInfo_Target.point;
-            _distanceFromPlantedLeg = (_plantLegPos - _targetLegPos).sqrMagnitude;
+            _distanceFromPlantedLeg = (_plantLegTargetPos - _targetLegPos).sqrMagnitude;
         }
     }
 
@@ -186,7 +198,9 @@ public class FabrikIK : MonoBehaviour
     {
         bool isLegFullyExtended = Vector3.Distance(ikBones[0].boneTransform.position, ikBones[ikBones.Count - 1].boneTransform.position) >= _maxLegExtension - 0.1f;
 
-        bool isStepThresholdMet = _distanceFromPlantedLeg >= _stepLengthThreshold;
+        bool isStepThresholdMet = _distanceFromPlantedLeg >= _stepLengthThreshold * _stepLengthThreshold;
+
+        // LogMessage($"Is Step threshold met: {isStepThresholdMet} - _distanceFormPlanted = {_distanceFromPlantedLeg} - threshold squared: {_stepLengthThreshold * _stepLengthThreshold}");
 
         bool isOpposingLegDoingAnim = _opposingBone._isDoingWalkingAnim;
 
@@ -197,15 +211,14 @@ public class FabrikIK : MonoBehaviour
             isSameSideLegDoingAnim = _sameSideBone._isDoingWalkingAnim;
         }
 
-        if ((isLegFullyExtended || isStepThresholdMet) && !_isDoingWalkingAnim && !isOpposingLegDoingAnim && !isSameSideLegDoingAnim)
-        {
-            //LogMessage($"Should Do Step based on Conditions:\n" +
-            //    $"Is Leg fully extended: {isLegFullyExtended} OR is Step Threshold Met: {isStepThresholdMet}\n" +
-            //    $"AND Is Opposing Leg Doing Anim: {isOpposingLegDoingAnim}\n" +
-            //    $"AND Is Same Side Leg Doing Anim: {isSameSideLegDoingAnim}");
-        }
+        //LogMessage($"Should Do Step based on Conditions: {(isLegFullyExtended || isStepThresholdMet) && !_isDoingWalkingAnim && !isOpposingLegDoingAnim && !isSameSideLegDoingAnim && !_isInCooldown}\n" +
+        //    $"Is Leg fully extended: {isLegFullyExtended} OR is Step Threshold Met: {isStepThresholdMet}\n" +
+        //    $"AND Is Opposing Leg NOT Doing Anim: {!isOpposingLegDoingAnim}\n" +
+        //    $"AND Is Same Side Leg NOT Doing Anim: {!isSameSideLegDoingAnim}\n" +
+        //    $"AND is not in Cooldown: {!_isInCooldown}");
 
-        return (isLegFullyExtended || isStepThresholdMet) && !_isDoingWalkingAnim && !isOpposingLegDoingAnim && !isSameSideLegDoingAnim;
+
+        return (isLegFullyExtended || isStepThresholdMet) && !_isDoingWalkingAnim && !isOpposingLegDoingAnim && !isSameSideLegDoingAnim && !_isInCooldown;
     }
 
 
@@ -250,11 +263,7 @@ public class FabrikIK : MonoBehaviour
 
         float timer = 0f;
 
-        List<float> initPullTransformHeight = new List<float>();
-        for(int i = 0; i < pullTransforms.Count; i++)
-        {
-            initPullTransformHeight.Add(pullTransforms[i].position.y);
-        }
+        
 
         while (timer < _stepDuration)
         {
@@ -266,13 +275,13 @@ public class FabrikIK : MonoBehaviour
 
             _plantLegPos = newPlantPos;
 
-            for (int i = 0; i < pullTransforms.Count; i++)
+            for (int i = 0; i < _pullTransforms.Count; i++)
             {
-                Vector3 temp = pullTransforms[i].position;
+                Vector3 temp = _pullTransforms[i].position;
 
-                temp.y = initPullTransformHeight[i] + evaluatedStepHeight * ikBones[i].pullTransformHeightAffect;
+                temp.y = _plantLegPos.y + _initHeightDifferencePullTransform[i] * ikBones[i].pullTransformHeightAffect;
 
-                pullTransforms[i].position = temp;
+                _pullTransforms[i].position = temp;
             }
 
             timer += Time.deltaTime;
@@ -285,6 +294,11 @@ public class FabrikIK : MonoBehaviour
         _isLegGrounded = true;
 
         _onMoveLegFinishedHeight = ikBones[ikBones.Count - 1].boneTransform.position.y;
+
+        _isInCooldown = true;
+        yield return new WaitForSeconds(_cooldownTime);
+        _isInCooldown = false;
+
 
         //LogMessage($"Move Ended\n" +
         //    $"Plant Leg Position:\t{_plantLegPos}\n" +
@@ -439,12 +453,12 @@ public class FabrikIK : MonoBehaviour
         Gizmos.color = Color.cyan;
         Gizmos.DrawSphere(_plantLegPos, 0.2f);
 
-        if (pullTransforms == null)
+        if (_pullTransforms == null)
             return;
 
         Gizmos.color = Color.magenta;
 
-        foreach(var t in pullTransforms)
+        foreach (var t in _pullTransforms)
         {
             Gizmos.DrawSphere(t.position, 0.2f);
         }
