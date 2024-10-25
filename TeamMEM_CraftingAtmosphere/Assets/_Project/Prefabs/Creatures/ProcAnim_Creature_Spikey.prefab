@@ -54,7 +54,7 @@ MonoBehaviour:
     maxRotation: {x: 10, y: 1, z: 75}
     affectedByPull: 1
     pullTransform: {fileID: 3397718621013145453}
-    pullTransformHeightAffect: 0.2
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 7242802161538117275}
     minRotation: {x: -110, y: 5, z: 0}
     maxRotation: {x: -25, y: 10, z: 5}
@@ -163,7 +163,7 @@ MonoBehaviour:
     maxRotation: {x: 10, y: 1, z: 75}
     affectedByPull: 1
     pullTransform: {fileID: 57632189445297088}
-    pullTransformHeightAffect: 0.2
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 2987763813135056975}
     minRotation: {x: -110, y: 5, z: 0}
     maxRotation: {x: -25, y: 10, z: 5}
@@ -303,7 +303,7 @@ MonoBehaviour:
     maxRotation: {x: 40, y: 10, z: 0}
     affectedByPull: 1
     pullTransform: {fileID: 5439048377674105833}
-    pullTransformHeightAffect: 0.2
+    pullTransformHeightAffect: 0.5
   - boneTransform: {fileID: 5304387041750877710}
     minRotation: {x: -110, y: -20, z: 0}
     maxRotation: {x: -40, y: 10, z: 5}
@@ -383,7 +383,7 @@ Transform:
   m_GameObject: {fileID: 5875016059385052298}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: 1.5, z: 0.663}
+  m_LocalPosition: {x: -5, y: 2.5, z: 0.663}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -576,7 +576,7 @@ PrefabInstance:
     - target: {fileID: 3575693612559303487, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3575693612559303487, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
@@ -788,7 +788,7 @@ PrefabInstance:
     - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
       propertyPath: ikBones.Array.data[0].pullTransformHeightAffect
-      value: 0.2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8895076869807295582, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}

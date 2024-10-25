@@ -38,7 +38,6 @@ public class FabrikIK : MonoBehaviour
     private AnimationCurve _stepHeightAnimCurve;
 
     private bool _isDoingWalkingAnim;
-    private bool _isLegGrounded;
     private bool _isInCooldown;
 
     private float _maxLegExtension;
@@ -87,13 +86,14 @@ public class FabrikIK : MonoBehaviour
 
         _plantLegPos = _plantLegTargetPos;
 
-        _isLegGrounded = true;
-
+        // Init the max leg Extension for this chain of bones
         for (int i = 0; i < ikBones.Count - 1; i++)
         {
             _maxLegExtension += Vector3.Distance(ikBones[i].boneTransform.position, ikBones[i + 1].boneTransform.position);
         }
 
+
+        // Init the pull Transform list with all valid pull transforms and the corresponding height differences measured from the floor
         _pullTransforms = new List<Transform>();
         _initHeightDifferencePullTransform = new List<float>();
         foreach(IKBone iKBone in ikBones)
@@ -129,9 +129,6 @@ public class FabrikIK : MonoBehaviour
             _isDoingWalkingAnim = true;
 
             StartCoroutine(MoveLeg_Routine());
-
-            //if (showLog)
-            //    Debug.Log($"{transform.name}: Step triggered from \"ShouldDoStep\"-Method");
         }
 
         if (IsFootFloating())
@@ -200,8 +197,6 @@ public class FabrikIK : MonoBehaviour
 
         bool isStepThresholdMet = _distanceFromPlantedLeg >= _stepLengthThreshold * _stepLengthThreshold;
 
-        // LogMessage($"Is Step threshold met: {isStepThresholdMet} - _distanceFormPlanted = {_distanceFromPlantedLeg} - threshold squared: {_stepLengthThreshold * _stepLengthThreshold}");
-
         bool isOpposingLegDoingAnim = _opposingBone._isDoingWalkingAnim;
 
         bool isSameSideLegDoingAnim = true;
@@ -254,17 +249,12 @@ public class FabrikIK : MonoBehaviour
         randWait = randWait * 0.01f;
         yield return new WaitForSecondsRealtime(randWait);
 
-
-        _isLegGrounded = false;
-
         // We ground the current and the target leg position, to get an accurate representation of "Step Progress" in essentially 2D, as in how much longer until we have reached the desired leg position, not taking height into account.
         Vector3 groundedCurrentLegPos = _plantLegPos;
-        Vector2 groundedTargetPos = new Vector2(_plantLegTargetPos.x, _plantLegTargetPos.z);
 
+
+        // Actual step loop
         float timer = 0f;
-
-        
-
         while (timer < _stepDuration)
         {
             Vector3 newPlantPos = Vector3.Lerp(groundedCurrentLegPos, _plantLegTargetPos, _stepMakeCurve.Evaluate(timer / _stepDuration));
@@ -275,8 +265,11 @@ public class FabrikIK : MonoBehaviour
 
             _plantLegPos = newPlantPos;
 
+            // Take care of correctly positioning the pull transforms
             for (int i = 0; i < _pullTransforms.Count; i++)
             {
+                // Add the initial height from the floor of the pull transform multiplied by the respective height affect to the current plantLegPos
+
                 Vector3 temp = _pullTransforms[i].position;
 
                 temp.y = _plantLegPos.y + _initHeightDifferencePullTransform[i] * ikBones[i].pullTransformHeightAffect;
@@ -288,21 +281,18 @@ public class FabrikIK : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
         }
+
         //Finally set _plantLegPos to target position once the threshold is met. Also set DoingWalkingAnim to false.
         _plantLegPos = _plantLegTargetPos;
         _isDoingWalkingAnim = false;
-        _isLegGrounded = true;
 
+        // This is for "IsFootFloating" Check
         _onMoveLegFinishedHeight = ikBones[ikBones.Count - 1].boneTransform.position.y;
 
+        // Have a cooldown to avoid another instant call of move leg method after finish
         _isInCooldown = true;
         yield return new WaitForSeconds(_cooldownTime);
         _isInCooldown = false;
-
-
-        //LogMessage($"Move Ended\n" +
-        //    $"Plant Leg Position:\t{_plantLegPos}\n" +
-        //    $"Foot Position:\t{footBone.transform.position}");
 
         yield return null;
     }

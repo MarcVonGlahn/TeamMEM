@@ -106,60 +106,29 @@ public class ProceduralAnimationController : MonoBehaviour
 
         if(Physics.Raycast(ray, out RaycastHit hitInfo, 5f, floorLayerMask))
         {
+            // Debugging Purposes to draw a Gizmo
             _floorHitRootbone = hitInfo.point;
 
-            Vector3 newRootBonePos = new Vector3(transform.position.x, rootBone.transform.position.y, transform.position.z);
+            // Init the newRootBone Position
+            Vector3 newRootBonePos = transform.position;
 
+            // Set the height of the transform relative to the raycasted floor, keeps all child transforms in correct height as well
             newRootBonePos.y = hitInfo.point.y;
-
             transform.position = newRootBonePos;
 
+            // Smoothly move the rootbone to desired height, also account for rootbone movement animation
             newRootBonePos.y = hitInfo.point.y + moveset.RootBoneHeight + _rootBoneHeightAdjust;
-
             rootBone.transform.position = Vector3.MoveTowards(rootBone.transform.position, newRootBonePos, Time.deltaTime * 5f);
         }
-
-
-        //float averageLegBoneHeight = 0;
-
-        //foreach (var ik in ikControllers)
-        //{
-        //    averageLegBoneHeight += ik.GetPlantLegTargetPosition().y;
-        //}
-
-        //averageLegBoneHeight /= 4;
-
-        //Vector3 newRootBonePos = new Vector3(transform.position.x, rootBone.transform.position.y, transform.position.z);
-
-        //newRootBonePos.y = averageLegBoneHeight + moveset.RootBoneHeight + _rootBoneHeightAdjust;
-
-        //rootBone.transform.position = Vector3.MoveTowards(rootBone.transform.position, newRootBonePos, Time.deltaTime * 5f);
     }
 
 
     private void QuadripedAngleRootbone()
     {
+        // Rotation is taken care of in "FollowPath"-Script
+        // Rootbone copies the transform rotation, which doesn't account for rotating "up" or "down"
         rootBone.rotation = transform.rotation;
         return;
-
-        Vector3 rightVector = ikControllers[0].GetPlantLegTargetPosition() - ikControllers[2].GetPlantLegTargetPosition();
-        Vector3 leftVector = ikControllers[1].GetPlantLegTargetPosition() - ikControllers[3].GetPlantLegTargetPosition();
-
-        Vector3 averageVector = ((rightVector + leftVector) / 2.0f).normalized;
-
-        Quaternion targetRotation;
-
-        try
-        {
-            targetRotation = Quaternion.LookRotation(averageVector);
-        }
-        catch
-        {
-            targetRotation = Quaternion.LookRotation(rootBone.forward);
-            Debug.Log("catch");
-        }
-
-        rootBone.rotation = Quaternion.Lerp(rootBone.rotation, Quaternion.LookRotation(averageVector), moveset.BodyRotationSpeed * Time.deltaTime);
     }
 
 

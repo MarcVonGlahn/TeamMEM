@@ -35,6 +35,7 @@ public class FollowPath : MonoBehaviour
                 _curWPIndex = 0;
         }
 
+        // The height of the transform is controlled in the "ProceduralAnimationController"-Script
         Vector3 adjustedTransformPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         Vector3 adjustedWaypointPosition = new Vector3(waypoints[_curWPIndex].transform.position.x, transform.position.y, waypoints[_curWPIndex].transform.position.z);
 
