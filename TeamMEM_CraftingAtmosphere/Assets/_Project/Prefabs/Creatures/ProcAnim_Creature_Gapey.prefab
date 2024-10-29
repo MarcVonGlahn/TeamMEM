@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 2925722368079432408}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 0, z: -1.25}
+  m_LocalPosition: {x: -2, y: 0.7290001, z: -1.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 3659249544301735608}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.00000032584143, z: -4.2632564e-14, w: 1}
-  m_LocalPosition: {x: -1.6, y: 1.5, z: 0.6}
+  m_LocalPosition: {x: -1.6, y: 2.229, z: 0.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -133,7 +133,7 @@ MonoBehaviour:
   iterations: 10
   tolerance: 0.05
   smoothFactor: 0.1
-  pullWeight: 0.2
+  pullWeight: 0.6
   floorLayerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -156,7 +156,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b4c05e8ab48d38f4db5d38cdf087ac8d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.531
+      value: 3.26
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b4c05e8ab48d38f4db5d38cdf087ac8d,
         type: 3}
@@ -460,6 +460,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3575693612559303487, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7290001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3575693612559303487, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
       propertyPath: m_LocalPosition.z
       value: -1.25
       objectReference: {fileID: 0}
@@ -467,6 +472,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4371232975987579873, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.229
       objectReference: {fileID: 0}
     - target: {fileID: 4371232975987579873, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
@@ -520,6 +530,11 @@ PrefabInstance:
       propertyPath: footBone
       value: 
       objectReference: {fileID: 6729414219429506118}
+    - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: pullWeight
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
       propertyPath: ikBones.Array.size

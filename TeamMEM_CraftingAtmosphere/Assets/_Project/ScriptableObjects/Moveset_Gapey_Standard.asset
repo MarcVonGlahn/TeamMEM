@@ -70,11 +70,11 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   RootBoneHeight: 2
-  StepDuration: 0.4
-  StepHeight: 0.2
-  StepLengthTreshhold: 1
+  StepDuration: 0.6
+  StepHeight: 0.3
+  StepLengthTreshhold: 0.5
   HeadRotationSpeed: 1.5
-  BodyRotationSpeed: 1
+  BodyRotationSpeed: 3
   WalkingStyle: 0
   RootBoneAnimationCurve:
     serializedVersion: 2
