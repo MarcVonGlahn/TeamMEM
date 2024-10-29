@@ -281,7 +281,7 @@ PrefabInstance:
     - target: {fileID: 599017024488911954, guid: d9c064bbd798db346a506e0f138476fc,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2822313355203693574, guid: d9c064bbd798db346a506e0f138476fc,
         type: 3}
@@ -933,6 +933,9 @@ MonoBehaviour:
   - {fileID: 664413421}
   - {fileID: 1878823143}
   rootBone: {fileID: 0}
+  floorLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
   moveset: {fileID: 0}
   followPath: {fileID: 0}
   headBone: {fileID: 0}
@@ -1870,7 +1873,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!64 &955362023
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2769,7 +2772,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1456832007
 Transform:
   m_ObjectHideFlags: 0
