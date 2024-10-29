@@ -36,6 +36,7 @@ public class ProceduralAnimationController : MonoBehaviour
         switch (moveset.WalkingStyle)
         {
             case WalkingStyle.Biped:
+                SetupLegPairs(ikControllers[0], ikControllers[1]);
                 break;
             case WalkingStyle.Triped:
                 break;
@@ -52,7 +53,7 @@ public class ProceduralAnimationController : MonoBehaviour
     private void Update()
     {
         RootBoneHeightAdjustment();
-        AngleRootbone();
+        AngleAndPositionRootbone();
         AngleHead();
     }
 
@@ -69,20 +70,12 @@ public class ProceduralAnimationController : MonoBehaviour
     }
 
 
-    private void AngleRootbone()
+    private void AngleAndPositionRootbone()
     {
-        switch (moveset.WalkingStyle)
-        {
-            case WalkingStyle.Biped:
-                break;
-            case WalkingStyle.Triped:
-                break;
-            case WalkingStyle.Quadriped:
-                QuadripedPositionRootbone();
-                QuadripedAngleRootbone();
-                break;
-        }
+        PositionRootbone();
+        AngleRootbone();
     }
+
 
     private void SetupLegPairs(FabrikIK boneA, FabrikIK boneB)
     {
@@ -99,7 +92,7 @@ public class ProceduralAnimationController : MonoBehaviour
 
 
 
-    private void QuadripedPositionRootbone()
+    private void PositionRootbone()
     {
         // Raycast down, and position rootbone straight up from there
         Ray ray = new Ray(rootBone.transform.position, Vector3.down);
@@ -123,7 +116,7 @@ public class ProceduralAnimationController : MonoBehaviour
     }
 
 
-    private void QuadripedAngleRootbone()
+    private void AngleRootbone()
     {
         // Rotation is taken care of in "FollowPath"-Script
         // Rootbone copies the transform rotation, which doesn't account for rotating "up" or "down"

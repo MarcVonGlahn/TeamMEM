@@ -185,7 +185,7 @@ MonoBehaviour:
   floorLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  targetLegHeight: 0.4
+  targetLegHeight: 0
   footFloatingThreshold: 0.1
   footTarget: {fileID: 4371232975987579873}
 --- !u!1 &7826861952791524514

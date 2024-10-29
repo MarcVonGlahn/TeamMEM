@@ -226,7 +226,7 @@ public class FabrikIK : MonoBehaviour
         if (_opposingBone._isDoingWalkingAnim)
             return false;
 
-        if (_sameSideBone._isDoingWalkingAnim)
+        if (_sameSideBone != null &&_sameSideBone._isDoingWalkingAnim)
             return false;
 
 
