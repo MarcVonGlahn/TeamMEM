@@ -453,6 +453,36 @@ PrefabInstance:
       propertyPath: m_Transforms.Array.data[10]
       value: 
       objectReference: {fileID: 6729414219429506118}
+    - target: {fileID: 3039662410595818248, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.5118397
+      objectReference: {fileID: 0}
+    - target: {fileID: 3039662410595818248, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 3.7507644
+      objectReference: {fileID: 0}
+    - target: {fileID: 3039662410595818248, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 2.098986
+      objectReference: {fileID: 0}
+    - target: {fileID: 3039662410595818248, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3039662410595818248, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 2.7371972
+      objectReference: {fileID: 0}
+    - target: {fileID: 3039662410595818248, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -0.5936438
+      objectReference: {fileID: 0}
     - target: {fileID: 3575693612559303487, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
       propertyPath: m_LocalPosition.x
