@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: d71930c2d1b728e4d85b76f9e7b57c10, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -1293,8 +1293,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 503ecf7ebeaee9b4b888535a6b7d823d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDebug: 1
+  isDebug: 0
   sceneryProperties: {fileID: 11400000, guid: 8eaec668f75cf87488832c6dbfcc2eda, type: 2}
+  transitionDuration: 1
 --- !u!1 &1619692962
 GameObject:
   m_ObjectHideFlags: 0
@@ -1501,7 +1502,7 @@ GameObject:
   - component: {fileID: 2086081846}
   m_Layer: 0
   m_Name: Directional Light
-  m_TagString: Untagged
+  m_TagString: DirectionalLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

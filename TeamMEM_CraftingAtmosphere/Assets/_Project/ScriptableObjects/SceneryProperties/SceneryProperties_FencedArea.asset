@@ -16,3 +16,4 @@ MonoBehaviour:
   SceneryName: FencedArea
   DirectionalLightColor: {r: 0.17254902, g: 0.38039216, b: 0.2901961, a: 1}
   DirectionalLightIntensity: 4.6
+  SkyboxMaterial: {fileID: 2100000, guid: dbd5f728dcb919847a57701619136292, type: 2}

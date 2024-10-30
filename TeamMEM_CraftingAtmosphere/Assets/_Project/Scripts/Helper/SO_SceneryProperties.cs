@@ -13,4 +13,6 @@ public class SO_SceneryProperties : ScriptableObject
     [Space]
     public Color DirectionalLightColor = Color.white;
     public float DirectionalLightIntensity = 3.0f;
+    [Space]
+    public Material SkyboxMaterial;
 }
