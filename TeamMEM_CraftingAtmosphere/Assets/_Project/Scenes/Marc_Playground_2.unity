@@ -1293,7 +1293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 503ecf7ebeaee9b4b888535a6b7d823d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDebug: 0
+  isDebug: 1
   sceneryProperties: {fileID: 11400000, guid: 8eaec668f75cf87488832c6dbfcc2eda, type: 2}
   transitionDuration: 1
 --- !u!1 &1619692962
