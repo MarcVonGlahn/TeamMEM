@@ -272,7 +272,7 @@ public class FabrikIK : MonoBehaviour
 
                 Vector3 temp = _pullTransforms[i].position;
 
-                temp.y = _plantLegPos.y + _initHeightDifferencePullTransform[i] * ikBones[i].pullTransformHeightAffect;
+                temp.y = _plantLegPos.y * ikBones[i].pullTransformHeightAffect + _initHeightDifferencePullTransform[i];
 
                 _pullTransforms[i].position = temp;
             }

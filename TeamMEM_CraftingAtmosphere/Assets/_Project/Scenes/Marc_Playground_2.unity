@@ -130,6 +130,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 405070007887570149, guid: a8e25b688ec000945a73d763e17ca163,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.6819997
+      objectReference: {fileID: 0}
     - target: {fileID: 1613390064025405140, guid: a8e25b688ec000945a73d763e17ca163,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -179,6 +184,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2250944620244278581, guid: a8e25b688ec000945a73d763e17ca163,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.5299997
+      objectReference: {fileID: 0}
+    - target: {fileID: 2902844682509466307, guid: a8e25b688ec000945a73d763e17ca163,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.7629997
+      objectReference: {fileID: 0}
+    - target: {fileID: 3858784647672818651, guid: a8e25b688ec000945a73d763e17ca163,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.3440003
+      objectReference: {fileID: 0}
+    - target: {fileID: 3938820206756921312, guid: a8e25b688ec000945a73d763e17ca163,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.7629997
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674871586522727385, guid: a8e25b688ec000945a73d763e17ca163,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.53
       objectReference: {fileID: 0}
     - target: {fileID: 5537845769006095387, guid: a8e25b688ec000945a73d763e17ca163,
         type: 3}
@@ -230,10 +260,50 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[8]
       value: 
       objectReference: {fileID: 1944460870}
+    - target: {fileID: 5889579959143354731, guid: a8e25b688ec000945a73d763e17ca163,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046992271168177951, guid: a8e25b688ec000945a73d763e17ca163,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.3440003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6669033467121125813, guid: a8e25b688ec000945a73d763e17ca163,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.153
+      objectReference: {fileID: 0}
+    - target: {fileID: 7090274688256358486, guid: a8e25b688ec000945a73d763e17ca163,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.7979996
+      objectReference: {fileID: 0}
     - target: {fileID: 7178910045228328015, guid: a8e25b688ec000945a73d763e17ca163,
         type: 3}
       propertyPath: m_Name
       value: ProcAnim_Creature_Tally2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7214275328552098262, guid: a8e25b688ec000945a73d763e17ca163,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 7342918080511589398, guid: a8e25b688ec000945a73d763e17ca163,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.7979997
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723518168973485760, guid: a8e25b688ec000945a73d763e17ca163,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.6819997
+      objectReference: {fileID: 0}
+    - target: {fileID: 8965053408682068106, guid: a8e25b688ec000945a73d763e17ca163,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.153
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
