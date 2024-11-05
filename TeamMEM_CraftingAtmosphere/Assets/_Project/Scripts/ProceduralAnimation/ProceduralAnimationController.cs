@@ -26,6 +26,8 @@ public class ProceduralAnimationController : MonoBehaviour
 
     private Vector3 _floorHitRootbone = Vector3.zero;
 
+    private Quaternion _initRootboneRotation = Quaternion.identity;
+
     void Awake()
     {
         foreach (FabrikIK ik in ikControllers)
@@ -47,6 +49,8 @@ public class ProceduralAnimationController : MonoBehaviour
                 SetupSameSideLegs(ikControllers[1], ikControllers[3]);
                 break;
         }
+
+        _initRootboneRotation = rootBone.rotation;
     }
 
 
@@ -97,7 +101,7 @@ public class ProceduralAnimationController : MonoBehaviour
         // Raycast down, and position rootbone straight up from there
         Ray ray = new Ray(rootBone.transform.position, Vector3.down);
 
-        if(Physics.Raycast(ray, out RaycastHit hitInfo, 5f, floorLayerMask))
+        if(Physics.Raycast(ray, out RaycastHit hitInfo, 10f, floorLayerMask))
         {
             // Debugging Purposes to draw a Gizmo
             _floorHitRootbone = hitInfo.point;
@@ -120,7 +124,7 @@ public class ProceduralAnimationController : MonoBehaviour
     {
         // Rotation is taken care of in "FollowPath"-Script
         // Rootbone copies the transform rotation, which doesn't account for rotating "up" or "down"
-        rootBone.rotation = transform.rotation;
+        // rootBone.rotation = _initRootboneRotation * transform.rotation;
         return;
     }
 
@@ -149,7 +153,7 @@ public class ProceduralAnimationController : MonoBehaviour
         Gizmos.DrawLine(rootBone.transform.position, rootBone.transform.position + rootBone.transform.forward * 3f);
 
         Gizmos.color = Color.green;
-        Gizmos.DrawLine(rootBone.transform.position, rootBone.transform.position + Vector3.down * 3);
+        Gizmos.DrawLine(rootBone.transform.position, rootBone.transform.position + Vector3.down * 10f);
         Gizmos.DrawSphere(_floorHitRootbone, 0.2f);
     }
 }
