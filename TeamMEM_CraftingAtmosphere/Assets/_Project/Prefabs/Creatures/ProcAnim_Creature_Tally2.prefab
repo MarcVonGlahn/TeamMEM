@@ -108,6 +108,7 @@ MonoBehaviour:
   iterations: 10
   tolerance: 0.05
   smoothFactor: 0.1
+  smoothRotation: 1
   pullWeight: 0.2
   floorLayerMask:
     serializedVersion: 2
@@ -347,6 +348,7 @@ MonoBehaviour:
   iterations: 10
   tolerance: 0.05
   smoothFactor: 0.1
+  smoothRotation: 1
   pullWeight: 0.2
   floorLayerMask:
     serializedVersion: 2
@@ -462,6 +464,7 @@ MonoBehaviour:
   iterations: 10
   tolerance: 0.05
   smoothFactor: 0.1
+  smoothRotation: 0
   pullWeight: 0.2
   floorLayerMask:
     serializedVersion: 2
@@ -1265,6 +1268,11 @@ PrefabInstance:
       propertyPath: footBone
       value: 
       objectReference: {fileID: 5251900496662134419}
+    - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: smoothRotation
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
       propertyPath: targetLegHeight

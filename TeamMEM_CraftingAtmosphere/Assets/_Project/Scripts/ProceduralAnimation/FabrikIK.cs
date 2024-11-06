@@ -23,6 +23,7 @@ public class FabrikIK : MonoBehaviour
     [SerializeField] private int iterations = 10; // Number of iterations for refining the solution
     [SerializeField] private float tolerance = 0.1f; // How close to the target is considered "good enough"
     [SerializeField] private float smoothFactor = 0.1f;
+    [SerializeField] private bool smoothRotation = true;
     [Space]
     [SerializeField] private float pullWeight = 0.5f;
     [Space]
@@ -380,13 +381,20 @@ public class FabrikIK : MonoBehaviour
         currentEulerAngles.z = Mathf.Clamp(currentEulerAngles.z, ikBone.minRotation.z, ikBone.maxRotation.z);
 
         // Lerp the Euler Angles to avoid Rotation Bullshit
-        Vector3 newRotation = ikBone.boneTransform.localRotation.eulerAngles;
-        newRotation = Vector3.MoveTowards(newRotation, currentEulerAngles, smoothFactor * Time.deltaTime);
+        if (smoothRotation)
+        {
+            Vector3 newRotation = ikBone.boneTransform.localRotation.eulerAngles;
+            newRotation = Vector3.MoveTowards(newRotation, currentEulerAngles, smoothFactor * Time.deltaTime);
 
-        Quaternion constrainedRotation = Quaternion.Euler(newRotation);
+            Quaternion constrainedRotation = Quaternion.Euler(newRotation);
 
-        // Convert back to quaternion and apply to the bone
-        ikBone.boneTransform.localRotation = constrainedRotation;// Quaternion.Lerp(ikBone.boneTransform.localRotation, constrainedRotation, smoothFactor * Time.deltaTime);
+            // Convert back to quaternion and apply to the bone
+            ikBone.boneTransform.localRotation = constrainedRotation;// Quaternion.Lerp(ikBone.boneTransform.localRotation, constrainedRotation, smoothFactor * Time.deltaTime);
+        }
+        else
+        {
+            ikBone.boneTransform.localRotation = Quaternion.Euler(currentEulerAngles);
+        }
     }
 
     // Method to normalize Euler angles to the range of -180 to 180 degrees
