@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: CreatureProperties_Spikey_NonCorrupted
   m_EditorClassIdentifier: 
   CreatureName: Spikey
-  Height: 1.5
+  Height: 1.8
   WalkingStyle: 2
   Corruption: 1

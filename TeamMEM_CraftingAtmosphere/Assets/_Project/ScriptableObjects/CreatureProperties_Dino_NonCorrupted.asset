@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dfea0f64d49ecc84691f3d5af1fa2424, type: 3}
-  m_Name: CreatureProperties_Tally_NonCorrupted
+  m_Name: CreatureProperties_Dino_NonCorrupted
   m_EditorClassIdentifier: 
-  CreatureName: Tally
-  Height: 5
-  WalkingStyle: 2
+  CreatureName: Dino
+  Height: 2.5
+  WalkingStyle: 0
   Corruption: 1
