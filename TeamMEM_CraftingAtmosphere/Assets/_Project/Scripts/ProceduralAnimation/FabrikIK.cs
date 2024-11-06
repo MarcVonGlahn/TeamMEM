@@ -19,6 +19,7 @@ public class FabrikIK : MonoBehaviour
     [SerializeField] private List<IKBone> ikBones;
     [Space]
     [SerializeField] private Transform footBone;
+    [SerializeField] private bool fixFootBoneRotation = false;
     [Space]
     [SerializeField] private int iterations = 10; // Number of iterations for refining the solution
     [SerializeField] private float tolerance = 0.1f; // How close to the target is considered "good enough"
@@ -116,6 +117,11 @@ public class FabrikIK : MonoBehaviour
 
         // LogMessage($"Distance from target leg position (magenta) to PlantLegTarget (green): {Vector3.Distance(_plantLegTargetPos, _targetLegPos)}");
         // LogMessage($"PlantLegTarget (green): {_plantLegTargetPos}");
+        if (fixFootBoneRotation)
+        {
+            Transform orientationTransform = GetComponentInParent<Transform>().GetComponentInChildren<CreatureControl>().GetComponent<Transform>();
+            footBone.rotation = Quaternion.LookRotation(orientationTransform.up, orientationTransform.forward);
+        }
     }
 
 
