@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eefd011a153ad44fa1251d95021fcdb, type: 3}
+  m_Name: SceneryProperties_
+  m_EditorClassIdentifier: 
+  TriggerColor: {r: 0.5377358, g: 0.21560162, b: 0.21560162, a: 1}
+  SceneryName: Bibo
+  DirectionalLightColor: {r: 0.5188679, g: 0.20314167, b: 0.20314167, a: 1}
+  DirectionalLightIntensity: 4.6
+  SkyboxMaterial: {fileID: 2100000, guid: 63c414c3dd1e1be41983f4bc939b8114, type: 2}

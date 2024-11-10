@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eefd011a153ad44fa1251d95021fcdb, type: 3}
   m_Name: SceneryProperties_FencedArea
   m_EditorClassIdentifier: 
-  TriggerColor: {r: 0.17254902, g: 0.38039216, b: 0.2901961, a: 0.5019608}
+  TriggerColor: {r: 0.1762193, g: 0.2264151, b: 0.20463201, a: 0.5019608}
   SceneryName: FencedArea
   DirectionalLightColor: {r: 0.17254902, g: 0.38039216, b: 0.2901961, a: 1}
   DirectionalLightIntensity: 4.6
