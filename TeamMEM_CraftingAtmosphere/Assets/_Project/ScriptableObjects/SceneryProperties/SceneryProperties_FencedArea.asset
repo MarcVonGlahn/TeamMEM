@@ -17,3 +17,7 @@ MonoBehaviour:
   DirectionalLightColor: {r: 0.17254902, g: 0.38039216, b: 0.2901961, a: 1}
   DirectionalLightIntensity: 4.6
   SkyboxMaterial: {fileID: 2100000, guid: dbd5f728dcb919847a57701619136292, type: 2}
+  IsFogEnabled: 0
+  FogColor: {r: 0.5597484, g: 0.1355365, b: 0.1355365, a: 1}
+  fogMode: 3
+  fogDensity: 0.012

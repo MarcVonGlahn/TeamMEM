@@ -54,9 +54,50 @@ public class TriggerSceneryChange : MonoBehaviour
         _directionalLight.DOColor(sceneryProperties.DirectionalLightColor, transitionDuration);
         _directionalLight.DOIntensity(sceneryProperties.DirectionalLightIntensity, transitionDuration);
 
+       
+
 
         // Smoothly fade skybox
         StartCoroutine(SkyboxChange_Routine(RenderSettings.skybox.shader.name, sceneryProperties.SkyboxMaterial.shader.name));
+
+        // Smoothly fade fog
+        StartCoroutine(FogChange_Routine());
+
+        // Smoothly fade shadowColor
+        Color initShadowColor = RenderSettings.subtractiveShadowColor;
+        DOVirtual
+               .Color(initShadowColor, sceneryProperties.RealtimeShadowColor, transitionDuration, (value) =>
+               {
+                   RenderSettings.subtractiveShadowColor = value;
+               });
+
+
+        // Smoothly fade environment lighting
+        Color initSkyColor = RenderSettings.ambientSkyColor;
+        Color initEquatorColor = RenderSettings.ambientEquatorColor;
+        Color initGroundColor = RenderSettings.ambientGroundColor;
+
+        DOVirtual
+               .Color(initSkyColor, sceneryProperties.SkyColorHDR, transitionDuration, (value) =>
+               {
+                   RenderSettings.ambientSkyColor = value;
+               });
+        DOVirtual
+               .Color(initEquatorColor, sceneryProperties.EquatorColorHDR, transitionDuration, (value) =>
+               {
+                   RenderSettings.ambientEquatorColor = value;
+               });
+        DOVirtual
+               .Color(initGroundColor, sceneryProperties.GroundColorHDR, transitionDuration, (value) =>
+               {
+                   RenderSettings.ambientGroundColor = value;
+               });
+
+        // Smoothly Fade Environment Reflections
+        float newReflectionIntensity = RenderSettings.reflectionIntensity;
+        DOTween
+            .To(x => newReflectionIntensity = x, newReflectionIntensity, sceneryProperties.ReflectionIntensity, transitionDuration)
+            .OnUpdate(() => RenderSettings.reflectionIntensity = newReflectionIntensity);
     }
 
 
@@ -123,6 +164,37 @@ public class TriggerSceneryChange : MonoBehaviour
                 })
                 .WaitForCompletion();
         }
+
+        yield return null;
+    }
+
+
+    private IEnumerator FogChange_Routine()
+    {
+        float newFogDensity = 0;
+        if (sceneryProperties.IsFogEnabled) // turn fog on
+        {
+            RenderSettings.fogDensity = 0.0f;
+            RenderSettings.fog = true;
+
+            
+
+            yield return DOTween
+                .To(x => newFogDensity = x, RenderSettings.fogDensity, sceneryProperties.fogDensity, transitionDuration)
+                .OnUpdate(() => RenderSettings.fogDensity = newFogDensity)
+                .WaitForCompletion();
+        }
+        else
+        {
+            yield return DOTween
+                .To(x => newFogDensity = x, RenderSettings.fogDensity, 0, transitionDuration)
+                .OnUpdate(() => RenderSettings.fogDensity = newFogDensity)
+                .WaitForCompletion();
+
+            RenderSettings.fogDensity = 0.0f;
+            RenderSettings.fog = false;
+        }
+
 
         yield return null;
     }
