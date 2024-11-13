@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Project/_Archive/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/_Project/Scenes/00_MainMenu.unity
+    guid: 62f3425046892de4db4cb11c57fea4f5
+  - enabled: 1
+    path: Assets/_Project/Scenes/Marc_Playground_2.unity
+    guid: e32dad2cfe2aeb04692cdc9157ee4e6b
+  - enabled: 1
+    path: Assets/_Project/Scenes/Cave_Scene.unity
+    guid: 50eec178146bc3f488ff83efdafa3974
   m_configObjects: {}
