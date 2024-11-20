@@ -134,13 +134,13 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DeepColour: {r: 0, g: 0.7037034, b: 1, a: 0.31764707}
+    - _DeepColour: {r: 0, g: 0, b: 0, a: 0.31764707}
     - _DeepWaterColour: {r: 0, g: 0.21829784, b: 1, a: 0.19607843}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FoamColour: {r: 0.75, g: 0.99744606, b: 1, a: 0.53333336}
+    - _FoamColour: {r: 1, g: 0.010156758, b: 0, a: 0.53333336}
     - _ShallowWaterColour: {r: 0, g: 1, b: 0.94549245, a: 0.09803922}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _SurfaceColour: {r: 0, g: 0.7093437, b: 1, a: 0.08627451}
+    - _SurfaceColour: {r: 0.24651158, g: 1, b: 0, a: 0.08627451}
     - _deepcolor: {r: 0.11794068, g: 0.114142045, b: 0.8962264, a: 1}
     - _foamcolor: {r: 0.56817377, g: 0.9056604, b: 0.8869111, a: 1}
     - _ripplecolor: {r: 0, g: 3.6958327, b: 5.7876678, a: 0}
