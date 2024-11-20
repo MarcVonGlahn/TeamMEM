@@ -75,7 +75,7 @@ MonoBehaviour:
   StepLengthTreshhold: 0.9
   HeadRotationSpeed: 1.5
   BodyRotationSpeed: 1
-  WalkingStyle: 2
+  WalkingSpeed: 1
   RootBoneAnimationCurve:
     serializedVersion: 2
     m_Curve:
@@ -111,3 +111,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   RootLevelChangeAmount: 0.1
   RootLevelChangeDuration: 1
+  CreatureName: Spikey
+  CreatureBiologicalName: Espiga Serratus
+  Height: 1.75
+  WalkingStyle: 2
+  Corruption: 1

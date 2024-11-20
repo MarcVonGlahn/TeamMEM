@@ -800,6 +800,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 936960080170060622, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
+      propertyPath: moveset
+      value: 
+      objectReference: {fileID: 11400000, guid: f552e72dbf808704fb6dec7aa4413d57,
+        type: 2}
+    - target: {fileID: 936960080170060622, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
       propertyPath: walkingSpeed
       value: 0.3
       objectReference: {fileID: 0}

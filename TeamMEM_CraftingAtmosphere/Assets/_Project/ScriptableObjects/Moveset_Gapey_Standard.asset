@@ -75,7 +75,7 @@ MonoBehaviour:
   StepLengthTreshhold: 0.5
   HeadRotationSpeed: 1.5
   BodyRotationSpeed: 3
-  WalkingStyle: 0
+  WalkingSpeed: 1
   RootBoneAnimationCurve:
     serializedVersion: 2
     m_Curve:
@@ -111,3 +111,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   RootLevelChangeAmount: 0.1
   RootLevelChangeDuration: 1
+  CreatureName: Gabe
+  CreatureBiologicalName: Vikterra Lucentis
+  Height: 2.75
+  WalkingStyle: 0
+  Corruption: 1

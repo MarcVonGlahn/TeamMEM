@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3cfd2afd686f8f24fb931824b997bb98, type: 3}
-  m_Name: Moveset_Mushroom_Standard
+  m_Name: Moveset_Mushroom_Modified
   m_EditorClassIdentifier: 
   StepMakeCurve:
     serializedVersion: 2
@@ -115,4 +115,4 @@ MonoBehaviour:
   CreatureBiologicalName: Myces Aetheris
   Height: 1.25
   WalkingStyle: 2
-  Corruption: 1
+  Corruption: 0

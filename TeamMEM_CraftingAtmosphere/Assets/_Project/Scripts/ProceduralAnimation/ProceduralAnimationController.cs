@@ -14,7 +14,7 @@ public class ProceduralAnimationController : MonoBehaviour
     [SerializeField] Transform rootBone;
     [SerializeField] LayerMask floorLayerMask;
     [Header("Animation Settings")]
-    [SerializeField] SO_Moveset moveset;
+    [SerializeField] CreatureControl creatureControl;
     [SerializeField] FollowPath followPath;
     [Header("Head")]
     [SerializeField] Transform headBone;
@@ -32,10 +32,10 @@ public class ProceduralAnimationController : MonoBehaviour
     {
         foreach (FabrikIK ik in ikControllers)
         {
-            ik.SetupIKController(moveset.StepDuration, moveset.StepHeight, moveset.StepLengthTreshhold, moveset.StepMakeCurve, moveset.StepHeightCurve);
+            ik.SetupIKController(creatureControl.GetMoveset().StepDuration, creatureControl.GetMoveset().StepHeight, creatureControl.GetMoveset().StepLengthTreshhold, creatureControl.GetMoveset().StepMakeCurve, creatureControl.GetMoveset().StepHeightCurve);
         }
 
-        switch (moveset.WalkingStyle)
+        switch (creatureControl.GetMoveset().WalkingStyle)
         {
             case WalkingStyle.Biped:
                 SetupLegPairs(ikControllers[0], ikControllers[1]);
@@ -64,11 +64,11 @@ public class ProceduralAnimationController : MonoBehaviour
 
     private void RootBoneHeightAdjustment()
     {
-        _rootBoneHeightAdjust = moveset.GetRootHeightAdjust(_rootBoneTimer);
+        _rootBoneHeightAdjust = creatureControl.GetMoveset().GetRootHeightAdjust(_rootBoneTimer);
 
         _rootBoneTimer += Time.deltaTime;
 
-        if (_rootBoneTimer > moveset.RootLevelChangeDuration)
+        if (_rootBoneTimer > creatureControl.GetMoveset().RootLevelChangeDuration)
             _rootBoneTimer = 0;
 
     }
@@ -114,7 +114,7 @@ public class ProceduralAnimationController : MonoBehaviour
             transform.position = newRootBonePos;
 
             // Smoothly move the rootbone to desired height, also account for rootbone movement animation
-            newRootBonePos.y = hitInfo.point.y + moveset.RootBoneHeight + _rootBoneHeightAdjust;
+            newRootBonePos.y = hitInfo.point.y + creatureControl.GetMoveset().RootBoneHeight + _rootBoneHeightAdjust;
             rootBone.transform.position = Vector3.MoveTowards(rootBone.transform.position, newRootBonePos, Time.deltaTime * 5f);
         }
     }
@@ -141,7 +141,7 @@ public class ProceduralAnimationController : MonoBehaviour
 
         Quaternion targetRotation = Quaternion.LookRotation(Vector3.down, adjustedLookDirection);
 
-        headBone.transform.rotation = Quaternion.Slerp(headBone.transform.rotation, targetRotation, moveset.HeadRotationSpeed * Time.deltaTime);
+        headBone.transform.rotation = Quaternion.Slerp(headBone.transform.rotation, targetRotation, creatureControl.GetMoveset().HeadRotationSpeed * Time.deltaTime);
     }
 
 

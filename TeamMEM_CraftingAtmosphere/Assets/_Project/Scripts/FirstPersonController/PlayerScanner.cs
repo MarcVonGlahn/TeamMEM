@@ -31,6 +31,7 @@ public class PlayerScanner : MonoBehaviour
     [SerializeField] Color scannerDotNegativeColor;
     [SerializeField] Image creaturePropertiesPanel;
     [SerializeField] TextMeshProUGUI creaturePropertiesNameText;
+    [SerializeField] TextMeshProUGUI creaturePropertiesBiologyNameDisplay;
     [SerializeField] TextMeshProUGUI heightValText;
     [SerializeField] TextMeshProUGUI corruptedValText;
     [SerializeField] TextMeshProUGUI walkingStyleValText;
@@ -176,7 +177,7 @@ public class PlayerScanner : MonoBehaviour
                     _currentCreature = hitInfo.collider.GetComponent<CreaturePropertiesHelper>();
             }
 
-            creatureNameDisplay.text = _currentCreature.WasScanned ? _currentCreature.creatureProperties.CreatureName : "?";
+            creatureNameDisplay.text = _currentCreature.WasScanned ? _currentCreature.moveset_so.CreatureName : "?";
         }
         else
         {
@@ -203,10 +204,11 @@ public class PlayerScanner : MonoBehaviour
             creaturePropertiesPanel.gameObject.SetActive(true);
 
             creaturePropertiesPanel.transform.DOMove(insideTransform.position, inDuration).SetEase(inCurve);
-            creaturePropertiesNameText.text = _currentCreature.creatureProperties.CreatureName;
-            heightValText.text = _currentCreature.creatureProperties.Height.ToString();
-            corruptedValText.text = _currentCreature.creatureProperties.Corruption.ToString();
-            walkingStyleValText.text = _currentCreature.creatureProperties.WalkingStyle.ToString();
+            creaturePropertiesNameText.text = _currentCreature.moveset_so.CreatureName;
+            creaturePropertiesBiologyNameDisplay.text = _currentCreature.moveset_so.CreatureBiologicalName;
+            heightValText.text = _currentCreature.moveset_so.Height.ToString();
+            corruptedValText.text = _currentCreature.moveset_so.Corruption.ToString();
+            walkingStyleValText.text = _currentCreature.moveset_so.WalkingStyle.ToString();
         }
         else
         {

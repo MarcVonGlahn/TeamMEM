@@ -178,9 +178,11 @@ MonoBehaviour:
   targetHeight: 2
   ikBones: []
   footBone: {fileID: 0}
+  fixFootBoneRotation: 0
   iterations: 10
   tolerance: 0.05
   smoothFactor: 0.1
+  smoothRotation: 1
   pullWeight: 0.2
   floorLayerMask:
     serializedVersion: 2
@@ -272,8 +274,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   procAnimController: {fileID: 5229431182499919359}
   followPathControl: {fileID: 2434232557765351057}
+  creaturePropertiesHelper: {fileID: 6695205370353207057}
   startMovingOnStart: 1
-  walkingSpeed: 2
+  moveset: {fileID: 0}
 --- !u!114 &5229431182499919359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,7 +295,7 @@ MonoBehaviour:
   floorLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  moveset: {fileID: 0}
+  creatureControl: {fileID: 936960080170060622}
   followPath: {fileID: 2434232557765351057}
   headBone: {fileID: 0}
 --- !u!114 &2434232557765351057
@@ -322,7 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WasScanned: 0
-  creatureProperties: {fileID: 0}
+  moveset_so: {fileID: 0}
 --- !u!114 &2101983854301547386
 MonoBehaviour:
   m_ObjectHideFlags: 0

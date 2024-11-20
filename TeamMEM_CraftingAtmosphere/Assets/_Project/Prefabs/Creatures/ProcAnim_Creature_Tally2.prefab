@@ -105,6 +105,7 @@ MonoBehaviour:
     pullTransform: {fileID: 0}
     pullTransformHeightAffect: 0
   footBone: {fileID: 5675751039580647865}
+  fixFootBoneRotation: 0
   iterations: 10
   tolerance: 0.05
   smoothFactor: 0.1
@@ -345,6 +346,7 @@ MonoBehaviour:
     pullTransform: {fileID: 0}
     pullTransformHeightAffect: 0
   footBone: {fileID: 1643835453990502197}
+  fixFootBoneRotation: 0
   iterations: 10
   tolerance: 0.05
   smoothFactor: 0.1
@@ -461,6 +463,7 @@ MonoBehaviour:
     pullTransform: {fileID: 0}
     pullTransformHeightAffect: 0
   footBone: {fileID: 4375634965387009880}
+  fixFootBoneRotation: 0
   iterations: 10
   tolerance: 0.05
   smoothFactor: 0.1
@@ -986,6 +989,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 936960080170060622, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: moveset
+      value: 
+      objectReference: {fileID: 11400000, guid: b20fcfbbf87e4474abfab9a126c77716,
+        type: 2}
     - target: {fileID: 936960080170060622, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
       propertyPath: walkingSpeed

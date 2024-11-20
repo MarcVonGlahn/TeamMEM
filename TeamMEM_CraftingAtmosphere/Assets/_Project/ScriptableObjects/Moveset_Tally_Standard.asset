@@ -84,7 +84,7 @@ MonoBehaviour:
   StepLengthTreshhold: 2
   HeadRotationSpeed: 1.5
   BodyRotationSpeed: 1
-  WalkingStyle: 2
+  WalkingSpeed: 1
   RootBoneAnimationCurve:
     serializedVersion: 2
     m_Curve:
@@ -120,3 +120,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   RootLevelChangeAmount: 0.1
   RootLevelChangeDuration: 1
+  CreatureName: Tally
+  CreatureBiologicalName: Phalangioides Vorax
+  Height: 3.5
+  WalkingStyle: 2
+  Corruption: 1

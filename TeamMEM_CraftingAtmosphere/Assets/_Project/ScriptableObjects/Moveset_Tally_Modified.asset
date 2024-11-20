@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3cfd2afd686f8f24fb931824b997bb98, type: 3}
-  m_Name: Moveset_Mushroom_Standard
+  m_Name: Moveset_Tally_Modified
   m_EditorClassIdentifier: 
   StepMakeCurve:
     serializedVersion: 2
@@ -24,6 +24,15 @@ MonoBehaviour:
       weightedMode: 0
       inWeight: 0
       outWeight: 0
+    - serializedVersion: 3
+      time: 0.8033726
+      value: 0.45768878
+      inSlope: 1.4946966
+      outSlope: 1.4946966
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 1
@@ -49,11 +58,20 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.5
-      value: 1
+      time: 0.49679223
+      value: 0.36407
+      inSlope: 2.2528863
+      outSlope: 2.2528863
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.64418155
+      value: 0.9924798
       inSlope: 0
       outSlope: 0
-      tangentMode: 34
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
@@ -69,13 +87,13 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  RootBoneHeight: 0.75
-  StepDuration: 1
-  StepHeight: 0.35
-  StepLengthTreshhold: 0.25
+  RootBoneHeight: 4
+  StepDuration: 0.6
+  StepHeight: 0.4
+  StepLengthTreshhold: 2
   HeadRotationSpeed: 1.5
   BodyRotationSpeed: 1
-  WalkingSpeed: 0.4
+  WalkingSpeed: 1.1
   RootBoneAnimationCurve:
     serializedVersion: 2
     m_Curve:
@@ -109,10 +127,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  RootLevelChangeAmount: 0.1
-  RootLevelChangeDuration: 1
-  CreatureName: Mushroom Dude
-  CreatureBiologicalName: Myces Aetheris
-  Height: 1.25
+  RootLevelChangeAmount: 0.2
+  RootLevelChangeDuration: 0.6
+  CreatureName: Tally
+  CreatureBiologicalName: Phalangioides Vorax
+  Height: 3.5
   WalkingStyle: 2
-  Corruption: 1
+  Corruption: 0
