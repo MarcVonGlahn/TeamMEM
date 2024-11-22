@@ -177,6 +177,17 @@ public class PlayerScanner : MonoBehaviour
 
     private void HandleScan()
     {
+        if (_doDisplayCreatureInfo)
+        {
+            if (creatureNameDisplay.gameObject.activeSelf)
+                creatureNameDisplay.gameObject.SetActive(false);
+
+            if (scannerDot.color != scannerDotNegativeColor)
+                scannerDot.color = scannerDotNegativeColor;
+
+            return;
+        }
+
         Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
 
         if (Physics.Raycast(ray, out RaycastHit hitInfo, scanMaxDistance, creatureLayerMask))
@@ -211,7 +222,8 @@ public class PlayerScanner : MonoBehaviour
             if (scannerDot.color != scannerDotNegativeColor)
                 scannerDot.color = scannerDotNegativeColor;
 
-            
+            if(_currentCreature != null)
+                _currentCreature = null;
         }
     }
 

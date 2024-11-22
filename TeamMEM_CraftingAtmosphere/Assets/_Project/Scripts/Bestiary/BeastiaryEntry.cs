@@ -18,6 +18,15 @@ public class BeastiaryEntry : MonoBehaviour
     [SerializeField] Image corruptedImage;
 
     bool _wasDiscovered = false;
+    bool _corruptedDiscovered = false;
+    bool _nonCorruptedDiscovered = false;
+
+    public bool AreBothVersionsDiscovered {
+        get
+        { 
+            return _corruptedDiscovered && _nonCorruptedDiscovered;
+        }
+    }
 
     public void InitEntry()
     {
@@ -38,6 +47,7 @@ public class BeastiaryEntry : MonoBehaviour
 
     public void UpdateEntry(SO_Moveset moveset)
     {
+        // Initially activate a bunch of stuff when first discovered
         if (!_wasDiscovered)
         {
             _wasDiscovered = true;
@@ -56,9 +66,11 @@ public class BeastiaryEntry : MonoBehaviour
             {
                 case Corruption.Yes:
                     nonCorruptedImage.DOFade(0.2f, 0);
+                    _corruptedDiscovered = true;
                     break;
                 case Corruption.No:
                     corruptedImage.DOFade(0.2f, 0);
+                    _nonCorruptedDiscovered = true;
                     break;
             }
         }
@@ -68,9 +80,11 @@ public class BeastiaryEntry : MonoBehaviour
             {
                 case Corruption.Yes:
                     corruptedImage.DOFade(1f, 0);
+                    _corruptedDiscovered = true;
                     break;
                 case Corruption.No:
                     nonCorruptedImage.DOFade(1f, 0);
+                    _corruptedDiscovered = true;
                     break;
             }
         }

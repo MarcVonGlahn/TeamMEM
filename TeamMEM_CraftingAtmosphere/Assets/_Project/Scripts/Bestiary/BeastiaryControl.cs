@@ -12,6 +12,7 @@ public class BeastiaryControl : MonoBehaviour
     [SerializeField] AnimationCurve hideCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
     bool _isShowing = false;
+    bool _areAllDiscoverd = false;
 
     Vector3 _showPosition;
     Vector3 _hidePosition;
@@ -67,5 +68,22 @@ public class BeastiaryControl : MonoBehaviour
             return;
 
         entry.UpdateEntry(scannedCreature.moveset_so);
+
+
+        // Check if all Entries are fully discovered
+        bool areAllDiscovered = true;
+        foreach(var e in bestiaryEntries)
+        {
+            if(e.AreBothVersionsDiscovered)
+                continue;
+
+            areAllDiscovered = false;
+            break;
+        }
+
+        if(areAllDiscovered)
+        {
+            // Open the big hole in the field
+        }
     }
 }
