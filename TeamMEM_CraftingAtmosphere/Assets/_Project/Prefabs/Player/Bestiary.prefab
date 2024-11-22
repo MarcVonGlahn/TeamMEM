@@ -487,7 +487,7 @@ PrefabInstance:
     - target: {fileID: 6709159649115963645, guid: 7819e2a6edf57a44a8ad682d94fbfdd6,
         type: 3}
       propertyPath: m_text
-      value: Mushroom || Exemplaris Randimius
+      value: Mushroom || Myces Aetheris
       objectReference: {fileID: 0}
     - target: {fileID: 7231748608702414304, guid: 7819e2a6edf57a44a8ad682d94fbfdd6,
         type: 3}
@@ -629,6 +629,11 @@ PrefabInstance:
         type: 3}
       propertyPath: creatureID
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6709159649115963645, guid: 7819e2a6edf57a44a8ad682d94fbfdd6,
+        type: 3}
+      propertyPath: m_text
+      value: Tally || Phalangioides Vorax
       objectReference: {fileID: 0}
     - target: {fileID: 7231748608702414304, guid: 7819e2a6edf57a44a8ad682d94fbfdd6,
         type: 3}
@@ -774,7 +779,7 @@ PrefabInstance:
     - target: {fileID: 6709159649115963645, guid: 7819e2a6edf57a44a8ad682d94fbfdd6,
         type: 3}
       propertyPath: m_text
-      value: Spikey || Exemplaris Randimius
+      value: Spikey || Espiga Serratus
       objectReference: {fileID: 0}
     - target: {fileID: 7231748608702414304, guid: 7819e2a6edf57a44a8ad682d94fbfdd6,
         type: 3}
@@ -915,7 +920,7 @@ PrefabInstance:
     - target: {fileID: 6709159649115963645, guid: 7819e2a6edf57a44a8ad682d94fbfdd6,
         type: 3}
       propertyPath: m_text
-      value: Gabe || Exemplaris Randimius
+      value: Gabe || Vikterra Lucentis
       objectReference: {fileID: 0}
     - target: {fileID: 7231748608702414304, guid: 7819e2a6edf57a44a8ad682d94fbfdd6,
         type: 3}

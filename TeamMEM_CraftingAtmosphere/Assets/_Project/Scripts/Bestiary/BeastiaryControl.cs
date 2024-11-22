@@ -63,6 +63,9 @@ public class BeastiaryControl : MonoBehaviour
     {
         var entry = bestiaryEntries.Find(x => x.GetCreatureID() == scannedCreature.moveset_so.CreatureID);
 
-        entry.UpdateEntry(scannedCreature.moveset_so.Corruption);
+        if (entry == null)
+            return;
+
+        entry.UpdateEntry(scannedCreature.moveset_so);
     }
 }

@@ -36,7 +36,7 @@ public class BeastiaryEntry : MonoBehaviour
     public string GetCreatureID() { return creatureID; }
 
 
-    public void UpdateEntry(Corruption corruption)
+    public void UpdateEntry(SO_Moveset moveset)
     {
         if (!_wasDiscovered)
         {
@@ -52,7 +52,7 @@ public class BeastiaryEntry : MonoBehaviour
             corruptedImage.gameObject.SetActive(true);
             nonCorruptedImage.gameObject.SetActive(true);
 
-            switch (corruption)
+            switch (moveset.Corruption)
             {
                 case Corruption.Yes:
                     nonCorruptedImage.DOFade(0.2f, 0);
@@ -64,7 +64,7 @@ public class BeastiaryEntry : MonoBehaviour
         }
         else
         {
-            switch (corruption)
+            switch (moveset.Corruption)
             {
                 case Corruption.Yes:
                     corruptedImage.DOFade(1f, 0);
