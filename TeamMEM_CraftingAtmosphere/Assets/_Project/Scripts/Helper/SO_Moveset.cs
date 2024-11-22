@@ -45,6 +45,7 @@ public class SO_Moveset : ScriptableObject
     [Header("Creature Properties")]
     public string CreatureName = "Example";
     public string CreatureBiologicalName = "Examplaris Randomis";
+    public string CreatureID = "1";
     public float Height = 1.5f;
     public WalkingStyle WalkingStyle = WalkingStyle.Biped;
     public Corruption Corruption = Corruption.No;

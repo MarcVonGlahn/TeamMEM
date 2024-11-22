@@ -113,6 +113,7 @@ MonoBehaviour:
   RootLevelChangeDuration: 1
   CreatureName: Mushroom Dude
   CreatureBiologicalName: Myces Aetheris
+  CreatureID: 3
   Height: 1.25
   WalkingStyle: 2
   Corruption: 1

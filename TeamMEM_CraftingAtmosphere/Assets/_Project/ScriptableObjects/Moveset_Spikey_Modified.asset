@@ -122,6 +122,7 @@ MonoBehaviour:
   RootLevelChangeDuration: 1
   CreatureName: Spikey
   CreatureBiologicalName: Espiga Serratus
+  CreatureID: 4
   Height: 1.75
   WalkingStyle: 2
   Corruption: 0

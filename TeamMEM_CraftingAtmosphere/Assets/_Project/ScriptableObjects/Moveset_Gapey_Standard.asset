@@ -113,6 +113,7 @@ MonoBehaviour:
   RootLevelChangeDuration: 1
   CreatureName: Gabe
   CreatureBiologicalName: Vikterra Lucentis
+  CreatureID: 2
   Height: 2.75
   WalkingStyle: 0
   Corruption: 1

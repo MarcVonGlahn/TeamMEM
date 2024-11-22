@@ -264,6 +264,55 @@ MonoBehaviour:
   - {fileID: 7214616247501312769}
   - {fileID: 3196331773171754813}
   - {fileID: 6779599761615399638}
+  animDuration: 0.4
+  showCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  hideCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &8605677350823564480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,6 +479,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6253145064151328857}
     m_Modifications:
+    - target: {fileID: 1362807768801748800, guid: 7819e2a6edf57a44a8ad682d94fbfdd6,
+        type: 3}
+      propertyPath: creatureID
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6709159649115963645, guid: 7819e2a6edf57a44a8ad682d94fbfdd6,
         type: 3}
       propertyPath: m_text
@@ -571,6 +625,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 682909521840310890}
     m_Modifications:
+    - target: {fileID: 1362807768801748800, guid: 7819e2a6edf57a44a8ad682d94fbfdd6,
+        type: 3}
+      propertyPath: creatureID
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7231748608702414304, guid: 7819e2a6edf57a44a8ad682d94fbfdd6,
         type: 3}
       propertyPath: m_Name
@@ -707,6 +766,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6253145064151328857}
     m_Modifications:
+    - target: {fileID: 1362807768801748800, guid: 7819e2a6edf57a44a8ad682d94fbfdd6,
+        type: 3}
+      propertyPath: creatureID
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6709159649115963645, guid: 7819e2a6edf57a44a8ad682d94fbfdd6,
         type: 3}
       propertyPath: m_text

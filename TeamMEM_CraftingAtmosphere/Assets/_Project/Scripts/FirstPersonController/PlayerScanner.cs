@@ -43,8 +43,13 @@ public class PlayerScanner : MonoBehaviour
     [Space]
     [SerializeField] AnimationCurve inCurve;
 
+    [Header("Bestiary")]
+    [SerializeField] BeastiaryControl beastiaryControl;
+
     private InputAction _scanAction;
     private InputAction _scanQuitAction;
+
+    private InputAction _beastiaryAction;
 
     private bool _isScanning = false;
     private bool _isPointingAtCreature = false;
@@ -58,10 +63,14 @@ public class PlayerScanner : MonoBehaviour
         _scanAction = inputActions.FindActionMap("Player").FindAction("Scan");
         _scanQuitAction = inputActions.FindActionMap("Player").FindAction("ScanQuitting");
 
+        _beastiaryAction = inputActions.FindActionMap("Player").FindAction("ShowBeastiary");
+
         _scanAction.started += ScanAction_Started;
         _scanAction.canceled += ScanAction_Canceled;
 
         _scanQuitAction.performed += ScanQuitAction_Performed;
+
+        _beastiaryAction.performed += BeastiaryAction_performed;
 
         creatureNameDisplay.gameObject.SetActive(false);
         scannerProgressSlider.gameObject.SetActive(false);
@@ -100,6 +109,12 @@ public class PlayerScanner : MonoBehaviour
     {
         EnableDisableCreaturePropertiesPanel(false);
     }
+
+
+    private void BeastiaryAction_performed(InputAction.CallbackContext obj)
+    {
+        beastiaryControl.OnBeastiaryActionPerformed();
+    }
     #endregion
 
 
@@ -107,6 +122,8 @@ public class PlayerScanner : MonoBehaviour
     {
         _scanAction.Enable();
         _scanQuitAction.Enable();
+
+        _beastiaryAction.Enable();
     }
 
 
@@ -114,6 +131,8 @@ public class PlayerScanner : MonoBehaviour
     {
         _scanAction.Disable();
         _scanQuitAction.Disable();
+
+        _beastiaryAction.Disable();
     }
 
 
@@ -140,6 +159,8 @@ public class PlayerScanner : MonoBehaviour
         scannerProgressSlider.gameObject.SetActive(false);
 
         _currentCreature.WasScanned = true;
+
+        beastiaryControl.OnUpdateBeastiaryEntry(_currentCreature);
 
         EnableDisableCreaturePropertiesPanel(true);
         
