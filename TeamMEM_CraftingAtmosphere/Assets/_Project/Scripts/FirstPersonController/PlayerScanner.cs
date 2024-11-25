@@ -46,6 +46,9 @@ public class PlayerScanner : MonoBehaviour
     [Header("Bestiary")]
     [SerializeField] BeastiaryControl beastiaryControl;
 
+    [Header("Sounds")]
+    [SerializeField] string scanCompleteSoundName = "ScanComplete";
+
     private InputAction _scanAction;
     private InputAction _scanQuitAction;
 
@@ -163,7 +166,8 @@ public class PlayerScanner : MonoBehaviour
         beastiaryControl.OnUpdateBeastiaryEntry(_currentCreature);
 
         EnableDisableCreaturePropertiesPanel(true);
-        
+
+        AudioManager.instance.Play(scanCompleteSoundName);
 
         yield return null;
     }
