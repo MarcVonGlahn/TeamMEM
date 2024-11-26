@@ -445,6 +445,16 @@ PrefabInstance:
       propertyPath: walkingSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 936960080170060622, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: randomPlayRange.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 936960080170060622, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: randomPlayRange.y
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 1059151139084709573, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
       propertyPath: m_Name
@@ -595,6 +605,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.663
       objectReference: {fileID: 0}
+    - target: {fileID: 3789073388880574240, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6db1472425a64654180a02cf865d017a, type: 3}
     - target: {fileID: 4351783684359688376, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
       propertyPath: m_LocalPosition.z

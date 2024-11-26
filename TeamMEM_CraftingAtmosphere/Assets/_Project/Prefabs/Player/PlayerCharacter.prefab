@@ -1526,6 +1526,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   beastiaryControl: {fileID: 8810782650631096073}
+  scanCompleteSoundName: ScanComplete
 --- !u!114 &3447724482320188908
 MonoBehaviour:
   m_ObjectHideFlags: 0

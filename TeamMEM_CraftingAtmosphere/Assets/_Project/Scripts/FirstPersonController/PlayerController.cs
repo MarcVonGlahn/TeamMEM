@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float mouseSensitivity = 2.0f;
     [SerializeField] float upDownRange = 80;
 
+    private bool _lockMovement = false;
+
     private bool _isMoving = false;
 
     private CharacterController _characterController;
@@ -43,6 +45,9 @@ public class PlayerController : MonoBehaviour
     private Vector2 _lookInput;
 
     private Vector3 _currentMovement;
+
+    // Only done at the intro
+    public bool LockMovement { get => _lockMovement; set => _lockMovement = value; }
 
     private void Awake()
     {
@@ -84,6 +89,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (_lockMovement)
+            return;
+
         HandleMovement();
         HandleRotation();
         HandleFootSteps();

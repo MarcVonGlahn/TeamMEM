@@ -19,6 +19,8 @@ public class PickUpItem : MonoBehaviour
     {
         transform.DOMove(toPickUpPosition, duration);
         transform.DORotateQuaternion(toPickUpRotation, duration);
+
+        AudioManager.instance.Play("PickUpPaper");
     }
 
 
