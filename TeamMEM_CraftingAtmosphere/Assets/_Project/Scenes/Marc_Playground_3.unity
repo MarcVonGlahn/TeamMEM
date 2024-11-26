@@ -37679,6 +37679,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: IntroSequence
       objectReference: {fileID: 0}
+    - target: {fileID: 5304077935188153452, guid: 2fc05823d416ded48bb17174d4415264,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7662324729290028021, guid: 2fc05823d416ded48bb17174d4415264,
         type: 3}
       propertyPath: m_Pivot.x
@@ -37778,6 +37783,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9075649804800850337, guid: 2fc05823d416ded48bb17174d4415264,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
