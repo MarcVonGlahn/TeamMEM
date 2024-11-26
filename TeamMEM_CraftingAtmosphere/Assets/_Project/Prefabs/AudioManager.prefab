@@ -53,7 +53,7 @@ MonoBehaviour:
     looping: 0
     source: {fileID: 0}
   - name: PickUpPaper
-    clip: {fileID: 8300000, guid: c33ae72aa72811a41a7990c13a1303c2, type: 3}
+    clip: {fileID: 8300000, guid: 48bb4d963dae03345818b76593db2d1b, type: 3}
     volume: 0.42
     pitch: 1
     looping: 0
