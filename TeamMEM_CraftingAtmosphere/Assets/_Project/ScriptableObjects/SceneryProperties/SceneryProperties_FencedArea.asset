@@ -16,14 +16,14 @@ MonoBehaviour:
   SceneryName: FencedArea
   DirectionalLightColor: {r: 0.17254902, g: 0.38039216, b: 0.2901961, a: 1}
   DirectionalLightIntensity: 4.6
-  SkyboxMaterial: {fileID: 2100000, guid: dbd5f728dcb919847a57701619136292, type: 2}
+  SkyboxMaterial: {fileID: 2100000, guid: d71930c2d1b728e4d85b76f9e7b57c10, type: 2}
   IsFogEnabled: 0
   FogColor: {r: 0.5597484, g: 0.1355365, b: 0.1355365, a: 1}
   fogMode: 3
   fogDensity: 0.012
   RealtimeShadowColor: {r: 1, g: 0, b: 0, a: 1}
   EnvironmentLightingSource: 1
-  SkyColorHDR: {r: 1, g: 1, b: 1, a: 1}
-  EquatorColorHDR: {r: 1, g: 1, b: 1, a: 1}
-  GroundColorHDR: {r: 1, g: 1, b: 1, a: 1}
+  SkyColorHDR: {r: 0.019607844, g: 0.043137256, b: 0.14117648, a: 1}
+  EquatorColorHDR: {r: 0.11372549, g: 0.1254902, b: 0.13333334, a: 1}
+  GroundColorHDR: {r: 0.047058824, g: 0.043137256, b: 0.03529412, a: 1}
   ReflectionIntensity: 0.375

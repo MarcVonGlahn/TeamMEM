@@ -104,6 +104,8 @@ public class TriggerSceneryChange : MonoBehaviour
 
     private IEnumerator SkyboxChange_Routine(string currentShaderName, string futureShaderName)
     {
+        // Current Shader stuff
+
         // If the skybox is procedural, we have to lerp the Exposure
         if (currentShaderName.Contains("Procedural"))
         {
@@ -130,7 +132,21 @@ public class TriggerSceneryChange : MonoBehaviour
                 })
                 .WaitForCompletion();
         }
+        else if (futureShaderName.Contains("Cubemap Extended"))
+        {
+            Material currentSkyboxMaterial = new Material(RenderSettings.skybox);
+            RenderSettings.skybox = currentSkyboxMaterial;
 
+            float currentExposure = currentSkyboxMaterial.GetFloat("_Exposure");
+
+            yield return DOTween
+                .To(x => currentExposure = x, currentExposure, 0, transitionDuration / 2)
+                .OnUpdate(() => currentSkyboxMaterial.SetFloat("_Exposure", currentExposure))
+                .WaitForCompletion();
+        }
+
+
+        // Future Shader stuff
 
         if (futureShaderName.Contains("Procedural"))
         {
