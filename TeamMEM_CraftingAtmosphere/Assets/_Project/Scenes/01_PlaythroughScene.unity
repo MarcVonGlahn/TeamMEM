@@ -1805,6 +1805,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5044411251322561434, guid: 6d779a30367fb7d4c87acac77bc98ca5,
+        type: 3}
+      propertyPath: showLog
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5466175246405947022, guid: 6d779a30367fb7d4c87acac77bc98ca5,
         type: 3}
       propertyPath: m_IsActive

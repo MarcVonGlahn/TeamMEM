@@ -86,6 +86,8 @@ public class PlayerController : MonoBehaviour
         _lookAction.Enable();
         _jumpAction.Enable();
         _sprintAction.Enable();
+
+        _quitGameAction.Enable();
     }
 
 
@@ -95,6 +97,8 @@ public class PlayerController : MonoBehaviour
         _lookAction.Disable();
         _jumpAction.Disable();
         _sprintAction.Disable();
+
+        _quitGameAction.Disable();
     }
 
 

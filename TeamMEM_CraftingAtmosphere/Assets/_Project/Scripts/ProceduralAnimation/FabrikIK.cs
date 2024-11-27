@@ -94,18 +94,19 @@ public class FabrikIK : MonoBehaviour
             _maxLegExtension += Vector3.Distance(ikBones[i].boneTransform.position, ikBones[i + 1].boneTransform.position);
         }
 
-
         // Init the pull Transform list with all valid pull transforms and the corresponding height differences measured from the floor
         _pullTransforms = new List<Transform>();
         _initHeightDifferencePullTransform = new List<float>();
-        foreach(IKBone iKBone in ikBones)
+        foreach (IKBone iKBone in ikBones)
         {
             if (!iKBone.affectedByPull || iKBone.pullTransform == null)
                 continue;
 
             _pullTransforms.Add(iKBone.pullTransform);
 
-            _initHeightDifferencePullTransform.Add(iKBone.pullTransform.position.y);
+            LogMessage($"{iKBone.pullTransform.position.y} - {_plantLegPos.y}");
+
+            _initHeightDifferencePullTransform.Add(iKBone.pullTransform.localPosition.y);
         }
     }
 
@@ -279,7 +280,7 @@ public class FabrikIK : MonoBehaviour
 
                 Vector3 temp = _pullTransforms[i].position;
 
-                temp.y = _plantLegPos.y * ikBones[i].pullTransformHeightAffect + _initHeightDifferencePullTransform[i];
+                temp.y = _plantLegPos.y + _initHeightDifferencePullTransform[i] * ikBones[i].pullTransformHeightAffect;
 
                 LogMessage($"Plant Leg Y: {_plantLegPos.y} * height Affect: {ikBones[i].pullTransformHeightAffect} + Init Height Difference: {_initHeightDifferencePullTransform[i]}");
 
