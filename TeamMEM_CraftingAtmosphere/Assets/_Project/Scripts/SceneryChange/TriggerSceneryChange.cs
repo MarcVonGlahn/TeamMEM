@@ -17,6 +17,10 @@ public class TriggerSceneryChange : MonoBehaviour
     [SerializeField] SO_SceneryProperties sceneryProperties;
     [SerializeField] float transitionDuration = 3.0f;
 
+    [Header("Stuff To Enable/Disable On Trigger")]
+    [SerializeField] List<GameObject> enableStuff;
+    [SerializeField] List<GameObject> disableStuff;
+
 
     private Light _directionalLight;
 
@@ -98,6 +102,17 @@ public class TriggerSceneryChange : MonoBehaviour
         DOTween
             .To(x => newReflectionIntensity = x, newReflectionIntensity, sceneryProperties.ReflectionIntensity, transitionDuration)
             .OnUpdate(() => RenderSettings.reflectionIntensity = newReflectionIntensity);
+
+
+        foreach(var go in enableStuff)
+        {
+            go.SetActive(true);
+        }
+        foreach (var go in disableStuff)
+        {
+            go.SetActive(false);
+        }
+
     }
 
 
@@ -133,6 +148,18 @@ public class TriggerSceneryChange : MonoBehaviour
                 .WaitForCompletion();
         }
         else if (futureShaderName.Contains("Cubemap Extended"))
+        {
+            Material currentSkyboxMaterial = new Material(RenderSettings.skybox);
+            RenderSettings.skybox = currentSkyboxMaterial;
+
+            float currentExposure = currentSkyboxMaterial.GetFloat("_Exposure");
+
+            yield return DOTween
+                .To(x => currentExposure = x, currentExposure, 0, transitionDuration / 2)
+                .OnUpdate(() => currentSkyboxMaterial.SetFloat("_Exposure", currentExposure))
+                .WaitForCompletion();
+        }
+        else if (futureShaderName.Contains("Cubemap"))
         {
             Material currentSkyboxMaterial = new Material(RenderSettings.skybox);
             RenderSettings.skybox = currentSkyboxMaterial;
@@ -195,6 +222,21 @@ public class TriggerSceneryChange : MonoBehaviour
                 .OnUpdate(() => RenderSettings.skybox.SetFloat("_Exposure", futureExposure))
                 .WaitForCompletion();
         }
+        else if (futureShaderName.Contains("Cubemap"))
+        {
+            Material futureSkyboxMaterial = new Material(sceneryProperties.SkyboxMaterial);
+            float futureExposure = futureSkyboxMaterial.GetFloat("_Exposure");
+
+            // Reset future Skybox Material to correct starting value
+            futureSkyboxMaterial.SetFloat("_Exposure", 0);
+
+            RenderSettings.skybox = futureSkyboxMaterial;
+
+            yield return DOTween
+                .To(x => futureExposure = x, 0, futureExposure, transitionDuration / 2)
+                .OnUpdate(() => RenderSettings.skybox.SetFloat("_Exposure", futureExposure))
+                .WaitForCompletion();
+        }
 
         yield return null;
     }
@@ -207,7 +249,7 @@ public class TriggerSceneryChange : MonoBehaviour
         {
             RenderSettings.fogDensity = 0.0f;
             RenderSettings.fog = true;
-
+            RenderSettings.fogColor = sceneryProperties.FogColor;
             
 
             yield return DOTween
