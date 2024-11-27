@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.6, y: 2.26, z: 1}
+  m_LocalScale: {x: 35.32, y: 9.3, z: 15.74}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -50,6 +50,8 @@ MonoBehaviour:
   isDebug: 1
   sceneryProperties: {fileID: 11400000, guid: 8eaec668f75cf87488832c6dbfcc2eda, type: 2}
   transitionDuration: 1
+  enableStuff: []
+  disableStuff: []
 --- !u!33 &7625345584502805954
 MeshFilter:
   m_ObjectHideFlags: 0
