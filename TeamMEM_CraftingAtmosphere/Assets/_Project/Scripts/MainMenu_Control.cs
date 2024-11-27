@@ -35,7 +35,7 @@ public class MainMenu_Control : MonoBehaviour
         blackOutPanel.DOFade(1.0f, fadeDuration)
             .OnComplete(() =>
              {
-                 SceneManager.LoadScene("Cave_Scene");
+                 SceneManager.LoadScene("01_PlaythroughScene");
              });
     }
 

@@ -73,7 +73,7 @@ MonoBehaviour:
   tolerance: 0.05
   smoothFactor: 0.1
   smoothRotation: 1
-  pullWeight: 0.3
+  pullWeight: 0.15
   floorLayerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -184,7 +184,7 @@ MonoBehaviour:
   tolerance: 0.05
   smoothFactor: 0.1
   smoothRotation: 1
-  pullWeight: 0.3
+  pullWeight: 0.15
   floorLayerMask:
     serializedVersion: 2
     m_Bits: 64

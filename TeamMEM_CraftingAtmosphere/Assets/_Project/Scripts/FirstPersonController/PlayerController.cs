@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
     private InputAction _jumpAction;
     private InputAction _sprintAction;
 
+    private InputAction _quitGameAction;
+
     private float _verticalRotation;
     private float _nextStepTime;
 
@@ -58,16 +60,25 @@ public class PlayerController : MonoBehaviour
         _jumpAction = inputActions.FindActionMap("Player").FindAction("Jump");
         _sprintAction = inputActions.FindActionMap("Player").FindAction("Sprint");
 
+        _quitGameAction = inputActions.FindActionMap("Player").FindAction("QuitGame");
+
         _moveAction.performed += context => _moveInput = context.ReadValue<Vector2>();
         _moveAction.canceled += context => _moveInput = Vector2.zero;
 
         _lookAction.performed += context => _lookInput = context.ReadValue<Vector2>();
         _lookAction.canceled += context => _lookInput = Vector2.zero;
 
+        _quitGameAction.performed += QuitGameAction_performed;
+
         Cursor.visible = hideCursor ? false : true;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+
+    private void QuitGameAction_performed(InputAction.CallbackContext obj)
+    {
+        Application.Quit();
+    }
 
     private void OnEnable()
     {

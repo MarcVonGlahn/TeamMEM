@@ -196,7 +196,7 @@ MonoBehaviour:
   tolerance: 0.05
   smoothFactor: 0.1
   smoothRotation: 1
-  pullWeight: 0.7
+  pullWeight: 0.2
   floorLayerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -406,7 +406,7 @@ MonoBehaviour:
   tolerance: 0.05
   smoothFactor: 0.1
   smoothRotation: 1
-  pullWeight: 0.7
+  pullWeight: 0.2
   floorLayerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -1071,6 +1071,11 @@ PrefabInstance:
       propertyPath: footBone
       value: 
       objectReference: {fileID: 7387317407821897866}
+    - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: pullWeight
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8588556366316415510, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
       propertyPath: ikBones.Array.size
