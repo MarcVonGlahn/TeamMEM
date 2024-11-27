@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eefd011a153ad44fa1251d95021fcdb, type: 3}
+  m_Name: SceneryProperties_Cave
+  m_EditorClassIdentifier: 
+  TriggerColor: {r: 1, g: 1, b: 1, a: 1}
+  SceneryName: Cave
+  DirectionalLightColor: {r: 0.7058824, g: 0.7058824, b: 0.7058824, a: 1}
+  DirectionalLightIntensity: 2.66
+  SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  IsFogEnabled: 0
+  FogColor: {r: 1, g: 1, b: 1, a: 1}
+  fogMode: 3
+  fogDensity: 1
+  RealtimeShadowColor: {r: 1, g: 1, b: 1, a: 1}
+  EnvironmentLightingSource: 1
+  SkyColorHDR: {r: 0.019607844, g: 0.043137256, b: 0.14117648, a: 1}
+  EquatorColorHDR: {r: 0.11372549, g: 0.1254902, b: 0.13333334, a: 1}
+  GroundColorHDR: {r: 0.047058824, g: 0.043137256, b: 0.03529412, a: 1}
+  ReflectionIntensity: 1

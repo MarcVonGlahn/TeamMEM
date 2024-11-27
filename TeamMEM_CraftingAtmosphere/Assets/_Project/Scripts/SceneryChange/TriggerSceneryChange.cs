@@ -164,6 +164,21 @@ public class TriggerSceneryChange : MonoBehaviour
                 })
                 .WaitForCompletion();
         }
+        else if (futureShaderName.Contains("Cubemap Extended"))
+        {
+            Material futureSkyboxMaterial = new Material(sceneryProperties.SkyboxMaterial);
+            float futureExposure = futureSkyboxMaterial.GetFloat("_Exposure");
+
+            // Reset future Skybox Material to correct starting value
+            futureSkyboxMaterial.SetFloat("_Exposure", 0);
+
+            RenderSettings.skybox = futureSkyboxMaterial;
+
+            yield return DOTween
+                .To(x => futureExposure = x, 0, futureExposure, transitionDuration / 2)
+                .OnUpdate(() => RenderSettings.skybox.SetFloat("_Exposure", futureExposure))
+                .WaitForCompletion();
+        }
 
         yield return null;
     }
