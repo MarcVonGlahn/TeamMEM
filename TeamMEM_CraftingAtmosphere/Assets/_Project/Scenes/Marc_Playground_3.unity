@@ -37679,6 +37679,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: IntroSequence
       objectReference: {fileID: 0}
+    - target: {fileID: 2343399575673539619, guid: 2fc05823d416ded48bb17174d4415264,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3272157176047476778, guid: 2fc05823d416ded48bb17174d4415264,
         type: 3}
       propertyPath: m_text

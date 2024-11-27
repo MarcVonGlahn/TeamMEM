@@ -484,6 +484,12 @@ PrefabInstance:
       propertyPath: creatureID
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3355148004783165084, guid: 7819e2a6edf57a44a8ad682d94fbfdd6,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 39bd4ec729292ba42bbf5dec91ee9506,
+        type: 3}
     - target: {fileID: 6709159649115963645, guid: 7819e2a6edf57a44a8ad682d94fbfdd6,
         type: 3}
       propertyPath: m_text
@@ -630,6 +636,12 @@ PrefabInstance:
       propertyPath: creatureID
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3355148004783165084, guid: 7819e2a6edf57a44a8ad682d94fbfdd6,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9efa4b76b79cfce45853ab4ea6915057,
+        type: 3}
     - target: {fileID: 6709159649115963645, guid: 7819e2a6edf57a44a8ad682d94fbfdd6,
         type: 3}
       propertyPath: m_text
@@ -917,6 +929,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 682909521840310890}
     m_Modifications:
+    - target: {fileID: 3355148004783165084, guid: 7819e2a6edf57a44a8ad682d94fbfdd6,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 95f94d68a0502644faf1a0df35858e40,
+        type: 3}
     - target: {fileID: 6709159649115963645, guid: 7819e2a6edf57a44a8ad682d94fbfdd6,
         type: 3}
       propertyPath: m_text
