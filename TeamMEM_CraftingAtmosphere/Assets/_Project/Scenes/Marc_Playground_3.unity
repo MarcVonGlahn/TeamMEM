@@ -37679,6 +37679,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: IntroSequence
       objectReference: {fileID: 0}
+    - target: {fileID: 3272157176047476778, guid: 2fc05823d416ded48bb17174d4415264,
+        type: 3}
+      propertyPath: m_text
+      value: "Environmental scans have suggested that some form of corruption has
+        spread to this planet\u2019s local wildlife, \r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 5304077935188153452, guid: 2fc05823d416ded48bb17174d4415264,
         type: 3}
       propertyPath: m_fontColor32.rgba
