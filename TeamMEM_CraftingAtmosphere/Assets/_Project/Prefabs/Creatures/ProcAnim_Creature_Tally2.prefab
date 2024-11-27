@@ -1000,6 +1000,11 @@ PrefabInstance:
       propertyPath: walkingSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 936960080170060622, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: randomPlayRange.x
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1059151139084709573, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
       propertyPath: m_Name
@@ -1210,6 +1215,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 5.7529993
       objectReference: {fileID: 0}
+    - target: {fileID: 3789073388880574240, guid: 48e3d825ff354ec49854bba3e6163377,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 35b7a22471585a64683ff65563417f30, type: 3}
     - target: {fileID: 4371232975987579873, guid: 48e3d825ff354ec49854bba3e6163377,
         type: 3}
       propertyPath: m_LocalPosition.x
