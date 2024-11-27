@@ -8,6 +8,8 @@ public class FollowPath : MonoBehaviour
     [SerializeField] List<WaypathPoint> waypoints;
     [SerializeField] float waypointThreshold = 0.2f;
 
+    private SO_Moveset _moveset;
+
     private bool _shouldMove = false;
 
     private int _curWPIndex = 0;
@@ -20,6 +22,8 @@ public class FollowPath : MonoBehaviour
 
     private void Start()
     {
+        _moveset = GetComponent<CreatureControl>().Moveset;
+
         _toNextWaypoint = waypoints[0].transform.position - transform.position;
     }
 
@@ -43,7 +47,7 @@ public class FollowPath : MonoBehaviour
 
         Quaternion targetRotation = Quaternion.LookRotation((adjustedWaypointPosition - adjustedTransformPosition).normalized);
 
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 30f * Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _moveset.BodyRotationSpeed * Time.deltaTime);
     }
 
 

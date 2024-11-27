@@ -70,12 +70,12 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   RootBoneHeight: 0.75
-  StepDuration: 1
+  StepDuration: 0.2
   StepHeight: 0.35
   StepLengthTreshhold: 0.25
-  HeadRotationSpeed: 1.5
-  BodyRotationSpeed: 1
-  WalkingSpeed: 0.4
+  HeadRotationSpeed: 10
+  BodyRotationSpeed: 300
+  WalkingSpeed: 2
   RootBoneAnimationCurve:
     serializedVersion: 2
     m_Curve:
@@ -109,8 +109,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  RootLevelChangeAmount: 0.1
-  RootLevelChangeDuration: 1
+  RootLevelChangeAmount: 0.05
+  RootLevelChangeDuration: 0.25
   CreatureName: Mushroom Dude
   CreatureBiologicalName: Myces Aetheris
   CreatureID: 3

@@ -19,6 +19,7 @@ public class CreatureControl : MonoBehaviour
     bool _isMakingSounds = true;
 
     public bool IsMakingSounds { get => _isMakingSounds; set => _isMakingSounds = value; }
+    public SO_Moveset Moveset { get => moveset; }
 
     private void Awake()
     {

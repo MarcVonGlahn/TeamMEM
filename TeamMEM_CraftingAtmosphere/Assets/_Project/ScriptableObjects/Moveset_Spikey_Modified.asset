@@ -83,7 +83,7 @@ MonoBehaviour:
   StepHeight: 1
   StepLengthTreshhold: 0.9
   HeadRotationSpeed: 1.5
-  BodyRotationSpeed: 1
+  BodyRotationSpeed: 30
   WalkingSpeed: 1.2
   RootBoneAnimationCurve:
     serializedVersion: 2

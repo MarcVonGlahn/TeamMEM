@@ -83,8 +83,8 @@ MonoBehaviour:
   StepHeight: 1
   StepLengthTreshhold: 2.5
   HeadRotationSpeed: 1.5
-  BodyRotationSpeed: 1
-  WalkingStyle: 2
+  BodyRotationSpeed: 30
+  WalkingSpeed: 1
   RootBoneAnimationCurve:
     serializedVersion: 2
     m_Curve:
@@ -120,3 +120,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   RootLevelChangeAmount: 0.05
   RootLevelChangeDuration: 2
+  CreatureName: Example
+  CreatureBiologicalName: Examplaris Randomis
+  CreatureID: 1
+  Height: 1.5
+  WalkingStyle: 2
+  Corruption: 1
