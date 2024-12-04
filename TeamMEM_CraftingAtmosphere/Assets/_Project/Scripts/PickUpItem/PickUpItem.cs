@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class PickUpItem : MonoBehaviour
 {
+    [SerializeField] Texture _texture;
+    [SerializeField] MeshRenderer _renderer;
+
     private Vector3 _initPosition;
     private Quaternion _initRotation;
 
@@ -12,6 +15,11 @@ public class PickUpItem : MonoBehaviour
     {
         _initPosition = transform.position;
         _initRotation = transform.rotation;
+
+        var mat = new Material(_renderer.material);
+        mat.mainTexture = _texture;
+
+        _renderer.material = mat;
     }
 
 

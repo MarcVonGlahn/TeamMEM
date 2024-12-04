@@ -1548,6 +1548,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   pickUpDistance: 4
+  pickUpColor: {r: 0.17328231, g: 0.39563107, b: 0.6226415, a: 0.44705883}
 --- !u!33 &5478385049226181003
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2493,7 +2494,7 @@ Transform:
   m_GameObject: {fileID: 7068412308607970354}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.09899998, z: 0.867}
+  m_LocalPosition: {x: -0, y: -0.09899998, z: 1.37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

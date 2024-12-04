@@ -104,7 +104,7 @@ public class FabrikIK : MonoBehaviour
 
             _pullTransforms.Add(iKBone.pullTransform);
 
-            LogMessage($"{iKBone.pullTransform.position.y} - {_plantLegPos.y}");
+            // LogMessage($"{iKBone.pullTransform.position.y} - {_plantLegPos.y}");
 
             _initHeightDifferencePullTransform.Add(iKBone.pullTransform.localPosition.y);
         }
@@ -282,7 +282,7 @@ public class FabrikIK : MonoBehaviour
 
                 temp.y = _plantLegPos.y + _initHeightDifferencePullTransform[i] * ikBones[i].pullTransformHeightAffect;
 
-                LogMessage($"Plant Leg Y: {_plantLegPos.y} * height Affect: {ikBones[i].pullTransformHeightAffect} + Init Height Difference: {_initHeightDifferencePullTransform[i]}");
+                // LogMessage($"Plant Leg Y: {_plantLegPos.y} * height Affect: {ikBones[i].pullTransformHeightAffect} + Init Height Difference: {_initHeightDifferencePullTransform[i]}");
 
                 _pullTransforms[i].position = temp;
             }

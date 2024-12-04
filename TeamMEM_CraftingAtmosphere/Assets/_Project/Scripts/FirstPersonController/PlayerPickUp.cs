@@ -15,6 +15,8 @@ public class PlayerPickUp : MonoBehaviour
     [SerializeField] LayerMask pickUpLayerMask;
     [Space]
     [SerializeField] float pickUpDistance = 4f;
+    [Space]
+    [SerializeField] Color pickUpColor = Color.white;
 
     InputAction _pickUpAction;
 
@@ -23,10 +25,17 @@ public class PlayerPickUp : MonoBehaviour
 
     PickUpItem _currentPickUpItem = null;
 
+    PlayerScanner _scanner;
+
+    Color _initScannerColor;
+
     #region Setup
     private void Awake()
     {
         _pickUpAction = inputActions.FindActionMap("Player").FindAction("PickUp");
+
+        _scanner = GetComponent<PlayerScanner>();
+        _initScannerColor = _scanner.GetScannerColor;
     }
 
 
@@ -68,15 +77,27 @@ public class PlayerPickUp : MonoBehaviour
     {
         Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
 
+
         if (Physics.Raycast(ray, out RaycastHit hitInfo, pickUpDistance, pickUpLayerMask))
         {
             _canPickUp = true;
 
             _currentPickUpItem = hitInfo.collider.gameObject.GetComponent<PickUpItem>();
+
+            if (_scanner.GetScannerColor != pickUpColor)
+            {
+                Debug.Log("SHIIITIT");
+                _scanner.ChangeScannerDotColor(pickUpColor);
+            }
         }
         else
         {
-            _canPickUp = false;
+            if(_canPickUp && _scanner.GetScannerColor != _initScannerColor)
+            {
+                _scanner.ChangeScannerDotColor(_initScannerColor);
+
+                _canPickUp = false;
+            }
 
             if (!_isHoldingItem)
                 _currentPickUpItem = null;

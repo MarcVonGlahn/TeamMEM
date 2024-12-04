@@ -220,15 +220,29 @@ public class PlayerScanner : MonoBehaviour
                 _isPointingAtCreature = false;
 
             if (creatureNameDisplay.gameObject.activeSelf)
+            {
                 creatureNameDisplay.gameObject.SetActive(false);
 
-            if (scannerDot.color != scannerDotNegativeColor)
-                scannerDot.color = scannerDotNegativeColor;
+                if (scannerDot.color != scannerDotNegativeColor)
+                    scannerDot.color = scannerDotNegativeColor;
+            }
 
             if(_currentCreature != null)
                 _currentCreature = null;
         }
     }
+
+
+    public Color GetScannerColor { get {  return scannerDot.color; } }
+
+
+    // THIS IS SUCKY AS FUCK, BUT I DO BE A LAZY MARCIMAN
+    public void ChangeScannerDotColor(Color newColor)
+    {
+        if (scannerDot.color != newColor)
+            scannerDot.color = newColor;
+    }
+
 
 
     private void EnableDisableCreaturePropertiesPanel(bool enable)
